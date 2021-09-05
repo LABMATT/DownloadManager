@@ -6,11 +6,18 @@
   <title>LABMATTDOWNLOADSUPERVISOR</title>
   <meta charset="UTF-8">
 
+<!-- Include nessary script files. -->
+<!-- <script type="text/javascript" src="update.js"></script> -->
+
 </head>
 
 <style>
   body {
     margin: 2%;
+  }
+
+  #dwl {
+
   }
 </style>
 
@@ -18,20 +25,20 @@
 <body>
 
 <header>
-  <h1> Download Portal</h1>
+  <h1>Download Portal</h1>
   <p>Your download should start automatically. If it does not click the button below.</p>
-  <button>Download</button>
+  
+  <div id="dwl">
+  <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download><button id="dwlb">Download</button></a> -->
+  </div>
+  
   <p id="msg"></p>
-
-
 
 </body>
 </html>
 
 
 <?php 
-
-
 
  try {
 
@@ -47,13 +54,15 @@
     {
       echo " san is " . $inFile;
       echo $inAuto;
+
+      dldb($inFile, $inAuto);
     }
 
  } catch(Exception $e)
  {
    $error = $e->getMessage();
 
-     msg("lightred", $error);
+     msg("lightred", "[0] ". $error);
  }
 
 
@@ -98,7 +107,7 @@
  }
 
  // Login find if the user exists. If they do, register there session, get some info such as is admin or not, then echo the response the the webpage though javascript saving the login cookie, then redirect them to the correct page.
- function login($inUsername, $inPassword)
+ function dldb($indlid, $auto)
  {
   $servername = "localhost";
   $username = "root";
@@ -121,34 +130,29 @@
     if ($conn->connect_error) {
     $sqlError = $conn->connect_error;
 
-    msg("lightred", "There was an error connecting to the server: " . $sqlError);
+    msg("lightred", "[1] There was an error connecting to the server: " . $sqlError);
 
     } else{
 
     // Code from here on asks the database for user info and works with the database.
 
-    $sql = "SELECT password FROM users WHERE username='" . $inUsername . "';";
+    $sql = "SELECT relloc FROM downloadindex WHERE dlid='" . $indlid . "';";
     $pwresult = $conn->query($sql);
 
     if ($pwresult->num_rows > 0) {
       // output data of each row
 
       $row = mysqli_fetch_array($pwresult);
-      
-      if(strcmp($row["password"], $inPassword) == 0)
-    {
-      msg("lightgreen", "Working to log you in.");
+
+      $res = $row["relloc"];
+
+      echo "result is: " . $res;
 
       // Now that password is correct were gonna insert them into the active users, then save the cookie for futher login. THEN redirect them to either user or admin page.
-      finalLogin($conn, $inUsername);
+      preformDownload($res, $auto);
 
-    } else{
-      msg("lightred", "Incorrect Username Or Password..");
-    }
-
-     
     } else {
-      msg("lightred", "Incorrect Username Or Password.");
+      msg("lightred", "There was a database error. No dlid found.");
     }
     
     $conn->close();
@@ -156,9 +160,8 @@
   } catch(mysqli_sql_exception $e)
   {
     $error = $e->getMessage();
-    msg("lightred", "There was an error loging you in: " . $error);
+    msg("lightred", "[2] There was a database error: " . $error);
   }
-  
  }
 
 
@@ -167,5 +170,12 @@
  {
   echo "<script>document.getElementById('msg').style.color = '" . $color . "'; </script>";
   echo "<script>document.getElementById('msg').innerHTML = '" . $message . "'; </script>";
+ }
+
+ // Sends this download info over javascript
+ function preformDownload($loc, $auto)
+ {
+  echo "sending the url: " . $loc;
+  echo "<script type='text/javascript' src='update.js'>updateinfo(" . $loc . ", " . $auto . ");</script>";
  }
 ?>
