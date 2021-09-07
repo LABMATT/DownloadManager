@@ -3,21 +3,27 @@
 <head>
 
 <!-- Inportnet info -->
-  <title>LABMATTDOWNLOADSUPERVISOR</title>
+  <title>LABMATT DOWNLOAD</title>
   <meta charset="UTF-8">
 
 <!-- Include nessary script files. -->
-<!-- <script type="text/javascript" src="update.js"></script> -->
+<script type="text/javascript" src="update.js"></script>
 
 </head>
 
 <style>
   body {
     margin: 2%;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   #dwl {
 
+  }
+
+  #msg {
+    color: black;
+    font-weight: bold;
   }
 </style>
 
@@ -26,10 +32,10 @@
 
 <header>
   <h1>Download Portal</h1>
-  <p>Your download should start automatically. If it does not click the button below.</p>
+  <p id="action">Your download should start automatically. If it does not click the button below.</p>
   
   <div id="dwl">
-  <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download><button id="dwlb">Download</button></a> -->
+  <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download><button id="dwlb">Download</button></a>
   </div>
   
   <p id="msg"></p>
@@ -52,9 +58,6 @@
 
     if($isK && $isautoK)
     {
-      echo " san is " . $inFile;
-      echo $inAuto;
-
       dldb($inFile, $inAuto);
     }
 
@@ -62,7 +65,7 @@
  {
    $error = $e->getMessage();
 
-     msg("lightred", "[0] ". $error);
+     msg("red", "[0] ". $error);
  }
 
 
@@ -130,7 +133,7 @@
     if ($conn->connect_error) {
     $sqlError = $conn->connect_error;
 
-    msg("lightred", "[1] There was an error connecting to the server: " . $sqlError);
+    msg("red", "[1] There was an error connecting to the server: " . $sqlError);
 
     } else{
 
@@ -146,13 +149,12 @@
 
       $res = $row["relloc"];
 
-      echo "result is: " . $res;
-
       // Now that password is correct were gonna insert them into the active users, then save the cookie for futher login. THEN redirect them to either user or admin page.
+      echo "<script type='text/javascript'>titlepd(\"" . $indlid . "\");</script>";
       preformDownload($res, $auto);
 
     } else {
-      msg("lightred", "There was a database error. No dlid found.");
+      msg("red", "The File Your Looking For was Not Found. No dlid found.");
     }
     
     $conn->close();
@@ -160,7 +162,7 @@
   } catch(mysqli_sql_exception $e)
   {
     $error = $e->getMessage();
-    msg("lightred", "[2] There was a database error: " . $error);
+    msg("red", "[2] There was a database error: " . $error);
   }
  }
 
@@ -175,7 +177,8 @@
  // Sends this download info over javascript
  function preformDownload($loc, $auto)
  {
-  echo "sending the url: " . $loc;
-  echo "<script type='text/javascript' src='update.js'>updateinfo(" . $loc . ", " . $auto . ");</script>";
+  // As the string for the file location contains backslash aka escape charter, we ironicly need to escape the escape charter. Thus replace one with two.
+  $loc = str_replace("\\", "\\\\", $loc);
+  echo "<script type='text/javascript'>updateinfo(\"" . $loc . "\", " . $auto . ");</script>";
  }
-?>
+?> 
