@@ -46,6 +46,8 @@
 
 <?php 
 
+// THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
+
  try {
 
   // Get the input
