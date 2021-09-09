@@ -8,24 +8,9 @@
 
 <!-- Include nessary script files. -->
 <script type="text/javascript" src="update.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
 
 </head>
-
-<style>
-  body {
-    margin: 2%;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  #dwll {
-    display: none;
-  }
-
-  #msg {
-    color: black;
-    font-weight: bold;
-  }
-</style>
 
 <!-- Main Html Body -->
 <body>
@@ -38,11 +23,42 @@
   <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download><button id="dwlb">Download</button></a>
   </div>
 
-  <div>
+  <br>
 
-</div>
+  <p id="fp"><b>File Properties:</b></p>
+  <div id="info">
+  <table>
+  <tr>
+    <th id="tit">Name: </th>
+    <th class="prop" id="pname"></th>
+  </tr>
+  <tr>
+    <th id="tit">Date-Created: </th>
+    <th class="prop" id="pdatec"></th>
+  </tr>
+  <tr>
+    <th id="tit">Date-Modifed: </th>
+    <th class="prop" id="pdatem"></th>
+  </tr>
+  <tr>
+    <th id="tit">File-type: </th>
+    <th class="prop" id="ptype"></th>
+  </tr>
+  <tr>
+    <th id="tit">Size: </th>
+    <th class="prop" id="psize"></th>
+  </tr>
+  </table>
+  </div>
   
   <p id="msg"></p>
+
+  <br>
+
+  <p><b>WGET for linux terminals (click to copy):</b></p>
+  <p id="wget" onclick="copy()"></p>
+  <p id="copyed"><b>Copied!</b></p>
+
 
 </body>
 </html>
@@ -111,7 +127,7 @@
          }
 
      } else {
-         throw new Exception("Download is invalid. <br> File not found or Illigle DLID.");
+         throw new Exception("Download is invalid. <br> File not found by that DLID.");
      }
  }
 
@@ -157,7 +173,7 @@
 
       // Now that password is correct were gonna insert them into the active users, then save the cookie for futher login. THEN redirect them to either user or admin page.
       echo "<script type='text/javascript'>titlepd(\"" . $indlid . "\");</script>";
-      preformDownload($res, $auto);
+      preformDownload($res, $auto, $indlid);
 
     } else {
       msg("red", "The File Your Looking For was Not Found. No dlid found.");
@@ -181,10 +197,41 @@
  }
 
  // Sends this download info over javascript
- function preformDownload($loc, $auto)
+ function preformDownload($loc, $auto, $indlid)
  {
-  // As the string for the file location contains backslash aka escape charter, we ironicly need to escape the escape charter. Thus replace one with two.
-  $loc = str_replace("\\", "\\\\", $loc);
-  echo "<script type='text/javascript'>updateinfo(\"" . $loc . "\", " . $auto . ");</script>";
+   
+  $loc = str_replace("\\", "/", $loc); // Adds extra exit char to the pre existing exit char so that when its sent over there still remain in the string.
+
+  if(file_exists($loc))
+  {
+
+    $serverHoster = "http://192.168.1.108/DownloadManager/";
+
+    if($auto == 3)
+    {
+      // REDIRECTS PAGE TO THE FILE
+      header("Location: " . $serverHoster . $loc, true, 301); 
+    } else {
+
+      echo "<script type='text/javascript'>titlepd(\"" . $indlid . "\");</script>"; // Changes name of webpage to the file name.
+
+      // This creates all the basic pramters for the file info.
+      $fname = basename($loc);
+      $fdatem = date ("F d Y H:i:s.", filemtime($loc));
+      $fdatec = date ("F d Y H:i:s.", filectime($loc));
+      $ftype = filetype($loc);
+      $fsize = filesize($loc) . " Bytes";
+      $dynlink = $serverHoster . "?dlid=" . $indlid . "&auto=3";
+
+      echo "<script type='text/javascript'>updateProp(\"" . $fname . "\",\"" . $fdatec . "\" , \"" . $fdatem . "\" , \"" . $ftype . "\",\"" . $fsize . "\");</script>"; // Changes name of webpage to the file name.
+      echo "<script type='text/javascript'>updateinfo(\"" . $loc . "\", \"" . $auto . "\",\"" . $dynlink . "\");</script>";
+
+    } 
+  }else 
+    {
+      msg("red", "Failed To find file on server.");
+    }
+
+  
  }
 ?> 
