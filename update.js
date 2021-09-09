@@ -22,9 +22,10 @@ if(auto == 1)
     document.getElementById("dwll").style.display = "block";
 } else{
     document.getElementById('msg').style.color = "red";
-    document.getElementById('msg').innerHTML = "Your download starting option was invlaid. Auto: <br> - 1 = Start Download Automaticly. <br> - 0 = Start Download Manualy. <br> - 3 = DIRECT REDIRECT. (you should not be seeing this)";
+    document.getElementById('msg').innerHTML = "Your download auto option was invlaid: <br> - 0 = Start Download Manualy. <br> - 1 = Start Download Automaticly. <br> - 2 = DIRECT REDIRECT. (You should not be seeing this page)";
 }
 }
+
 
 // Changes the title of the page to the new download name. Auto caps and all.
 function titlepd(ntitle)
@@ -32,6 +33,7 @@ function titlepd(ntitle)
     ntitle = ntitle.charAt(0).toUpperCase() + ntitle.slice(1);
     document.title = ntitle + " Download";
 }
+
 
 // Update the propiteys info of the webpage
 function updateProp(name, created, modfied, filetype ,size)
@@ -43,10 +45,18 @@ function updateProp(name, created, modfied, filetype ,size)
     document.getElementById("psize").innerHTML = size;
 }
 
+
 // When clicked copy the wget text to clipboard
 function copy()
 {
     console.log("copied!");
     navigator.clipboard.writeText(document.getElementById("wget").textContent);copyed
     document.getElementById("copyed").style.display = "block";
+}
+
+// If an error occures then hide the blank stuff. Still gonna keep the table because it ads structure however the wget windows gotta go.
+function cleanup()
+{
+    document.getElementById("wgettitle").style.display = "none";
+    document.getElementById("wget").style.display = "none";
 }

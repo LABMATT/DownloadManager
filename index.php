@@ -15,16 +15,20 @@
 <!-- Main Html Body -->
 <body>
 
+<!-- This is the top text that says what page your on -->
 <header>
   <h1>Download Portal</h1>
   <p id="action">Your download should start automatically. If it does not click the button below.</p>
+</header>
   
+<!-- Download buttons that show when they have href applied to them -->
   <div id="dwl">
   <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download><button id="dwlb">Download</button></a>
   </div>
 
   <br>
 
+  <!--This is the propites window for the file that is selected -->
   <p id="fp"><b>File Properties:</b></p>
   <div id="info">
   <table>
@@ -51,11 +55,13 @@
   </table>
   </div>
   
+  <!-- Message witch has its contents swaped if php has an error. -->
   <p id="msg"></p>
 
   <br>
 
-  <p><b>WGET for linux terminals (click to copy):</b></p>
+  <!-- The wget window where you get easy acces to the command to download this file using wget -->
+  <p id="wgettitle"><b>WGET for linux terminals (click to copy):</b></p>
   <p id="wget" onclick="copy()"></p>
   <p id="copyed"><b>Copied!</b></p>
 
@@ -80,6 +86,8 @@
 
     if($isK && $isautoK)
     {
+
+      // Call main file lookup service
       dldb($inFile, $inAuto);
     }
 
@@ -127,7 +135,7 @@
          }
 
      } else {
-         throw new Exception("Download is invalid. <br> File not found by that DLID.");
+         throw new Exception("Download is invalid. <br> File not found by that DLID. <br> Max DLID length reached.");
      }
  }
 
@@ -176,7 +184,7 @@
       preformDownload($res, $auto, $indlid);
 
     } else {
-      msg("red", "The File Your Looking For was Not Found. No dlid found.");
+      msg("red", "Failed To find file on server. No dlid found in database.");
     }
     
     $conn->close();
@@ -194,24 +202,32 @@
  {
   echo "<script>document.getElementById('msg').style.color = '" . $color . "'; </script>";
   echo "<script>document.getElementById('msg').innerHTML = '" . $message . "'; </script>";
+
+  if($color == "red")
+  {
+    echo "<script>cleanup();</script>";
+  }
  }
 
  // Sends this download info over javascript
  function preformDownload($loc, $auto, $indlid)
  {
    
+  // No matter if its linix or windows were gonna use / not \ and this is totaly because wget wast not happy with one of them.
   $loc = str_replace("\\", "/", $loc); // Adds extra exit char to the pre existing exit char so that when its sent over there still remain in the string.
 
+  // Check if the file exists in its path.
   if(file_exists($loc))
   {
 
+    // CHANGE THIS TO YOUR HOST NAME!!!! THIS IS THE MAIN SITE DOMAIN WHERE WGET WILL LINK.
     $serverHoster = "http://192.168.1.108/DownloadManager/";
 
-    if($auto == 3)
+    if($auto == 2)
     {
       // REDIRECTS PAGE TO THE FILE
       header("Location: " . $serverHoster . $loc, true, 301); 
-    } else {
+    } else if ($auto == 0 || $auto == 1){
 
       echo "<script type='text/javascript'>titlepd(\"" . $indlid . "\");</script>"; // Changes name of webpage to the file name.
 
@@ -221,17 +237,17 @@
       $fdatec = date ("F d Y H:i:s.", filectime($loc));
       $ftype = filetype($loc);
       $fsize = filesize($loc) . " Bytes";
-      $dynlink = $serverHoster . "?dlid=" . $indlid . "&auto=3";
+      $dynlink = $serverHoster . "?dlid=" . $indlid . "&auto=2";
 
       echo "<script type='text/javascript'>updateProp(\"" . $fname . "\",\"" . $fdatec . "\" , \"" . $fdatem . "\" , \"" . $ftype . "\",\"" . $fsize . "\");</script>"; // Changes name of webpage to the file name.
       echo "<script type='text/javascript'>updateinfo(\"" . $loc . "\", \"" . $auto . "\",\"" . $dynlink . "\");</script>";
 
-    } 
+    } else {
+      msg("red", "Your download auto option was invlaid: <br> - 0 = Start Download Manualy. <br> - 1 = Start Download Automaticly. <br> - 2 = DIRECT REDIRECT. (You should not be seeing this page)");
+    }
   }else 
     {
       msg("red", "Failed To find file on server.");
-    }
-
-  
+    }  
  }
 ?> 

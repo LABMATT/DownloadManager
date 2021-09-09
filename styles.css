@@ -1,25 +1,47 @@
+/* Main body stlyes, font and other setup*/
 body {
     margin: 2%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
   }
 
+  /* The download button style. Gray and someone large*/
+  #dwlb {
+    background-color: rgb(48, 48, 48);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    font-weight: bold;
+  }
+
+  /* When hover over button change colour to blue*/
+  #dwlb:hover {
+    background-color: rgb(4, 0, 255);
+    color: white;
+  }
+
+  /* Hide the download link untill it has its href set */
   #dwll {
     display: none;
   }
 
+  /* This is the paragraph that recives all the errors from php */
   #msg {
     color: black;
     font-weight: bold;
   }
 
-  #info {
-      }
-
-      table, td, th {
+  /* The basic look of the HTML propites table */
+  table, td, th {
   border: 1px solid black;
 }
 
+/* More table looks */
 table {
   border-collapse: collapse;
   margin-right: 80%;
@@ -31,15 +53,20 @@ table {
     width: 50%;
 }
 
+ /* Ohhhh so classes are for large amounts of things with same style where as id is for ref a single object. I now understand*/
+ /* Matt tracked this defines the text for the propites headings*/
 .prop {
     text-align: left;
     padding-left: 1%;
 }
 
+
+/* The propites headers margin */
 #fp {
   margin-bottom: 0.1%;
 }
 
+/* A snazzyt looking box that holds a monospace font for my fellow linix users */
 #wget {
   background-color: rgb(48, 48, 48);
   color: white;
@@ -47,6 +74,7 @@ table {
   padding: 0.5%;
 }
 
+/* When you copy the text applie this css style to the copy window. */
 #copyed {
   background-color: green;
   color: white;
