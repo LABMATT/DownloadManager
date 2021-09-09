@@ -17,8 +17,8 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  #dwl {
-
+  #dwll {
+    display: none;
   }
 
   #msg {
@@ -37,6 +37,10 @@
   <div id="dwl">
   <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download><button id="dwlb">Download</button></a>
   </div>
+
+  <div>
+
+</div>
   
   <p id="msg"></p>
 
@@ -67,7 +71,7 @@
  {
    $error = $e->getMessage();
 
-     msg("red", "[0] ". $error);
+     msg("red", $error);
  }
 
 
@@ -107,7 +111,7 @@
          }
 
      } else {
-         throw new Exception("Input Exceeds maximum Character Limit.");
+         throw new Exception("Download is invalid. <br> File not found or Illigle DLID.");
      }
  }
 
@@ -135,7 +139,7 @@
     if ($conn->connect_error) {
     $sqlError = $conn->connect_error;
 
-    msg("red", "[1] There was an error connecting to the server: " . $sqlError);
+    msg("red", "There was an error connecting to the server: " . $sqlError);
 
     } else{
 
@@ -164,7 +168,7 @@
   } catch(mysqli_sql_exception $e)
   {
     $error = $e->getMessage();
-    msg("red", "[2] There was a database error: " . $error);
+    msg("red", "There was a database error: " . $error);
   }
  }
 

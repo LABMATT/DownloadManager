@@ -10,6 +10,7 @@ document.getElementById('dwll').href = url;
 // Clicks the button if its an auto download.
 if(auto == 1)
 {
+    document.getElementById("dwll").style.display = "block";
     document.getElementById('dwlb').click();
 } else if (auto == 0)
 {
