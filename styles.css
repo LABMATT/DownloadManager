@@ -82,3 +82,9 @@ table {
   padding: 0.5%;
   display: none;
 }
+
+/* the link to source code styling */
+#source {
+  position: fixed;
+  bottom: 0%;
+}

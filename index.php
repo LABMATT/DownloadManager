@@ -65,6 +65,9 @@
   <p id="wget" onclick="copy()"></p>
   <p id="copyed"><b>Copied!</b></p>
 
+  <!-- This is the source code for this very program -->
+  <p id="source">View Source Code For Download Manger here: <a href="https://github.com/LABMATT/DownloadManager" target="_blank">https://github.com/LABMATT/DownloadManager</a></p>
+
 
 </body>
 </html>
