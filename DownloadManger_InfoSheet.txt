@@ -1,0 +1,8 @@
+INFO FACT SHEET FOR DOWNLOAD MANGER BY LABMATT (MATTHEW LEWINGTON)
+
+// DLID is the download ID for the file. It will get looked for and is what link is sent back.
+
+// URL php term "auto=" allows the files to be auto downloaded when the page is opened. 
+if(auto == 1) THEN AUTO DOWNLAOD ON PAGE OPEN.
+if(auto == 0) THEN DO NOTHING ON PAGE OPEN.
+

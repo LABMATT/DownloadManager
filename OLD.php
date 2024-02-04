@@ -253,15 +253,4 @@
       msg("red", "Failed To find file on server.");
     }  
  }
-
-
-// Reads data from binary file.
-// Database:
-// 0x00 database version 1 byte
-// 0x01 database pair size, eg how many values per entery. FEX: "19 Name location blank" as one entery with dlid first, name, file location,
-// 0x1E Start of lookup numbers. dlid: offset start (HEX) OFFSET END (HEX). 
-
- function databaseLookup($id) {
-
- }
 ?> 
