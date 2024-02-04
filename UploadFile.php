@@ -32,14 +32,16 @@ function BackupDatabase() {
 }
 
 
+
+// Clear backups, deletes backups older than the amout of seconds entered.
 function clearBackup($databaseBackupKeepedSeconds) {
 
+    // Scans the backup folder
     $backupFiles = scandir('DatabaseBackups');
-
-    //print_r($backupFiles);
 
     if($backupFiles) {
 
+        // For each file, get the time it was made, then see if its older than the expirty date. If so delete, else leave.
         foreach($backupFiles as $key => $filename) {
 
             if (file_exists('DatabaseBackups' . DIRECTORY_SEPARATOR . $filename)) {
@@ -63,13 +65,6 @@ function clearBackup($databaseBackupKeepedSeconds) {
             }
         }
     }
-
-
-
-    /*
-
-    */
-
 }
 
 
