@@ -3,8 +3,7 @@
     "dlid_1": {
       "downloadName": "test",
       "status": "true",
-      "reason": "null",
-      "passwordProtected": "no"
+      "reason": "null"
     }
   }
 }

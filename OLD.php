@@ -91,7 +91,7 @@
     {
 
       // Call main file lookup service
-      dldb($inFile, $inAuto);
+      lookUpDownload($inFile, $inAuto);
     }
 
  } catch(Exception $e)
