@@ -1,6 +1,7 @@
 <?php
-// Checks and gets file info.
-function lookUpDownload($indlid, $auto)
+// Checks MANIFEST exists and verifys content.
+
+function verifyManifest($indlid)
 {
     // $mainManifestJsonData->downloads->dlid_1->downloadName;
     $dlidStr = "dlid_" . $indlid;
@@ -46,12 +47,20 @@ function lookUpDownload($indlid, $auto)
         } else {
             throw new Exception("Download Does Not Exist In Server Manifest.");
         }
+        
+        if($mainManifestJsonData->downloads->$dlidStr->passwordProtected == 1)
+            {
+                return 2;
+            }
 
 
     } catch (Exception $e) {
+
         echo $e->getMessage();
+        return 0;
     }
 
-
+    return 1;
 }
+
 ?>
