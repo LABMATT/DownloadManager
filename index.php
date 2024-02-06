@@ -84,10 +84,10 @@
  $inAuto = htmlspecialchars($_GET["auto"] ?? null); 
 
  // return Bool, Check if all good.
-    $isK = sanitize($inFile, 25);
+    $isOK = sanitize($inFile, 25);
     $isautoK = sanitize($inAuto, 2);
 
-    if($isK && $isautoK)
+    if($isOK && $isautoK)
     {
 
       // Call main file lookup service
@@ -142,61 +142,27 @@
      }
  }
 
- // Login find if the user exists. If they do, register there session, get some info such as is admin or not, then echo the response the the webpage though javascript saving the login cookie, then redirect them to the correct page.
+ 
  function dldb($indlid, $auto)
  {
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "downloads";
-  
-  try {
-
-    // DATABASE FOR DOWNLOADS SERVER IS SETUP SO:
-    // Schema: downloads
-    // Table: downloadindex
-    // tableCol: iddownloadindex=int=NN=PK=Ai , dlid=vchar44=NN , relloc=vchar200=nn
-
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Set MySQLi to throw exceptions 
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $database);
-  
-    // Check connection
-    if ($conn->connect_error) {
-    $sqlError = $conn->connect_error;
-
-    msg("red", "There was an error connecting to the server: " . $sqlError);
-
-    } else{
-
-    // Code from here on asks the database for user info and works with the database.
-
-    $sql = "SELECT relloc FROM downloadindex WHERE dlid='" . $indlid . "';";
-    $pwresult = $conn->query($sql);
-
-    if ($pwresult->num_rows > 0) {
-      // output data of each row
-
-      $row = mysqli_fetch_array($pwresult);
-
-      $res = $row["relloc"];
-
-      // Now that password is correct were gonna insert them into the active users, then save the cookie for futher login. THEN redirect them to either user or admin page.
-      echo "<script type='text/javascript'>titlepd(\"" . $indlid . "\");</script>";
-      preformDownload($res, $auto, $indlid);
-
-    } else {
-      msg("red", "Failed To find file on server. No dlid found in database.");
-    }
-    
-    $conn->close();
-    }
-  } catch(mysqli_sql_exception $e)
-  {
-    $error = $e->getMessage();
-    msg("red", "There was a database error: " . $error);
-  }
+   // Get the main manifest file to check if the file exists. RETURNS FALSE if file is empty or not exists.
+   $mainManifestFile = file_get_contents("Manifest.json");
+   
+   $mainManifestJsonData = json_decode($mainManifestFile);
+   
+   //echo $mainManifestJsonData->downloads->dlid_1->downloadName;
+   
+   if(isset($mainManifestJsonData->downloads->dlid_1``)) {
+     echo "dlid exists <br>";
+   } else {
+     echo "dlid does not exists <br>";
+   }
+   
+   if($mainManifestFile) {
+     echo "File exists";
+   } else {
+     echo "File it does not exist";
+   }
  }
 
 

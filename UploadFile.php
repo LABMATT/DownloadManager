@@ -1,4 +1,5 @@
 <?php
+
 // Amout of Seconds a backup is kept before been deleted. 5184000 is 60 days
 $databaseBackupKeepedSeconds = 60;
 
@@ -7,12 +8,44 @@ $databaseBackupKeepedSeconds = 60;
 clearBackup($databaseBackupKeepedSeconds);
 BackupDatabase();
 
-// if database does not exist then create database.
-
-function CreateDatabase()
+// Creates A new LocalManifest for an uploaded file.
+function CreateManifest($dlid, $fileName, $fileVersion, $fileSource, )
 {
     
 }
+
+
+// Gens a new DLID and then adds it to the MainManifest.
+function genDLID($fileName)
+{
+    
+    $dlid = rand(0,65535); // As there non essenital we just use php random num gen.
+    
+    //
+    $localManifestContent = new stdClass();
+    $localManifestContent->dlid = $dlid;
+    $localManifestContent->downloadName = "null";
+    $localManifestContent->filename = "null";
+    $localManifestContent->version = "null";
+    $localManifestContent->dateCreated = "null";
+    $localManifestContent->dateLastmodifed = "null";
+    $localManifestContent->type = "null";
+    $localManifestContent->description = "null";
+    $localManifestContent->creatorSource = "null";
+    $localManifestContent->link = "null";
+    $localManifestContent->numberOfDownloads = "null";
+    $localManifestContent->filesize = "null";
+    $localManifestContent->passwordProtected = "no";
+    
+    $mainManifestContent = new stdClass();
+    $mainManifestContent->dlid = $dlid;
+    $mainManifestContent->downloadName = "null";
+    $mainManifestContent->status = "true";
+    $mainManifestContent->reason = "true";
+}
+
+
+
 
 // Database backup copys the database file to anotehr folder.
 function BackupDatabase() {
@@ -48,25 +81,17 @@ function clearBackup($databaseBackupKeepedSeconds) {
 
                 // If the file is longer than allowerble backup time then delete it.
                 if($filename != '..' & $filename != '.') {
-                    echo "checking file $filename <br>";
-                    echo "$filename was last modified: " . filemtime($filename) . "<br>";
-
-                    echo time() . " normal time <br>";
-                    echo filemtime('DatabaseBackups' . DIRECTORY_SEPARATOR . $filename) . "file time <br>";
-                    echo (time() - filemtime('DatabaseBackups' . DIRECTORY_SEPARATOR . $filename));
 
                     if((time() - filemtime('DatabaseBackups' . DIRECTORY_SEPARATOR . $filename)) > $databaseBackupKeepedSeconds) {
                         unlink('DatabaseBackups' . DIRECTORY_SEPARATOR . $filename);
                     }
                 }
-
-            } else {
-                echo "$filename no exit: <br>";
             }
         }
     }
+    
+    
+    
 }
-
-
 
 ?> 
