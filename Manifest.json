@@ -10,7 +10,7 @@
       "downloadName": "test",
       "status": "true",
       "reason": "null",
-      "passwordProtected": "0"
+      "passwordProtected": "false"
     }
   }
 }
