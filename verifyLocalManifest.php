@@ -76,11 +76,8 @@ function verifyLocalManifest($dlid)
             if (!isset($localManifestJsonData->$dlidStr->fileSize)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 13) in DLID: " . $dlid);
             }
-            if (!isset($localManifestJsonData->$dlidStr->passwordProtected)) {
-                throw new Exception("Downloads LocalManifest Format Error(Line 14) in DLID: " . $dlid);
-            }
             if (!isset($localManifestJsonData->$dlidStr->strictParameters)) {
-                throw new Exception("Downloads LocalManifest Format Error(Line 15) in DLID: " . $dlid);
+                throw new Exception("Downloads LocalManifest Format Error(Line 14) in DLID: " . $dlid);
             }
             
         } else {

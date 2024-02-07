@@ -6,7 +6,7 @@ function verifyManifest($indlid)
     // $mainManifestJsonData->downloads->dlid_1->downloadName;
     $dlidStr = "dlid_" . $indlid;
 
-    echo $dlidStr;
+    $mainManifestJsonData = 0;
 
     try {
 
@@ -67,11 +67,6 @@ function verifyManifest($indlid)
             throw new Exception("Server Manifest Is Formatted Incorrectly. Unable To Find Settings.");
         }
         
-        if($mainManifestJsonData->downloads->$dlidStr->passwordProtected == 1)
-            {
-                return 2;
-            }
-
 
     } catch (Exception $e) {
 
@@ -79,7 +74,7 @@ function verifyManifest($indlid)
         return 0;
     }
 
-    return 1;
+    return $mainManifestJsonData;
 }
 
 ?>

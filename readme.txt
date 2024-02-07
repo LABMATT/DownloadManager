@@ -5,7 +5,8 @@ INFO FACT SHEET FOR DOWNLOAD MANGER BY LABMATT (MATTHEW LEWINGTON)
 https://download.labmatt.space/?dlid=1&auto=0
 THIS BREAKS DOWN TO: //https://HOST NAME/?dlid= A NUBMER FROM 0 to 65535 &auto= 0 or 1 for auto download on page open
 
-// URL php term "auto=" allows the files to be auto downloaded when the page is opened. 
+// URL php term "auto=" allows the files to be auto downloaded when the page is opened.
+if(auto == 2) DIRECT REDIRECT.
 if(auto == 1) THEN AUTO DOWNLAOD ON PAGE OPEN.
 if(auto == 0) THEN DO NOTHING ON PAGE OPEN.
 
@@ -51,7 +52,6 @@ dlid=1 ---> Leads to info in the Manifest.json that relates to the file.
  ---> link                         // Link to profile or site related to download.           EG: www.labmatt.space
  ---> numberOfDownloads            // Number of times the download button has been clicked   EG: 4 times
  ---> fileSize                     // fileSize in bytes                                      EG: 4 bytes
- ---> passwordProtected            // If the file is password protected                      EG: true,false
  ---> strictParameters             // If enabled All vars such as date created, modifed size
                                    // type and all must match the manifed and are compaired
                                    // to the file systems info. Else program will error      EG: true - has to match else error, false - dont check.

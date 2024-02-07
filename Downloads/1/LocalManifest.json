@@ -3,15 +3,14 @@
         "downloadName": "Example Download",
         "fileName": "Example.jpg",
         "version": "1",
-        "dateCreated": "null",
-        "dateLastModifed": "null",
+        "dateCreated": "1707285092",
+        "dateLastModifed": "1707285092",
         "type": "null",
         "description": "null",
         "creatorSource": "null",
         "link": "null",
         "numberOfDownloads": "null",
         "fileSize": "11581508",
-        "passwordProtected": "null",
         "strictParameters": true
     }
 }

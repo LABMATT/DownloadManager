@@ -77,7 +77,7 @@
 </html>
 
 
-<?php1
+<?php
 
 require 'verifyManifest.php';
 require 'verifyLocalManifest.php';
@@ -101,24 +101,25 @@ try {
         // Call main file lookup service
         $verifyManifest = verifyManifest($inFile);
         $localManifestjson = 0;
+        $dlidStr = "dlid_" . $inFile;
+        
 
-        // From our result, we either 0-DO NOTHING, 1-Now check for download and local manifest, 2-Password protected and require external server.
-        switch ($verifyManifest) {
-            case 0:
-                // There was an error duing manifest verifcation so do nothing.
-                break;
-            case 1:
+        // From our result, we either 0-DO NOTHING, else move on to checking if password protected.
+        if (!$verifyManifest == 0) {
+            if ($verifyManifest->downloads->$dlidStr->passwordProtected == true) {
+
+                // REQUIRES EXTERNAL SERVER CONNECTION.
+
+            } else {
+                // Verify the LocalManifest for  that download. Then return the json
                 $localManifestjson = verifyLocalManifest($inFile);
-                break;
-            case 2:
-                // Password protected.
-                break;
-        }
+            }
+        } 
 
         // If its 0 then there was an error. Else proceed with download.
         if (!$localManifestjson == 0) {
-            
-            processDownload($inFile, $localManifestjson);
+
+            processDownload($inFile, $localManifestjson, $verifyManifest);
         }
     }
 
