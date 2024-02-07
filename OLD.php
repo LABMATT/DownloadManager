@@ -184,7 +184,7 @@
 
       // Now that password is correct were gonna insert them into the active users, then save the cookie for futher login. THEN redirect them to either user or admin page.
       echo "<script type='text/javascript'>titlepd(\"" . $indlid . "\");</script>";
-      preformDownload($res, $auto, $indlid);
+      //preformDownload($res, $auto, $indlid);
 
     } else {
       msg("red", "Failed To find file on server. No dlid found in database.");

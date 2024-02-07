@@ -26,7 +26,7 @@ dlid=1 ---> Leads to info in the Manifest.json that relates to the file.
  ---> autoDectectDarkTheme: true   // The download page deteacts if browser is using a dark theme then ajusts for it.   
 
 
-// "downloads": Formate in Manifest.json
+// "downloads": Format in Manifest.json
 // The dlid_number is a sub catogry under the downlaod, it provides inital info on the downlaod before the local manifest. local provid more spersific info.
  ---> dlid_downloadNumber(0-65535):
   ---> downloadName                // Name of the download                                   EG: example.jpg
