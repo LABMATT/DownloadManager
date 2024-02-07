@@ -77,13 +77,12 @@
 </html>
 
 
-<?php
-
-//https://download.labmatt.space/?dlid=neck&auto=0
+<?php1
 
 require 'verifyManifest.php';
 require 'verifyLocalManifest.php';
 require 'msg.php';
+require 'processDownload.php';
 
 // THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
 
@@ -101,6 +100,7 @@ try {
 
         // Call main file lookup service
         $verifyManifest = verifyManifest($inFile);
+        $localManifestjson = 0;
 
         // From our result, we either 0-DO NOTHING, 1-Now check for download and local manifest, 2-Password protected and require external server.
         switch ($verifyManifest) {
@@ -108,11 +108,17 @@ try {
                 // There was an error duing manifest verifcation so do nothing.
                 break;
             case 1:
-                verifyLocalManifest($inFile);
+                $localManifestjson = verifyLocalManifest($inFile);
                 break;
             case 2:
                 // Password protected.
                 break;
+        }
+
+        // If its 0 then there was an error. Else proceed with download.
+        if (!$localManifestjson == 0) {
+            
+            processDownload($inFile, $localManifestjson);
         }
     }
 

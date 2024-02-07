@@ -37,55 +37,64 @@ function verifyLocalManifest($dlid)
 
 
         // Now we have covered most common errors, we can get the contents of the LocalManifest.json then cast it to a object.
-        $mainManifestFile = file_get_contents($localManifestLocation);
-        $mainManifestJsonData = json_decode($mainManifestFile);
+        $localManifestFile = file_get_contents($localManifestLocation);
+        $localManifestJsonData = json_decode($localManifestFile);
 
 
         // Verify the intergity of the LocalManifest.
-        if (isset($mainManifestJsonData->$dlidStr)) {
-            if (!isset($mainManifestJsonData->$dlidStr->downloadName)) {
+        if (isset($localManifestJsonData->$dlidStr)) {
+            if (!isset($localManifestJsonData->$dlidStr->downloadName)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 3) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->fileName)) {
+            if (!isset($localManifestJsonData->$dlidStr->fileName)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 4) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->version)) {
+            if (!isset($localManifestJsonData->$dlidStr->version)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 5) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->dateCreated)) {
+            if (!isset($localManifestJsonData->$dlidStr->dateCreated)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 6) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->dateLastModifed)) {
+            if (!isset($localManifestJsonData->$dlidStr->dateLastModifed)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 7) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->type)) {
+            if (!isset($localManifestJsonData->$dlidStr->type)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 8) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->description)) {
+            if (!isset($localManifestJsonData->$dlidStr->description)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 9) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->creatorSource)) {
+            if (!isset($localManifestJsonData->$dlidStr->creatorSource)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 10) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->link)) {
+            if (!isset($localManifestJsonData->$dlidStr->link)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 11) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->numberOfDownloads)) {
+            if (!isset($localManifestJsonData->$dlidStr->numberOfDownloads)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 12) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->fileSize)) {
+            if (!isset($localManifestJsonData->$dlidStr->fileSize)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 13) in DLID: " . $dlid);
             }
-            if (!isset($mainManifestJsonData->$dlidStr->passwordProtected)) {
+            if (!isset($localManifestJsonData->$dlidStr->passwordProtected)) {
                 throw new Exception("Downloads LocalManifest Format Error(Line 14) in DLID: " . $dlid);
             }
+            if (!isset($localManifestJsonData->$dlidStr->strictParameters)) {
+                throw new Exception("Downloads LocalManifest Format Error(Line 15) in DLID: " . $dlid);
+            }
+            
         } else {
-            throw new Exception("Download LocalManifest Format Error (Line 2).");
+            throw new Exception("Download Local Manifest Format Error (Line 2).");
         }
+        
+        // If all was verifyed OK then return the LocalManifest Object for inteprtation and use in the download.
+        return $localManifestJsonData->$dlidStr;
 
 
     } catch (Exception $e) {
         msg("red", $e->getMessage());
+        
+        return 0;
     }
 }
 

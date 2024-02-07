@@ -45,7 +45,26 @@ function verifyManifest($indlid)
                 throw new Exception("Server Manifest Format Error(4) in DLID: " . $indlid);
             }
         } else {
-            throw new Exception("Downloads Local Manifest Is Formatted Incorrectly.");
+            throw new Exception("Server Manifest Is Formatted Incorrectly.");
+        }
+        
+        
+         // Then verify the intergity of the settings in the main manifest.
+        if (isset($mainManifestJsonData->settings)) {
+            if (!isset($mainManifestJsonData->settings->hostName)) {
+                throw new Exception("Server Manifest Settings Format Error(1).");
+            }
+            if (!isset($mainManifestJsonData->settings->displayGithub)) {
+                throw new Exception("Server Manifest Settings Format Error(2).");
+            }
+            if (!isset($mainManifestJsonData->settings->forceDisplayWGET)) {
+                throw new Exception("Server Manifest Settings Format Error(3).");
+            }
+            if (!isset($mainManifestJsonData->settings->autoDetectDarkTheme)) {
+                throw new Exception("Server Manifest Settings Format Error(4).");
+            }
+        } else {
+            throw new Exception("Server Manifest Is Formatted Incorrectly. Unable To Find Settings.");
         }
         
         if($mainManifestJsonData->downloads->$dlidStr->passwordProtected == 1)
