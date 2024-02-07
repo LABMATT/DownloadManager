@@ -79,8 +79,11 @@
 
 <?php
 
+//https://download.labmatt.space/?dlid=neck&auto=0
+
 require 'verifyManifest.php';
 require 'verifyLocalManifest.php';
+require 'msg.php';
 
 // THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
 
@@ -101,6 +104,9 @@ try {
 
         // From our result, we either 0-DO NOTHING, 1-Now check for download and local manifest, 2-Password protected and require external server.
         switch ($verifyManifest) {
+            case 0:
+                // There was an error duing manifest verifcation so do nothing.
+                break;
             case 1:
                 verifyLocalManifest($inFile);
                 break;
@@ -153,17 +159,6 @@ function sanitize($inputTXT, $mx)
 }
 
 
-// Sends a message back to the bottom of the login form, has colour and the message. 
-function msg($color, $message)
-{
-    echo "<script>document.getElementById('msg').style.color = '" . $color . "'; </script>";
-    echo "<script>document.getElementById('msg').innerHTML = '" . $message . "'; </script>";
-
-    if ($color == "red") {
-        echo "<script>cleanup();</script>";
-    }
-}
-
 // Sends this download info over javascript
 function preformDownload($loc, $auto, $indlid)
 {
@@ -201,18 +196,6 @@ function preformDownload($loc, $auto, $indlid)
     } else {
         msg("red", "Failed To find file on server.");
     }
-}
-
-
-// Reads data from binary file.
-// Database:
-// 0x00 database version 1 byte
-// 0x01 database pair size, eg how many values per entery. FEX: "19 Name location blank" as one entery with dlid first, name, file location,
-// 0x1E Start of lookup numbers. dlid: offset start (HEX) OFFSET END (HEX). 
-
-function databaseLookup($id)
-{
-
 }
 
 ?> 

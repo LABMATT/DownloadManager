@@ -33,19 +33,19 @@ function verifyManifest($indlid)
         // Makes sure the dlid exists in the database. Then verify the intergity of the manifest.
         if (isset($mainManifestJsonData->downloads->$dlidStr)) {
             if (!isset($mainManifestJsonData->downloads->$dlidStr->downloadName)) {
-                throw new Exception("Server Manifest Format Error(1) in: " . $indlid);
+                throw new Exception("Server Manifest Format Error(1) in DLID: " . $indlid);
             }
             if (!isset($mainManifestJsonData->downloads->$dlidStr->status)) {
-                throw new Exception("Server Manifest Format Error(2) in: " . $indlid);
+                throw new Exception("Server Manifest Format Error(2) in DLID: " . $indlid);
             }
             if (!isset($mainManifestJsonData->downloads->$dlidStr->reason)) {
-                throw new Exception("Server Manifest Format Error(3) in: " . $indlid);
+                throw new Exception("Server Manifest Format Error(3) in DLID: " . $indlid);
             }
             if (!isset($mainManifestJsonData->downloads->$dlidStr->passwordProtected)) {
-                throw new Exception("Server Manifest Format Error(4) in: " . $indlid);
+                throw new Exception("Server Manifest Format Error(4) in DLID: " . $indlid);
             }
         } else {
-            throw new Exception("Download Does Not Exist In Server Manifest.");
+            throw new Exception("Downloads Local Manifest Is Formatted Incorrectly.");
         }
         
         if($mainManifestJsonData->downloads->$dlidStr->passwordProtected == 1)
@@ -56,7 +56,7 @@ function verifyManifest($indlid)
 
     } catch (Exception $e) {
 
-        echo $e->getMessage();
+        msg("red", $e->getMessage());
         return 0;
     }
 

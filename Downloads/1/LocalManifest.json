@@ -1,0 +1,16 @@
+{
+    "dlid_1": {
+        "downloadName": "Example Download",
+        "fileName": "Example.png",
+        "version": "1",
+        "dateCreated": "null",
+        "dateLastModifed": "null",
+        "type": "null",
+        "description": "null",
+        "creatorSource": "null",
+        "link": "null",
+        "numberOfDownloads": "null",
+        "fileSize": "null",
+        "passwordProtected": "null"
+    }
+}
