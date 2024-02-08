@@ -150,6 +150,14 @@ try {
             }
         }
 
+
+        if (!$localManifestjson == 0) {
+            // If its 0 then there was an error. Else proceed with download.
+            if ($verifyManifest->downloads->$dlidStr->status == false) {
+                echo "<script type='text/javascript'>downloadRemoved('" . $verifyManifest->downloads->$dlidStr->reason . "', '" . $verifyManifest->downloads->$dlidStr->downloadName . "');</script>";
+            } else {
+                processDownload($inFile, $localManifestjson, $verifyManifest, $inAuto);
+            }
         }
     }
 
