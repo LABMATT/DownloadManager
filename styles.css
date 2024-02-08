@@ -3,7 +3,23 @@ body {
     margin: 2%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
+    display: block;
   }
+
+#propStruct {
+  display: flex;
+}
+
+#table {
+  padding-right: 0%;
+}
+
+#DescriptionDiv {
+  border-left-style: solid;
+  border-left-color: lightgray;
+  padding-left: 1%;
+
+}
 
   /* The download button style. Gray and someone large*/
   #dwlb {
@@ -66,12 +82,28 @@ table {
   margin-bottom: 0.1%;
 }
 
+#wgettitle {
+  font-weight: bold;
+}
+
 /* A snazzyt looking box that holds a monospace font for my fellow linix users */
 #wget {
   background-color: rgb(48, 48, 48);
   color: white;
   font-family: monospace;
   padding: 0.5%;
+  
+
+}
+
+.wgetHighlight {
+  animation-name: wget;
+  animation-duration: 1.5s;
+}
+
+@keyframes wget {
+  from {background-color: green;}
+  to {background-color: rgb(48, 48, 48);}
 }
 
 /* When you copy the text applie this css style to the copy window. */

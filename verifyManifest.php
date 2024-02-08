@@ -45,7 +45,7 @@ function verifyManifest($indlid)
                 throw new Exception("Server Manifest Format Error(4) in DLID: " . $indlid);
             }
         } else {
-            throw new Exception("Server Manifest Is Formatted Incorrectly.");
+            throw new Exception("Error: No Download Found OR Server Manifest Is Formatted Incorrectly. ");
         }
         
         

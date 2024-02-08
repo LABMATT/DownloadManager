@@ -30,13 +30,32 @@
 
 <br>
 
+<div id="propStruct">
+
+<div id="infoTable">
 <!--This is the propites window for the file that is selected -->
 <p id="fp"><b>File Properties:</b></p>
-<div id="info">
-    <table>
+
+    <table id="table">
         <tr>
             <th id="tit">Name:</th>
             <th class="prop" id="pname"></th>
+        </tr>
+        <tr>
+            <th id="tit">Creator/Source:</th>
+            <th class="prop" id="pcreatorSource"></th>
+        </tr>
+        <tr>
+            <th id="tit">Links:</th>
+            <th class="prop" id="plink"></th>
+        </tr>
+        <tr>
+            <th id="tit">Version:</th>
+            <th class="prop" id="pversion"></th>
+        </tr>
+        <tr>
+            <th id="tit">Number Of Downloads:</th>
+            <th class="prop" id="pnumberOfDownloads"></th>
         </tr>
         <tr>
             <th id="tit">Date-Created:</th>
@@ -57,13 +76,24 @@
     </table>
 </div>
 
+<div id="DescriptionDiv">
+
+<p><b>Description:</b></p>
+
+<p id="pdescription">
+This is the descripy
+</p>
+
+</div>
+</div>
+
 <!-- Message witch has its contents swaped if php has an error. -->
 <p id="msg"></p>
 
 <br>
 
 <!-- The wget window where you get easy acces to the command to download this file using wget -->
-<p id="wgettitle"><b>WGET for linux terminals (click to copy):</b></p>
+<p id="wgettitle">WGET for linux terminals (click to copy):</p>
 <p id="wget" onclick="copy()"></p>
 <p id="copyed"><b>Copied!</b></p>
 

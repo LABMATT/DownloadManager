@@ -1,9 +1,11 @@
 // This function updates the console with a wget link. Then depending on what value auto had it either auto downloads or sets up the page for manual download.
+var copyCount = 0;
+
 function updateWGET(hostName, dlid, fileName, auto) {
-    
+
     var fileLocationOnServer = hostName + '/' + 'Downloads/' + dlid + '/' + fileName;
     var fileOnServer = 'Downloads/' + dlid + '/' + fileName;
-    
+
     // Update the wget.
     document.getElementById('wget').innerHTML = "sudo wget --content-disposition \"" + fileLocationOnServer + "\"";
 
@@ -33,9 +35,25 @@ function titlepd(ntitle) {
 
 // When clicked copy the wget text to clipboard
 function copy() {
-    console.log("copied!");
-    navigator.clipboard.writeText(document.getElementById("wget").textContent);
-    document.getElementById("copyed").style.display = "block";
+
+    var wgetBox = document.getElementById("wget");
+    var wgettitle = document.getElementById("wgettitle");
+
+
+    if (!wgetBox.classList.contains("wgetHighlight")) {
+        wgetBox.classList.add("wgetHighlight");
+        setTimeout(function () {
+            wgetBox.classList.remove("wgetHighlight");
+        }, 1500)
+        
+        copyCount++;
+
+        if (copyCount == 1) {
+            wgettitle.innerText = "WGET for linux terminals Copied!:"
+        } else {
+            wgettitle.innerText = "WGET for linux terminals Copied! x" + copyCount + ":"
+        }
+    }
 }
 
 // If an error occures then hide the blank stuff. Still gonna keep the table because it ads structure however the wget windows gotta go.
@@ -49,10 +67,20 @@ function updatePage(fileJson, dlid, auto, hostName) {
     console.log(fileJson);
 
     document.getElementById("pname").innerHTML = fileJson.downloadName;
+    document.getElementById("pversion").innerHTML = fileJson.version;
     document.getElementById("pdatec").innerHTML = fileJson.dateCreated;
     document.getElementById("pdatem").innerHTML = fileJson.dateLastModifed;
     document.getElementById("ptype").innerHTML = fileJson.type;
+    document.getElementById("pdescription").innerHTML = fileJson.description;
+    document.getElementById("pcreatorSource").innerHTML = fileJson.creatorSource;
+    document.getElementById("plink").innerHTML = fileJson.link;
+    document.getElementById("pnumberOfDownloads").innerHTML = fileJson.numberOfDownloads;
     document.getElementById("psize").innerHTML = fileJson.fileSize;
-    
+
     updateWGET(hostName, dlid, fileJson.fileName, auto);
+}
+
+// If download has been removed from server then display this.
+function downloadRemoved() {
+
 }
