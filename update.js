@@ -51,12 +51,6 @@ function copy() {
 
 }
 
-// If an error occures then hide the blank stuff. Still gonna keep the table because it ads structure however the wget windows gotta go.
-function cleanup() {
-    document.getElementById("wgettitle").style.display = "none";
-    document.getElementById("wget").style.display = "none";
-}
-
 // Use Json data to fill the webpage.
 function updatePage(fileJson, dlid, auto, hostName) {
     console.log(fileJson);
@@ -87,4 +81,9 @@ function downloadRemoved(reason, downloadName) {
     document.getElementById("action").innerText = " DOWNLOAD NO LONGER AVAIBLE: " + reason;
     document.getElementById("action").style.fontWeight = "bold";
     document.getElementById("action").style.color = "red";
+}
+
+function cleanup() {
+    
+    downloadRemoved("", "");
 }
