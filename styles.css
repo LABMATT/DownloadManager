@@ -98,7 +98,7 @@ table {
 
 .wgetHighlight {
   animation-name: wget;
-  animation-duration: 1.5s;
+  animation-duration: .7s;
 }
 
 @keyframes wget {

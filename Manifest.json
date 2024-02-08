@@ -7,9 +7,9 @@
   },
   "downloads": {
     "dlid_1": {
-      "downloadName": "test",
-      "status": "true",
-      "reason": "null",
+      "downloadName": "Example",
+      "status": true,
+      "reason": "Removed By User.",
       "passwordProtected": false
     }
   }

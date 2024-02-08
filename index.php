@@ -18,8 +18,10 @@
 <!-- This is the top text that says what page your on -->
 <header>
     <h1>Download Portal</h1>
-    <p id="action">Your download should start automatically. If it does not click the button below.</p>
+    <p id="action">Click the "Download" button below when ready.</p>
 </header>
+
+<div id="MainContent">
 
 <!-- Download buttons that show when they have href applied to them -->
 <div id="dwl">
@@ -102,6 +104,7 @@ This is the descripy
                                                              target="_blank">https://github.com/LABMATT/DownloadManager</a>
 </p>
 
+</div>
 
 </body>
 </html>
@@ -148,7 +151,11 @@ try {
         } 
 
         // If its 0 then there was an error. Else proceed with download.
-        if (!$localManifestjson == 0) {
+        if($verifyManifest->downloads->$dlidStr->status == false)
+        {
+            echo "<script type='text/javascript'>downloadRemoved('" . $verifyManifest->downloads->$dlidStr->reason ."', '" . $verifyManifest->downloads->$dlidStr->downloadName . "');</script>";
+        }
+        else if (!$localManifestjson == 0) {
 
             processDownload($inFile, $localManifestjson, $verifyManifest, $inAuto);
         }

@@ -14,6 +14,7 @@ function updateWGET(hostName, dlid, fileName, auto) {
 
 // Clicks the button if its an auto download.
     if (auto == 1) {
+        document.getElementById("action").innerText = "Your download should start automatically. If not click the button below.";
         document.getElementById("dwll").style.display = "block";
         document.getElementById('dwlb').click();
     } else if (auto == 0) {
@@ -25,27 +26,20 @@ function updateWGET(hostName, dlid, fileName, auto) {
     }
 }
 
-
-// Changes the title of the page to the new download name. Auto caps and all.
-function titlepd(ntitle) {
-    ntitle = ntitle.charAt(0).toUpperCase() + ntitle.slice(1);
-    document.title = ntitle + " Download";
-}
-
-
 // When clicked copy the wget text to clipboard
 function copy() {
 
     var wgetBox = document.getElementById("wget");
     var wgettitle = document.getElementById("wgettitle");
 
+    navigator.clipboard.writeText(document.getElementById("wget").textContent);
 
     if (!wgetBox.classList.contains("wgetHighlight")) {
         wgetBox.classList.add("wgetHighlight");
         setTimeout(function () {
             wgetBox.classList.remove("wgetHighlight");
-        }, 1500)
-        
+        }, 700)
+
         copyCount++;
 
         if (copyCount == 1) {
@@ -54,6 +48,7 @@ function copy() {
             wgettitle.innerText = "WGET for linux terminals Copied! x" + copyCount + ":"
         }
     }
+
 }
 
 // If an error occures then hide the blank stuff. Still gonna keep the table because it ads structure however the wget windows gotta go.
@@ -76,11 +71,20 @@ function updatePage(fileJson, dlid, auto, hostName) {
     document.getElementById("plink").innerHTML = fileJson.link;
     document.getElementById("pnumberOfDownloads").innerHTML = fileJson.numberOfDownloads;
     document.getElementById("psize").innerHTML = fileJson.fileSize;
+    
+    // Change the tab name to file name downlaod
+    var ntitle =  fileJson.downloadName.charAt(0).toUpperCase() +  fileJson.downloadName.slice(1);
+    document.title = ntitle + " Download";
 
     updateWGET(hostName, dlid, fileJson.fileName, auto);
 }
 
 // If download has been removed from server then display this.
-function downloadRemoved() {
-
+function downloadRemoved(reason, downloadName) {
+    console.log(reason);
+    
+    document.getElementById("MainContent").remove();
+    document.getElementById("action").innerText = " DOWNLOAD NO LONGER AVAIBLE: " + reason;
+    document.getElementById("action").style.fontWeight = "bold";
+    document.getElementById("action").style.color = "red";
 }

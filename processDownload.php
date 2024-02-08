@@ -43,7 +43,6 @@ function processDownload($dlid, $localManifestJson, $mainManifestJson, $autoDown
         } else if ($autoDownload == 0 || $autoDownload == 1) {
             
             // Change the name of the webpage to the donwload.
-            echo "<script type='text/javascript'>titlepd(\"" . $localManifestJson->downloadName . "\");</script>"; // Changes name of webpage to the file name.
             echo "<script type='text/javascript'>updatePage(". json_encode($localManifestJson) . ", " . $dlid . "," . $autoDownload .", '" . $mainManifestJson->settings->hostName . "');</script>";
             
         } else {
