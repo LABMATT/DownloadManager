@@ -150,9 +150,10 @@ try {
             }
         }
 
-
+        // If its 0 then there was an error. Else proceed with download.
         if (!$localManifestjson == 0) {
-            // If its 0 then there was an error. Else proceed with download.
+            
+            // See if download has been removed from server or not. check status.
             if ($verifyManifest->downloads->$dlidStr->status == false) {
                 echo "<script type='text/javascript'>downloadRemoved('" . $verifyManifest->downloads->$dlidStr->reason . "', '" . $verifyManifest->downloads->$dlidStr->downloadName . "');</script>";
             } else {
