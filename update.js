@@ -60,21 +60,3 @@ function cleanup()
     document.getElementById("wgettitle").style.display = "none";
     document.getElementById("wget").style.display = "none";
 }
-<<<<<<< Updated upstream:update.js
-=======
-
-// If download has been removed from server then display this.
-function downloadRemoved(reason, downloadName) {
-    console.log(reason);
-    
-    document.getElementById("MainContent").remove();
-    document.getElementById("action").innerText = " DOWNLOAD NO LONGER AVAILABLE: " + reason;
-    document.getElementById("action").style.fontWeight = "bold";
-    document.getElementById("action").style.color = "red";
-}
-
-function cleanup() {
-    
-    downloadRemoved("", "");
-}
->>>>>>> Stashed changes:assets/javascript/update.js
