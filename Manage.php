@@ -5,6 +5,7 @@
     <!-- Inportnet info -->
     <title>Manage</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Include nessary script files. -->
     <script type="text/javascript" src="assets\javascript\failedLogin.js"></script>
@@ -18,7 +19,7 @@
 
 <!-- The header displays the main title with buttons-->
 <div id="header">
-    <h2 id="navTitle">DOWNLOAD MANGER</h2>
+    <h3 id="navTitle">DOWNLOAD MANGER</h3>
     <button class="HeaderButton">New Download</button>
     <button class="HeaderButton" id="refresh">Refresh Manifests</button>
     <button class="HeaderButton" id="errorMenuButton" onclick="errorMenuToggle();">View Errors (0)</button>
