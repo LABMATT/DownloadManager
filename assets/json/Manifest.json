@@ -11,6 +11,12 @@
       "status": true,
       "reason": "Removed By User.",
       "passwordProtected": false
+    },
+    "dlid_2": {
+      "downloadName": "Ascii Logo",
+      "status": true,
+      "reason": "Removed By User.",
+      "passwordProtected": false
     }
   }
 }

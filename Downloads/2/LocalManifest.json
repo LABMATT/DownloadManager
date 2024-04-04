@@ -1,0 +1,16 @@
+{
+    "dlid_2": {
+        "downloadName": "Ascii Logo",
+        "fileName": "ascii-art.txt",
+        "version": "1",
+        "dateCreated": "1707285092",
+        "dateLastModifed": "1707285092",
+        "type": "null",
+        "description": "An example to show file setup and test.",
+        "creatorSource": "Matthew Lewington",
+        "link": "null",
+        "numberOfDownloads": "null",
+        "fileSize": "11581508",
+        "strictParameters": false
+    }
+}

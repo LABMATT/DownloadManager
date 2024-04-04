@@ -5,6 +5,7 @@ body {
     flex-direction: column;
     
     background-color: white;
+    font-family: Arial;
 }
 
 #header {
@@ -14,6 +15,7 @@ body {
     background-color: black;
     
     padding-left: 2%;
+    justify-content: flex-start;
 }
 
 .HeaderButton {
@@ -27,4 +29,72 @@ body {
 
 .HeaderButton:hover {
     background: red;
+}
+
+#signOut {
+margin-left: auto;
+}
+
+.heading {
+    margin-left: 2%;
+}
+
+#currentDownloads {
+    display: flex;
+    flex-direction: column;
+    
+    background: rgb(100,100,100);
+    
+    padding: 2%;
+}
+
+.existingDownload {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    background-color: rgb(120,120,120);
+    border-bottom: solid 1px;
+    border-color: black;
+    
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.existingDownload:hover {
+    background-color: rgb(150,150,150);
+}
+
+.txtContent {
+    margin: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.modiferButtons {
+    background-color: green;
+    color: white;
+    border: black;
+    border-radius: 10px;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    padding-left: 1%;
+    padding-right: 1%;
+    transition: 0.4s;
+}
+
+#viewData:hover {
+    background: blue;
+}
+
+#deleteButton:hover {
+    background-color: red;
+}
+
+#editButton:hover {
+    background-color: blue;
+}
+
+.deleteButton {
+    background-color: red;
 }
