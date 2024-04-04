@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "hostName": "192.168.1.140",
+    "displayGithub": false,
+    "forceDisplayWGET": 0,
+    "autoDetectDarkTheme": true
+  },
+  "downloads": {
+    "dlid_1": {
+      "downloadName": "Example",
+      "status": true,
+      "reason": "Removed By User.",
+      "passwordProtected": false
+    }
+  }
+}

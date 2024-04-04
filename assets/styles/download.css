@@ -1,0 +1,21 @@
+/* Format the download link */
+#dwll {
+    display: none;
+    background-color: rgb(48, 48, 48);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    transition-duration: 0.4s;
+    font-weight: bold;
+}
+
+/* When hover over button change colour */
+#dwll:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+

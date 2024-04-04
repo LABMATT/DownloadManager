@@ -1,0 +1,36 @@
+/* Main DIV that contains the multiple versions if a download has more than one. */
+#versionHistory {
+    background-color: rgba(0, 0, 0, 0.5);
+
+flex-grow: 1;
+}
+
+/* Formats title */
+#versionTitle {
+    color: white;
+    margin: 0px;
+    background-color: rgb(70,70,70);
+    padding: 1%;
+}
+
+/* For each sub DIV this defines its format. */
+.subVersion {
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: space-between;
+    
+    border: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-bottom-color: rgb(70, 70 , 70);
+}
+
+/* Within a sub DIV is text dictated by this. */
+.versionTextFormat {
+    color: black;
+    font-family: Arial;
+    margin: 0px;
+    text-decoration: none;
+}

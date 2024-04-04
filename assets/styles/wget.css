@@ -1,0 +1,35 @@
+/* Formats title */
+#wgettitle {
+    font-weight: bold;
+}
+
+/* A snazzyt looking box that holds a monospace font for my fellow linix users */
+#wget {
+    background-color: rgb(48, 48, 48);
+    color: white;
+    font-family: monospace;
+    padding: 0.5%;
+}
+
+.wgetHighlight {
+    animation-name: wget;
+    animation-duration: .7s;
+}
+
+@keyframes wget {
+    from {
+        background-color: green;
+    }
+    to {
+        background-color: rgb(48, 48, 48);
+    }
+}
+
+/* When you copy the text applie this css style to the copy window. */
+#copyed {
+    background-color: green;
+    color: white;
+    font-family: monospace;
+    padding: 0.5%;
+    display: none;
+}

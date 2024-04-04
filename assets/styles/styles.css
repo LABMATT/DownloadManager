@@ -1,0 +1,55 @@
+/* Main body stlyes, font and other setup*/
+body {
+    margin: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    display: block;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Propites and discription section */
+#propStruct {
+    background-color: white;
+    padding: 1%;
+    padding-left: 0%;
+    padding-right: 0%;
+    
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+/* This is the paragraph that recives all the errors from php */
+#msg {
+    color: black;
+    font-weight: bold;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    
+    body {
+        font-size: 2em;
+    }
+
+    #propStruct {
+        background-color: white;
+        padding: 1%;
+        padding-left: 0%;
+        padding-right: 0%;
+
+        border-radius: 2px;
+
+        display: flex;
+        flex-direction: column;
+    }
+    
+    header {
+        text-align: center;
+        padding-bottom: 2%;
+    }
+}
