@@ -1,0 +1,57 @@
+#properties {
+    color: black;
+    
+    display: flex;
+    flex-direction: column;
+    
+    flex-grow: 1;
+}
+
+#propHeader {
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2%;
+}
+
+/* This DIV cotains the propites table made with flex */
+#propContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Highlights what your hovering over */
+#propContainer:hover {
+    background-color: rgba(100,100,100, 0.3);
+}
+
+/* Anyhting within the div as a title or key is formated with this incliding dotted border at the bottom */
+.subPropkey {
+    margin: 0%;
+    padding: 1%;
+    background: rgba(0, 0, 0, 0.5);
+    
+    flex: 0 0 32%;
+    
+    text-align: end;
+    padding-right: 2%;
+    
+    border: 0px;
+    border-bottom: 1px;
+    border-style: dotted;
+    border-bottom-color: black;
+}
+
+/* The value of keys are stated to look like this */
+.subPropVal {
+    margin: 0%;
+    padding: 1%;
+    background: rgba(0, 0, 0, 0.2);
+    
+    flex-grow: 2;
+    
+    border: 0px;
+    border-bottom: 1px;
+    border-style: dotted;
+    border-bottom-color: black;
+}

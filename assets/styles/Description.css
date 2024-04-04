@@ -1,0 +1,35 @@
+/* Cointains the discription info */
+#DescriptionDiv {
+    color: black;
+    
+    padding: 0%;
+    padding-left: 1%;
+
+    flex-grow: 3;
+}
+
+/* The desictiption title syle */
+#desTitle {
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1%;
+}
+
+/* The discription text */
+#pdescription {
+    padding-left: 1%;
+}
+
+@media screen and (max-width: 1000px) {
+    
+    #DescriptionDiv {
+        color: black;
+
+        margin-top: 2%;
+        padding: 0%;
+        padding-left: 0%;
+
+        flex-grow: 3;
+    }
+}

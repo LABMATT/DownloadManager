@@ -6,9 +6,22 @@
   <title>LABMATT DOWNLOAD</title>
   <meta charset="UTF-8">
 
+<<<<<<< Updated upstream
 <!-- Include nessary script files. -->
 <script type="text/javascript" src="update.js"></script>
 <link rel="stylesheet" type="text/css" href="styles.css">
+=======
+    <!-- Include nessary script files. -->
+    <script type="text/javascript" src="assets\javascript\update.js"></script>
+    
+    <!-- Include nessary CSS files. -->
+    <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Properties.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\versionHistory.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Description.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\wget.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\download.css">
+>>>>>>> Stashed changes
 
 </head>
 
@@ -73,7 +86,18 @@
 </html>
 
 
+<<<<<<< Updated upstream
 <?php 
+=======
+<?php
+
+require 'assets\functions\verifyManifest.php';
+require 'assets\functions\verifyLocalManifest.php';
+require 'assets\functions\msg.php';
+require 'assets\functions\processDownload.php';
+require 'assets\functions\Sanitize.php';
+require 'assets\functions\checkAccess.php';
+>>>>>>> Stashed changes
 
 // THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
 
@@ -86,6 +110,8 @@
  // return Bool, Check if all good.
     $isK = sanitize($inFile, 25);
     $isautoK = sanitize($inAuto, 2);
+    
+    //checkAccess("piss");
 
     if($isK && $isautoK)
     {
