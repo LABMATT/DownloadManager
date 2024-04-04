@@ -1,0 +1,52 @@
+body {
+    margin: 0%;
+    display: flex;
+    justify-items: center;
+    
+    background-color: black;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#LoginDiv {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: rgb(100,100,100);
+    padding: 2%;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#title {
+    margin-top: 0%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 2%;
+    font-weight: 2em;
+    margin: 0.5%;
+    border: none;
+    outline: none;
+}
+
+#submit {
+    background-color: rgb(40,40,40);
+    color: white;
+    font-family: "Arial Black";
+    padding: 2%;
+    font-weight: 2em;
+}
+
+#msg {
+    display: none;
+    background: red;
+    color: white;
+    font-family: Arial;
+    padding: 2%;
+}
