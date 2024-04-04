@@ -1,0 +1,9 @@
+#errorMenu {
+ background-color: darkred;
+ 
+ padding-left: 2%;
+ padding-right: 2%;
+ 
+ display: none;
+ flex-direction: column;
+}
