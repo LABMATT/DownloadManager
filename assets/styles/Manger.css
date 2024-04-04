@@ -1,0 +1,30 @@
+body {
+    margin: 0%;
+    
+    display: flex;
+    flex-direction: column;
+    
+    background-color: white;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    
+    background-color: black;
+    
+    padding-left: 2%;
+}
+
+.HeaderButton {
+    padding: 1%;
+    font-family: Arial;
+    font-size: 1em;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.HeaderButton:hover {
+    background: red;
+}
