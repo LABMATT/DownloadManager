@@ -105,8 +105,6 @@ require 'assets\functions\checkAccess.php';
  // return Bool, Check if all good.
     $isK = sanitize($inFile, 25);
     $isautoK = sanitize($inAuto, 2);
-    
-    //checkAccess("piss");
 
     if($isK && $isautoK)
     {
