@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
 
     <!-- Include nessary script files. -->
-    <script type="text/javascript" src="update.js"></script>
+    <script type="text/javascript" src="assets\javascript\update.js"></script>
     <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Properties.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\versionHistory.css">
@@ -155,11 +155,11 @@
 
 <?php
 
-require 'verifyManifest.php';
-require 'verifyLocalManifest.php';
-require 'msg.php';
-require 'processDownload.php';
-require 'Sanitize.php';
+require 'assets\Functions\verifyManifest.php';
+require 'assets\Functions\verifyLocalManifest.php';
+require 'assets\Functions\msg.php';
+require 'assets\Functions\processDownload.php';
+require 'assets\Functions\Sanitize.php';
 
 // THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
 

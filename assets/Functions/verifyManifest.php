@@ -9,11 +9,13 @@ function verifyManifest($indlid)
     $mainManifestJsonData = 0;
 
     try {
+        
+        $manifestFileLocation = "assets\json\Manifest.json";
 
         // This block checks if the manifest: exists -> is readable -> has some content : ultmatly meaning that we can try read contents.
-        if (file_exists("Manifest.json")) {
-            if (is_readable("Manifest.json")) {
-                if (filesize("Manifest.json") == 0) {
+        if (file_exists($manifestFileLocation)) {
+            if (is_readable($manifestFileLocation)) {
+                if (filesize($manifestFileLocation) == 0) {
                     throw new Exception("Server Manifest File Is Empty.");
                 }
             } else {
@@ -26,7 +28,7 @@ function verifyManifest($indlid)
 
 
         // Now we have covered most common errors, we can get the contents of the manifest.json then cast it to a object.
-        $mainManifestFile = file_get_contents("Manifest.json");
+        $mainManifestFile = file_get_contents("$manifestFileLocation");
         $mainManifestJsonData = json_decode($mainManifestFile);
 
 
