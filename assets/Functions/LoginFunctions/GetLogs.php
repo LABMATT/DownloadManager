@@ -39,15 +39,37 @@ function getLogs($accessLogPathFile, $accessLogPath, $cooldown)
         echo "reading back";
         $previousDateLog[] = "";
 
-        // Get the contents of this months current login log.
-        $prevLogFile = fopen($accessLogPath . "", "a+");
-        $accessLog[] = "";
+        $prvFileName = "";
+        $prvMonth = date("m");
+        $prvYera = "";
 
-        $index = 0;
-        while (!feof($accessLogFile)) {
-            $accessLog[$index] = fgets($accessLogFile);
-            $index++;
+        if ($prvMonth == "01") {
+            $prvFileName = "AccessLog_" . 12 . "-" . (date("Y") - 1) . ".log";
+        } else if (date("m") < 10) {
+            $prvFileName = "AccessLog_0" . (date("m") - 1) . "-" . date("Y") . ".log";
+        } else {
+            $prvFileName = "AccessLog_" . (date("m") - 1) . "-" . date("Y") . ".log";
         }
+
+        echo "Prv file name:" . $prvFileName;
+
+        // Make sure a prefivos file exists and if so then get contents.
+        if (file_exists($accessLogPath . $prvFileName)) {
+
+            // Get the contents of this months current login log.
+            $prevLogFile = fopen($accessLogPath . $prvFileName, "r");
+            $accessLog[] = "";
+
+            $index = 0;
+            while (!feof($prevLogFile)) {
+                $accessLog[$index] = fgets($prevLogFile);
+                $index++;
+            }
+
+            echo "Got the second file";
+        }
+
+
     }
 
 
