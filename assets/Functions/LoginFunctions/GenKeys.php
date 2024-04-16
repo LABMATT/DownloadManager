@@ -4,12 +4,10 @@
 // Takes the project path for config and the json config data.
 function GenKeys($filePath, $config)
 {
-    echo "Gening keys";
+
     if(($config->login->AESu == "") && ($config->login->AESp == "")) {
-        echo "blank aes";
         
         if(($config->login->NewUsername != "") && ($config->login->NewPassword != "")) {
-            echo "not blank new";
             
             $config->login->AESu = password_hash($config->login->NewUsername, PASSWORD_DEFAULT);
             $config->login->AESp = password_hash($config->login->NewPassword, PASSWORD_DEFAULT);
