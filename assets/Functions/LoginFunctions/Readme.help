@@ -1,0 +1,11 @@
+// LOGIN.CONFIG
+
+// Login config contains both username and password of the mangment portal.
+// It futher contains settings related to logging in such as attempts and cooldown times.
+
+// First use you must enter a username and password in feilds blow. After an attempt to login is made it will encript the keys.
+// NewUsername - On first setup enter a username here to be hashed and salted into an AES key. This feild will be deleted after this.
+// NewPassword - On first setup enter a password here to be hashed and salted into an AES key. This feild will be deleted after this.
+
+// AESu -
+// AESp - 
