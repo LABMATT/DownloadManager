@@ -1,5 +1,4 @@
-// LOGIN.CONFIG
-
+# LOGIN.CONFIG
 // Login config contains both username and password of the mangment portal.
 // It futher contains settings related to logging in such as attempts and cooldown times.
 
@@ -7,5 +6,56 @@
 // NewUsername - On first setup enter a username here to be hashed and salted into an AES key. This feild will be deleted after this.
 // NewPassword - On first setup enter a password here to be hashed and salted into an AES key. This feild will be deleted after this.
 
-// AESu -
-// AESp - 
+// AESu - AES encypted key for username.
+// AESp - AES encypted key for password.
+
+// CooldownBetweenAttempts - The time in Seconds you must wait between failed login attempts.
+// CooldownAfterMaxAttempts - If you hit the max amout of failed login attempts, then you have to wait this amout of time (In seconds)
+
+// MaxAttemptsAllowed - How many failed attempts before the "CooldownAfterMaxAttempts" is triggered.
+// MaxAttemptsAllowedInPeriodOfTime - How many failed attempts your allowed within a time. Fex 4 failed attemps in 30 mins then wait "CooldownAfterMaxAttempts"
+// StrictMode - One failed attempt triggers a lock out.
+// Lockedout - If true prevents all logins till returned to false.
+
+
+# RESET SETTINGS
+// By deleting a config file it will auto gen to defaults on next load.
+
+
+# SETTING NEW PASSWORD
+1. Open "login.config" file. This file is formatted in JSON
+2. Enter A Strong username under the "NewUsername" componet.
+   // FEX "NewUsername": "Matthew",
+
+3. Enter A Strong Password under the "NewPassword" componet.
+   // FEX "NewPassword": "ThisIsABadPassword1",
+ 
+4. Load the "Manager.php" Website.
+   // This will take the username and password and delete the plaintext ones.
+   // A new AES enctyped password based off your old ones will be placed under "AESu" and "AESp".
+ 
+ 
+# RESET PASSWORD
+1. Make sure "NewUsername" is blank.
+   // FEX "NewUsername": "",
+   
+2. Make sure "NewPassword" is blank.
+   // FEX "NewPassword": "",
+   
+3. Make sure "AESu" is blank.
+   // "AESu": "",
+   
+4. Make sure "AESp" is Blank.
+   // FEX "AESp": "",
+   
+5. Follow The "SETTING NEW PASSWORD" guide.
+   // In bases, when "AESu" and "AESp" are blank the software will attempt to convert text located in "NewUsername"
+   // and "NewPassword" into the new "AESu" and "AESp" feilds.
+   // If "AESu", "AESp", "NewUsername" and "NewPassword" are left blank and you access the "Manager.php" site, you will be warned
+   // to set a useranme and password and prevented from loging in.
+   
+   
+# RE-ENABLE "Manager.php" If Dissabled.
+1. Open "login.config" file. This file is formatted in JSON
+2. Change "Lockedout" to false.
+   // FEX "Lockedout": true  --> "Lockedout": false
