@@ -1,48 +1,59 @@
 <?php
 
-function getLogs($accessLogPathFile, $accessLogPath, $cooldown)
+
+// Gets array of prev logs from latest and second latest file (File spans one month)
+// "accessLogPath" is where logs are stored path wise.
+// "cooldown" is how long it has to be between attempts. This is used to deteman if we must acces the previos log file.
+//      FEX if month has swtiched over and no enterys in this file but the cooldown is 10 minutes then see if anything last month was done 10 mins before 12am.
+function getLogs($accessLogPath, $cooldown)
 {
-
-    // Get the contents of this months current login log.
-    $accessLogFile = fopen($accessLogPathFile, "a+");
-    $accessLog[] = "";
-
-    $index = 0;
-    while (!feof($accessLogFile)) {
-        $accessLog[$index] = fgets($accessLogFile);
-        $index++;
-    }
-
-
     // If this months logins events have a time period less than the minium, then recall the previos date to.
     // Fex: if someone logged on at 11:59pm then a new month rolled oven then get the previos month.
     $readPreviodMonth = true;
+    $accessLogPathFile = $accessLogPath . "AccessLog_" . date("m-Y") . ".log";
+    $accessLog[] = "";
 
-    foreach ($accessLog as $logEntry) {
 
-        (array)$logEntry = explode(":", $logEntry);
+    // If the current access log file exists then read it grabbing each var.
+    // IF not then read previos file (Set true by default). 
+    if (file_exists($accessLogPathFile)) {
+        $accessLogFile = fopen($accessLogPathFile, "r");
 
-        if (sizeof($logEntry) > 1) {
-            if ((Time() - $logEntry[1]) > $cooldown) {
+        while (!feof($accessLogFile)) {
 
-                $readPreviodMonth = false;
-            }
-            echo (Time() - $logEntry[1]) . "<br>";
+            array_push($accessLog, fgets($accessLogFile));
         }
+
+        foreach ($accessLog as $logEntry) {
+
+            (array)$logEntry = explode(":", $logEntry);
+
+            if (sizeof($logEntry) > 1) {
+                if ((Time() - $logEntry[1]) > $cooldown) {
+
+                    $readPreviodMonth = false;
+                }
+                echo (Time() - $logEntry[1]) . "<br>";
+            }
+        }
+
+        fclose($accessLogFile);
     }
 
-
-    fclose($accessLogFile);
-
-
+    
+    // Read the previos Month to make sure no logins were made.
+    // If so push to array.
+    // If Not then do nothing.
     if ($readPreviodMonth == true) {
-        echo "reading back";
-        $previousDateLog[] = "";
 
         $prvFileName = "";
         $prvMonth = date("m");
-        $prvYera = "";
 
+        
+        // Gets name of log based on the date before.
+        // If its the first month then subtract 1 year and set month to 12.
+        // If the month is less then 10 then make sure there is a 0 before the month number.
+        // else just grab the month and use that.
         if ($prvMonth == "01") {
             $prvFileName = "AccessLog_" . 12 . "-" . (date("Y") - 1) . ".log";
         } else if (date("m") < 10) {
@@ -54,25 +65,23 @@ function getLogs($accessLogPathFile, $accessLogPath, $cooldown)
         echo "Prv file name:" . $prvFileName;
 
         // Make sure a prefivos file exists and if so then get contents.
+        // Add contents to the "accessLog".
         if (file_exists($accessLogPath . $prvFileName)) {
 
             // Get the contents of this months current login log.
             $prevLogFile = fopen($accessLogPath . $prvFileName, "r");
-            $accessLog[] = "";
 
-            $index = 0;
             while (!feof($prevLogFile)) {
-                $accessLog[$index] = fgets($prevLogFile);
-                $index++;
+
+                array_push($accessLog, fgets($prevLogFile));
             }
 
             echo "Got the second file";
         }
-
-
     }
 
 
+    print_r($accessLog);
     return $accessLog;
 }
 

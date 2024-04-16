@@ -7,12 +7,12 @@ require 'GetLogs.php';
 
 function CheckAcess()
 {
-    $loginConfig = "";
+    $loginConfig = ""; 
     $accessLogPath = "C:\Users\Matt\Downloads\\";
-    $accessLogPathFile = $accessLogPath . "AccessLog_" . date("m-Y") . ".log";
+    
     $outCome = "Interal Server Error.";
 
-    getLogs($accessLogPathFile, $accessLogPath, 60);
+    getLogs($accessLogPath, 60);
 
     $accessConfigJSON = getAccessConfig();
     
@@ -22,7 +22,7 @@ function CheckAcess()
 
     
     // Logs this attempts/perptrators and outcome. 
-    makeEntery($accessLogPathFile, $outCome);
+    makeEntery($accessLogPath, $outCome);
 
 }
 
