@@ -3,27 +3,40 @@
 require 'makeEntery.php';
 require 'getAccessConfig.php';
 require 'GetLogs.php';
+require 'ProgramFiles.php';
+require 'CheckAttempt.php';
 
 
 function CheckAcess()
 {
-    $loginConfig = ""; 
-    $accessLogPath = "C:\Users\Matt\Downloads\\";
-    
-    $outCome = "Interal Server Error.";
+    $projectPath = GetSystemPath();
 
-    getLogs($accessLogPath, 60);
+    // Make sure sub DIRS are created.
+    logDir($projectPath);
+    configDir($projectPath);
 
-    $accessConfigJSON = getAccessConfig();
-    
-    if ($accessConfigJSON != null) {
 
+    $loginAttempts = getLogs($projectPath, 60);
+    $loginConfig = getAccessConfig();
+    $outCome = checkAttempt($loginConfig, $loginAttempts);
+
+
+    switch ($outCome) {
+        case "Sucessful":
+            break;
+        case "Failure":
+            break;
+        case "Error":
+            break;
+        case "Cooldown":
+            break;
+        case "Dissabled":
+            break;
     }
 
-    
-    // Logs this attempts/perptrators and outcome. 
-    makeEntery($accessLogPath, $outCome);
 
+    // Logs this attempts/perptrators and outcome. 
+    makeEntery($projectPath, $outCome);
 }
 
 ?>

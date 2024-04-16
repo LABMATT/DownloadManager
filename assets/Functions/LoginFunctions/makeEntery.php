@@ -6,7 +6,7 @@
 // Takes an Outcome to write to file.
 function makeEntery($path, $outCome)
 {
-    $accessLogPathFile = $path . "AccessLog_" . date("m-Y") . ".log";
+    $accessLogPathFile = $path . "Logs" . DIRECTORY_SEPARATOR . "AccessLog_" . date("m-Y") . ".log";
     $accessLogFile = fopen($accessLogPathFile, "a+");
     
     $logEntry = "Log:" . time() . ":" . date("d/m/Y") . ":" . $_SERVER['REMOTE_ADDR'] . ":" . "Attmept-Outcome: " . $outCome . "\r\n";

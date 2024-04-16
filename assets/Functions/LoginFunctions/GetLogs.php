@@ -10,9 +10,10 @@ function getLogs($accessLogPath, $cooldown)
     // If this months logins events have a time period less than the minium, then recall the previos date to.
     // Fex: if someone logged on at 11:59pm then a new month rolled oven then get the previos month.
     $readPreviodMonth = true;
-    $accessLogPathFile = $accessLogPath . "AccessLog_" . date("m-Y") . ".log";
+    $accessLogPathFile = $accessLogPath . "Logs" . DIRECTORY_SEPARATOR . "AccessLog_" . date("m-Y") . ".log";
     $accessLog[] = "";
 
+    logDir($accessLogPath);
 
     // If the current access log file exists then read it grabbing each var.
     // IF not then read previos file (Set true by default). 
@@ -33,7 +34,6 @@ function getLogs($accessLogPath, $cooldown)
 
                     $readPreviodMonth = false;
                 }
-                echo (Time() - $logEntry[1]) . "<br>";
             }
         }
 
@@ -62,7 +62,6 @@ function getLogs($accessLogPath, $cooldown)
             $prvFileName = "AccessLog_" . (date("m") - 1) . "-" . date("Y") . ".log";
         }
 
-        echo "Prv file name:" . $prvFileName;
 
         // Make sure a prefivos file exists and if so then get contents.
         // Add contents to the "accessLog".
@@ -76,13 +75,18 @@ function getLogs($accessLogPath, $cooldown)
                 array_push($accessLog, fgets($prevLogFile));
             }
 
-            echo "Got the second file";
         }
     }
 
-
-    print_r($accessLog);
     return $accessLog;
+}
+
+
+function logDir($path)
+{
+    if(!is_dir($path . "Logs" . DIRECTORY_SEPARATOR)) {
+        mkdir($path . "Logs");
+    }
 }
 
 ?>
