@@ -1,7 +1,8 @@
 <?php
 
-function checkAttempt($loginConfig, $loginAttempts) {
+function checkAttempt($projectPath, $settingsJson, $attempts) {
+    
+    GenKeys($projectPath, $settingsJson);
     
 }
-
 ?>

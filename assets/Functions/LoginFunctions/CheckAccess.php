@@ -5,6 +5,8 @@ require 'getAccessConfig.php';
 require 'GetLogs.php';
 require 'ProgramFiles.php';
 require 'CheckAttempt.php';
+require 'GenKeys.php';
+require 'loginFailed.php';
 
 
 function CheckAcess()
@@ -17,8 +19,8 @@ function CheckAcess()
 
 
     $loginAttempts = getLogs($projectPath, 60);
-    $loginConfig = getAccessConfig();
-    $outCome = checkAttempt($loginConfig, $loginAttempts);
+    $loginConfig = getAccessConfig($projectPath);
+    $outCome = checkAttempt($projectPath, $loginConfig, $loginAttempts);
 
 
     switch ($outCome) {
