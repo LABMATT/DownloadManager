@@ -11,10 +11,8 @@ function getLogs($accessLogPath, $cooldown)
     // Fex: if someone logged on at 11:59pm then a new month rolled oven then get the previos month.
     $readPreviodMonth = true;
     $accessLogPathFile = $accessLogPath . "Logs" . DIRECTORY_SEPARATOR . "AccessLog_" . date("m-Y") . ".log";
-    $accessLog[] = "";
-    $prvLogArray[] = "";
-
-    logDir($accessLogPath);
+    $accessLog = [];
+    $prvLogArray = [];
 
     // If the current access log file exists then read it grabbing each var.
     // IF not then read previos file (Set true by default). 
@@ -23,7 +21,7 @@ function getLogs($accessLogPath, $cooldown)
 
         while (!feof($accessLogFile)) {
 
-            array_push($accessLog, fgets($accessLogFile));
+            $accessLog[] = fgets($accessLogFile);
         }
 
         foreach ($accessLog as $logEntry) {
@@ -32,8 +30,6 @@ function getLogs($accessLogPath, $cooldown)
 
             if (sizeof($logEntry) > 1) {
                 if ((Time() - $logEntry[1]) > $cooldown) {
-                    
-                    echo "A prv was fdalse";
 
                     $readPreviodMonth = false;
                 }
@@ -53,8 +49,6 @@ function getLogs($accessLogPath, $cooldown)
     // If Not then do nothing.
     if ($readPreviodMonth == true) {
         
-        echo "Reading prev array";
-
         $prvFileName = "";
         $prvMonth = date("m");
 
@@ -71,8 +65,6 @@ function getLogs($accessLogPath, $cooldown)
             $prvFileName = "AccessLog_" . (date("m") - 1) . "-" . date("Y") . ".log";
         }
         
-        echo $prvFileName;
-        
         
         // Make sure a prefivos file exists and if so then get contents.
         // Add contents to the "accessLog".
@@ -83,7 +75,7 @@ function getLogs($accessLogPath, $cooldown)
 
             while (!feof($prevLogFile)) {
 
-                array_push($prvLogArray, fgets($prevLogFile));
+                $prvLogArray[] = fgets($prevLogFile);
             }
             
             $prvLogArray = array_reverse($prvLogArray);
@@ -91,8 +83,6 @@ function getLogs($accessLogPath, $cooldown)
             $accessLog = array_merge($accessLog, $prvLogArray);
         }
     }
-    
-    print_r($accessLog);
 
     return $accessLog;
 }

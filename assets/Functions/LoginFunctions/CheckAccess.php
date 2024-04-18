@@ -18,8 +18,9 @@ function CheckAcess()
     configDir($projectPath);
 
 
-    $loginAttempts = getLogs($projectPath, 60);
+    
     $loginConfig = getAccessConfig($projectPath);
+    $loginAttempts = getLogs($projectPath, $loginConfig->login->CooldownBetweenAttempts);
     $outCome = checkAttempt($projectPath, $loginConfig, $loginAttempts);
 
 
@@ -31,6 +32,7 @@ function CheckAcess()
         case "Error":
             break;
         case "Cooldown":
+            failedLogin("Login Attempt To Quick. Please Try Again Soon.", 0);
             break;
         case "Dissabled":
             break;
