@@ -12,6 +12,7 @@ function getLogs($accessLogPath, $cooldown)
     $readPreviodMonth = true;
     $accessLogPathFile = $accessLogPath . "Logs" . DIRECTORY_SEPARATOR . "AccessLog_" . date("m-Y") . ".log";
     $accessLog[] = "";
+    $prvLogArray[] = "";
 
     logDir($accessLogPath);
 
@@ -31,6 +32,8 @@ function getLogs($accessLogPath, $cooldown)
 
             if (sizeof($logEntry) > 1) {
                 if ((Time() - $logEntry[1]) > $cooldown) {
+                    
+                    echo "A prv was fdalse";
 
                     $readPreviodMonth = false;
                 }
@@ -39,12 +42,18 @@ function getLogs($accessLogPath, $cooldown)
 
         fclose($accessLogFile);
     }
+    
+    
+    // Flips array so the last entry is first in the array.
+    $accessLog = array_reverse($accessLog);
 
     
     // Read the previos Month to make sure no logins were made.
     // If so push to array.
     // If Not then do nothing.
     if ($readPreviodMonth == true) {
+        
+        echo "Reading prev array";
 
         $prvFileName = "";
         $prvMonth = date("m");
@@ -61,22 +70,29 @@ function getLogs($accessLogPath, $cooldown)
         } else {
             $prvFileName = "AccessLog_" . (date("m") - 1) . "-" . date("Y") . ".log";
         }
-
-
+        
+        echo $prvFileName;
+        
+        
         // Make sure a prefivos file exists and if so then get contents.
         // Add contents to the "accessLog".
-        if (file_exists($accessLogPath . $prvFileName)) {
+        if (file_exists($accessLogPath . "Logs" . DIRECTORY_SEPARATOR . $prvFileName)) {
 
             // Get the contents of this months current login log.
-            $prevLogFile = fopen($accessLogPath . $prvFileName, "r");
+            $prevLogFile = fopen($accessLogPath . "Logs" . DIRECTORY_SEPARATOR . $prvFileName, "r");
 
             while (!feof($prevLogFile)) {
 
-                array_push($accessLog, fgets($prevLogFile));
+                array_push($prvLogArray, fgets($prevLogFile));
             }
-
+            
+            $prvLogArray = array_reverse($prvLogArray);
+            
+            $accessLog = array_merge($accessLog, $prvLogArray);
         }
     }
+    
+    print_r($accessLog);
 
     return $accessLog;
 }

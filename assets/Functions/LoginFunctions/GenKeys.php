@@ -4,6 +4,12 @@
 // Takes the project path for config and the json config data.
 function GenKeys($filePath, $config)
 {
+    
+    if(!isset($config->login)) {
+        
+        failedLogin("Interal Server Error. Login Config Format Error.", 0);
+        return false;
+    }
 
     if(($config->login->AESu == "") && ($config->login->AESp == "")) {
         

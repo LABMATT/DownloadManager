@@ -8,6 +8,9 @@ function checkAttempt($projectPath, $settingsJson, $attempts) {
     // If not new keys and locout is false then run check.
     if($validkey && (!$settingsJson->login->Lockedout)) {
         
+        echo "Ready to check key";
+        
+       
     }
 }
 ?>
