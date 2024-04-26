@@ -33,6 +33,7 @@ function getManifest($dlid)
     if ($manifest != null) {
         
         $manifest = json_decode($manifest);
+        echo "JSON decoded";
     }
     
     return $manifest;

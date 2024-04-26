@@ -1,14 +1,15 @@
 {
     "Manifest": {
         "DownloadName": "",
-        "enabled": true,
-        "deleted": false,
-        "reason": "Removed By User",
+        "Enabled": true,
+        "Deleted": false,
+        "Reason": "Removed By User",
         "PasswordProtected": false,
         "Password": "",
+        "VersionGroup": "",
 
         "FileName": "",
-        "Verseion": "",
+        "Version": "",
         "DateCreated": "",
         "DateModifed": "",
         "FileType": "",

@@ -215,29 +215,19 @@ try {
 // START OF NEW REFORMATTING ATTEMPT:
 
 $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
-$inDLID = 1;
 
-//$inDLID = santize($inDLID);
-
+require("assets\Functions\GetDLID.php");
 require("assets\Functions\GetDownload.php");
-require("assets\Functions\GetManifest.php");
-require("assets\Functions\Verify_DLID_Manifest.php");
 
+$downloadFile = getDownload();
+$manifest = null;
 
-$manifest = getManifest($inDLID);
-$verifyDLIDManifest = VerifyJSONManifest($manifest, $inDLID);
+if ($downloadFile == null) {
+    $Manifest = getManifest($inDLID);
+}
 
-echo "Veriffy: " . $verifyDLIDManifest;
-
-if ($manifest != null && $verifyDLIDManifest) {
-    if ($manifest->Manifest->Deleted == true) {
-
-    } else if ($manifest->Manifest->Enabled == false) {
-
-    } else {
-
-        $downloadFile = getDownload($inDLID);
-    }
+if($manifest != null) {
+    
 }
 
 ?> 
