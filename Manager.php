@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Deleted.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Version.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAV.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\SignInHistory.css">
 </head>
 
 <!-- Main Html Body -->
@@ -30,7 +31,8 @@
     <button class="HeaderButton" id="NAVdownload" onclick="switchWindow(1);">Downloads</button>
     <button class="HeaderButton" id="NAVversion" onclick="switchWindow(2);">Versions</button>
     <button class="HeaderButton" id="NAVdeleted" onclick="switchWindow(3);">Deleted Downloads</button>
-    <button class="HeaderButton" id="NAVerror" onclick="switchWindow(4);">View Errors (0)</button>
+    <button class="HeaderButton" id="NAVerror" onclick="switchWindow(4);">Errors (0)</button>
+    <button class="HeaderButton" id="NAVhistory" onclick="switchWindow(5);">Sign In History</button>
     <button class="HeaderButton" id="NAVsignout">Sign Out</button>
 </div>
 
@@ -45,11 +47,6 @@
 <!-- Lists all current download files -->
 <div id="currentDownloads">
     <h2 class="heading">Downloads: </h2>
-    <?php
-
-    require("assets\Functions\crawlDownloads.php");
-
-    ?>
 
     <!-- 
     <div class="existingDownload">
@@ -74,6 +71,12 @@
 
 <div id="DeletedDownlaods">
     <h2>Deleated Downloads</h2>
+</div>
+
+<div id="SignInHistory">
+<h1>Sign in history</h1>
+<button>Clear History</button>
+<p>Warning! Clearing Sign In History Will Also Clear Any Cooldown Periods Currenly In Affect.</p>
 </div>
 
 </body>

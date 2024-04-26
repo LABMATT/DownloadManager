@@ -30,6 +30,12 @@ function switchWindow(window) {
             document.getElementById("NAVerror").style.backgroundColor = "red";
             document.getElementById("errorMenu").style.display = "flex";
             break;
+
+        case 5:
+            setAllNone();
+            document.getElementById("NAVhistory").style.backgroundColor = "red";
+            document.getElementById("SignInHistory").style.display = "flex";
+            break;
     }
 }
 
@@ -39,10 +45,12 @@ function setAllNone() {
     document.getElementById("NAVversion").style.backgroundColor = "black";
     document.getElementById("NAVdeleted").style.backgroundColor = "black";
     document.getElementById("NAVerror").style.backgroundColor = "black";
+    document.getElementById("NAVhistory").style.backgroundColor = "black";
 
     document.getElementById("errorMenu").style.display = "none";
     document.getElementById("downloadEditor").style.display = "none";
     document.getElementById("currentDownloads").style.display = "none";
     document.getElementById("versionDiv").style.display = "none";
     document.getElementById("DeletedDownlaods").style.display = "none";
+    document.getElementById("SignInHistory").style.display = "none";
 }
