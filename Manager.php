@@ -12,7 +12,7 @@
     <script type="text/javascript" src="assets\javascript\errorMenu.js"></script>
     <script type="text/javascript" src="assets\javascript\Manager\SwitchWindow.js"></script>
 
-    
+
     <link rel="stylesheet" type="text/css" href="assets\styles\Manger.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\errorMenu.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Editor.css">
@@ -26,7 +26,7 @@
 
 <!-- The header displays the main title with buttons-->
 <div id="header">
-    <h3 id="navTitle">DOWNLOAD MANGER</h3>
+    <h3 id="navTitle">DOWNLOAD MANAGER</h3>
     <button class="HeaderButton" id="NAVdownload" onclick="switchWindow(1);">Downloads</button>
     <button class="HeaderButton" id="NAVversion" onclick="switchWindow(2);">Versions</button>
     <button class="HeaderButton" id="NAVdeleted" onclick="switchWindow(3);">Deleted Downloads</button>
@@ -45,8 +45,13 @@
 <!-- Lists all current download files -->
 <div id="currentDownloads">
     <h2 class="heading">Downloads: </h2>
-    <?php require("assets\Functions\crawlDownloads.php"); ?>
+    <?php
 
+    require("assets\Functions\crawlDownloads.php");
+
+    ?>
+
+    <!-- 
     <div class="existingDownload">
         <p class="txtContent" id="dname">Example Download</p>
         <a class="txtContent" id="ddlid" href="http://localhost/DownloadManager/?dlid=1&auto=0" target="_blank">DLID</a>
@@ -58,6 +63,7 @@
         <button class="modiferButtons" id="deleteButton">Delete</button>
         <button class="modiferButtons" id="editButton">Edit</button>
     </div>
+    -->
 </div>
 
 
@@ -67,7 +73,7 @@
 </div>
 
 <div id="DeletedDownlaods">
-<h2>Deleated Downloads</h2>
+    <h2>Deleated Downloads</h2>
 </div>
 
 </body>

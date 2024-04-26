@@ -11,7 +11,7 @@ require 'loginFailed.php';
 
 function CheckAcess()
 {
-    $projectPath = GetSystemPath();
+    $projectPath = GetSystemPath("DownloadManager");
 
     // Make sure sub DIRS are created.
     logDir($projectPath);

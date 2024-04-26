@@ -20,6 +20,11 @@
 <!-- Main Html Body -->
 <body>
 
+<?php
+include("assets\Functions\GetManifest.php");
+getManifest(1);
+?>
+
 <!-- This is the top text that says what page your on -->
 <header>
     <h1>Download Portal</h1>

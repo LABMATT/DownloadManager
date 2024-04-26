@@ -5,13 +5,6 @@ require("verifyManifest.php");
 // Grab the folders that are located in the downloads folder.
 $scanedDIR = scandir("Downloads");
 
-try {
-    //print_r(verifyManifest($folder));
-} catch (Exception $e) {
-    
-}
-
-
 // Loop to each folder.
 // Check if is in the main manifest.
 // Check that all its content still matches up.

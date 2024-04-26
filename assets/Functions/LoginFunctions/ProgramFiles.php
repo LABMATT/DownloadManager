@@ -5,12 +5,11 @@
 // If linux then opt.
 // If mac then opt as well.
 // If unknown then do nothing.
-function GetSystemPath()
+function GetSystemPath($projectName)
 {
 
     $osFamily = PHP_OS_FAMILY;
     $filePath = null;
-    $projectName = "DownloadManger";
 
 
     switch ($osFamily) {
@@ -28,7 +27,7 @@ function GetSystemPath()
     }
 
 
-    if (!is_dir($filePath)) {
+    if (!is_dir($filePath . DIRECTORY_SEPARATOR . $projectName)) {
         $mkdirSucess = mkdir($filePath . DIRECTORY_SEPARATOR . $projectName);
 
         if (!$mkdirSucess) {
