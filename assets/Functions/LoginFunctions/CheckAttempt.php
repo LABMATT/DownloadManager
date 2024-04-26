@@ -31,11 +31,22 @@ function checkCooldown($settingsJson, $attempts)
             // If the time from login is >0 then its valid.
             // If time elsapsed is less than cooldown then prevent login.
             $elapsed = Time() - $attempt[1];
-            if ($elapsed > 0 && $elapsed < $settingsJson->login->CooldownBetweenAttempts && $attempt[5] != " Cooldown") {
+            
+            $validtime = $elapsed > 0;
+            $cooldown = $elapsed < $settingsJson->login->CooldownBetweenAttempts;
+            $isCooldown = $attempt[5] == " Cooldown";
+            
+            echo $attempt[5];
+            
+            echo "Last Was cooldown: " . $isCooldown;
+            
+            if ($validtime && $cooldown && $isCooldown) {
                 
                 return true;
             }
         }
+        
+        echo "loop";
     }
 
     return false;

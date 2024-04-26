@@ -10,8 +10,15 @@
     <!-- Include nessary script files. -->
     <script type="text/javascript" src="assets\javascript\failedLogin.js"></script>
     <script type="text/javascript" src="assets\javascript\errorMenu.js"></script>
+    <script type="text/javascript" src="assets\javascript\Manager\SwitchWindow.js"></script>
+
+    
     <link rel="stylesheet" type="text/css" href="assets\styles\Manger.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\errorMenu.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Editor.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Deleted.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Version.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAV.css">
 </head>
 
 <!-- Main Html Body -->
@@ -20,10 +27,11 @@
 <!-- The header displays the main title with buttons-->
 <div id="header">
     <h3 id="navTitle">DOWNLOAD MANGER</h3>
-    <button class="HeaderButton">New Download</button>
-    <button class="HeaderButton" id="refresh">Refresh Manifests</button>
-    <button class="HeaderButton" id="errorMenuButton" onclick="errorMenuToggle();">View Errors (0)</button>
-    <button class="HeaderButton" id="signOut">Sign Out</button>
+    <button class="HeaderButton" id="NAVdownload" onclick="switchWindow(1);">Downloads</button>
+    <button class="HeaderButton" id="NAVversion" onclick="switchWindow(2);">Versions</button>
+    <button class="HeaderButton" id="NAVdeleted" onclick="switchWindow(3);">Deleted Downloads</button>
+    <button class="HeaderButton" id="NAVerror" onclick="switchWindow(4);">View Errors (0)</button>
+    <button class="HeaderButton" id="NAVsignout">Sign Out</button>
 </div>
 
 <div id="errorMenu">
@@ -57,5 +65,10 @@
 <div id="versionDiv">
     <h2 class="heading">Versions:</h2>
 </div>
+
+<div id="DeletedDownlaods">
+<h2>Deleated Downloads</h2>
+</div>
+
 </body>
 </html>

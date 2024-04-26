@@ -6,7 +6,7 @@ require("verifyManifest.php");
 $scanedDIR = scandir("Downloads");
 
 try {
-    print_r(verifyManifest($folder));
+    //print_r(verifyManifest($folder));
 } catch (Exception $e) {
     
 }
