@@ -11,6 +11,7 @@
     <script type="text/javascript" src="assets\javascript\failedLogin.js"></script>
     <script type="text/javascript" src="assets\javascript\errorMenu.js"></script>
     <script type="text/javascript" src="assets\javascript\Manager\SwitchWindow.js"></script>
+    <script type="text/javascript" src="assets\javascript\Manager\Dlids.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="assets\styles\Manger.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Version.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAV.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\SignInHistory.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Manager.css">
 </head>
 
 <!-- Main Html Body -->
@@ -48,6 +50,10 @@
 <div id="currentDownloads">
     <h2 class="heading">Downloads: </h2>
 
+    <?php
+    require("assets\Functions\crawlDownloads.php");
+    ?>
+
     <!-- 
     <div class="existingDownload">
         <p class="txtContent" id="dname">Example Download</p>
@@ -74,9 +80,9 @@
 </div>
 
 <div id="SignInHistory">
-<h1>Sign in history</h1>
-<button>Clear History</button>
-<p>Warning! Clearing Sign In History Will Also Clear Any Cooldown Periods Currenly In Affect.</p>
+    <h1>Sign in history</h1>
+    <button>Clear History</button>
+    <p>Warning! Clearing Sign In History Will Also Clear Any Cooldown Periods Currenly In Affect.</p>
 </div>
 
 </body>
