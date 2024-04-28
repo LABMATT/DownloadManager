@@ -2,3 +2,98 @@
     
     background-color: red;
 }
+
+#navTitle {
+    margin: 0px;
+    padding: 0%;
+    color: white;
+    text-align: center;
+    align-self: center;
+    margin-right: 1%;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+
+    background-color: black;
+
+    padding-left: 2%;
+    justify-content: flex-start;
+}
+
+.HeaderButton {
+    padding: 1%;
+    font-family: Arial;
+    font-size: 1em;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.HeaderButton:hover {
+    background: red;
+}
+
+#NAVsignout {
+    margin-left: auto;
+}
+
+.heading {
+    margin-left: 2%;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    #header {
+        display: grid;
+        grid-template-rows: auto auto auto auto ;
+        grid-template-columns: 50% 50%;
+
+        background-color: black;
+        
+        padding: 0%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        justify-content: flex-start;
+    }
+    
+    #navTitle {
+        grid-area: 1 / 1 / -1 / -1;
+        
+        padding: 4%;
+        
+        margin: 0px;
+        color: white;
+        text-align: center;
+        align-self: center;
+        margin-right: 1%;
+    
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+    
+    #NAVsignout {
+        margin: 0;
+    }
+    
+    .heading {
+        margin: 0%;
+    }
+    
+    .HeaderButton {
+        padding: 4%;
+        font-family: Arial;
+        font-size: 1em;
+        background-color: black;
+        color: white;
+        border: none;
+    }
+}
+

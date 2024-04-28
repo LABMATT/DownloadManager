@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Manager.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAVdownloads.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\DownloadEditor.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\ExistingDownload.css">
+
 </head>
 
 <!-- Main Html Body -->
@@ -49,6 +51,13 @@
 <div id="downloadEditor">
     <div id="editor">
         <h1 class="editorHeadings">Download Editor: </h1>
+        <h2 class="editorHeadings">Upload File:</h2>
+
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileUpload" id="fileUpload">
+            <input type="submit" value="Upload" name="submit" id="fileUploadButton">
+        </form>
+        <br>
 
         <h2 class="editorHeadings">Enable/Disabled Download:</h2>
         <p>Should the download Webpage Be Acessable?
@@ -94,6 +103,46 @@
             <label for="Version" class="editorFormLabel">Link: (Optional)</label><br>
             <input type="text" id="editorLink" name="Version" class="editorFormInput"
                    placeholder="www.labmatt.space/texturepack"><br>
+            <br>
+            <label for="description" class="editorFormLabel">Descirption: (Optional)</label><br>
+            <textarea id="editorDescription" name="description" rows="6" cols="40"></textarea>
+        </form>
+
+        <h2 class="editorHeadings">Version Group: (Optional)</h2>
+        <p>Version Grouping:
+            <br>
+            If a program or file has multiple versions, a Version Group will allow all versions
+            <br>
+            to show in order with there accoated downloads. A Version Gorup could
+            <br>
+            be used by a program to check if new updates are aviable. FEX:
+            <br>
+            A program could check a version ID to see if new downloads are aviable
+            <br>
+            thhen use that to download stright from a server avoiding the need for backend systems.
+            <br><br>
+            VGID = Version Group ID is the group ID.
+            <br>
+            Version Group Name = The group to be apart of.
+            <br>
+            Branch = stable, Alpha, Beta branchs allow
+            A VGID could have mutliple branches.
+            <br>
+            Version = Version You refrnace the project by FEX: alpha 1.5.4b
+            <br>
+            VGIDVersion = A number with no charters that is used by DownloadManager
+            to place the downloads in order.
+        </p>
+
+        <form id="editorForm">
+            <label for="Name" class="editorFormLabel">Version Gorup Name:</label><br>
+            <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: Textures"><br>
+            <br>
+            <label for="Name" class="editorFormLabel">Branch:</label><br>
+            <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: beta"><br>
+            <br>
+            <label for="Name" class="editorFormLabel">VGIDVersion:</label><br>
+            <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: 1.2"><br>
         </form>
 
         <div>

@@ -1,0 +1,104 @@
+.existingDownload {
+    display: grid;
+    grid-template-columns: 15% 5% 10% 10% 10% 10% 10% 10% 10% 10%;
+    align-items: baseline;
+
+    background-color: rgb(120, 120, 120);
+    border-bottom: solid 1px;
+    border-color: black;
+
+    padding: 1%;
+}
+
+.existingDownload:hover {
+    background-color: rgb(150, 150, 150);
+}
+
+.txtContent {
+    margin: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.modiferButtons {
+    background-color: green;
+    color: white;
+    border: black;
+    border-radius: 4px;
+    margin: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    transition: 0.4s;
+}
+
+#viewData:hover {
+    background: blue;
+}
+
+#deleteButton:hover {
+    background-color: red;
+}
+
+#editButton:hover {
+    background-color: blue;
+}
+
+.deleteButton {
+    background-color: red;
+}
+
+
+@media screen and (max-width: 600px) {
+    
+    .existingDownload {
+        display: grid;
+        grid-template-columns: auto auto auto ;
+        grid-template-rows: auto auto auto auto;
+        align-items: baseline;
+    
+        background-color: rgb(120, 120, 120);
+        border-bottom: solid 1px;
+        border-color: black;
+    
+        padding: 1%;
+    }
+    
+    .existingDownload:hover {
+        background-color: rgb(150, 150, 150);
+    }
+    
+    .txtContent {
+        margin: 0%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+    
+    .modiferButtons {
+        background-color: green;
+        color: white;
+        border: black;
+        border-radius: 4px;
+        margin: 1%;
+        padding-left: 1%;
+        padding-right: 1%;
+        transition: 0.4s;
+        
+        grid-area: 4 / auto;
+    }
+    
+    #viewData:hover {
+        background: blue;
+    }
+    
+    #deleteButton:hover {
+        background-color: red;
+    }
+    
+    #editButton:hover {
+        background-color: blue;
+    }
+    
+    .deleteButton {
+        background-color: red;
+    }
+}

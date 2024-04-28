@@ -1,111 +1,20 @@
 body {
     margin: 0%;
-    
+
     display: flex;
     flex-direction: column;
-    
+
     background-color: white;
     font-family: Arial;
 }
 
-#navTitle {
-    margin: 0px;
-    color: white;
-    text-align: center;
-    align-self: center;
-    margin-right: 1%;
-    
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-}
-
-#header {
-    display: flex;
-    flex-direction: row;
-    
-    background-color: black;
-    
-    padding-left: 2%;
-    justify-content: flex-start;
-}
-
-.HeaderButton {
-    padding: 1%;
-    font-family: Arial;
-    font-size: 1em;
-    background-color: black;
-    color: white;
-    border: none;
-}
-
-.HeaderButton:hover {
-    background: red;
-}
-
-#NAVsignout {
-margin-left: auto;
-}
-
-.heading {
-    margin-left: 2%;
-}
 
 #currentDownloads {
     display: flex;
     flex-direction: column;
-    
-    background: rgb(100,100,100);
-    
+
+    background: rgb(100, 100, 100);
+
     padding: 2%;
 }
 
-.existingDownload {
-    display: grid;
-    grid-template-columns: 15% 5% 10% 10% 10% 10% 10% 10% 10% 10%;
-    align-items: baseline;
-    
-    background-color: rgb(120,120,120);
-    border-bottom: solid 1px;
-    border-color: black;
-    
-    padding: 1%;
-}
-
-.existingDownload:hover {
-    background-color: rgb(150,150,150);
-}
-
-.txtContent {
-    margin: 0%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-}
-
-.modiferButtons {
-    background-color: green;
-    color: white;
-    border: black;
-    border-radius: 10px;
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
-    padding-left: 1%;
-    padding-right: 1%;
-    transition: 0.4s;
-}
-
-#viewData:hover {
-    background: blue;
-}
-
-#deleteButton:hover {
-    background-color: red;
-}
-
-#editButton:hover {
-    background-color: blue;
-}
-
-.deleteButton {
-    background-color: red;
-}
