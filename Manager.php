@@ -12,6 +12,7 @@
     <script type="text/javascript" src="assets\javascript\errorMenu.js"></script>
     <script type="text/javascript" src="assets\javascript\Manager\SwitchWindow.js"></script>
     <script type="text/javascript" src="assets\javascript\Manager\Dlids.js"></script>
+    <script type="text/javascript" src="assets\javascript\Manager\NewDownload.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="assets\styles\Manger.css">
@@ -22,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAV.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\SignInHistory.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Manager.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAVdownloads.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\DownloadEditor.css">
 </head>
 
 <!-- Main Html Body -->
@@ -34,7 +37,7 @@
     <button class="HeaderButton" id="NAVversion" onclick="switchWindow(2);">Versions</button>
     <button class="HeaderButton" id="NAVdeleted" onclick="switchWindow(3);">Deleted Downloads</button>
     <button class="HeaderButton" id="NAVerror" onclick="switchWindow(4);">Errors (0)</button>
-    <button class="HeaderButton" id="NAVhistory" onclick="switchWindow(5);">Sign In History</button>
+    <button class="HeaderButton" id="NAVhistory" onclick="switchWindow(5);">Settings</button>
     <button class="HeaderButton" id="NAVsignout">Sign Out</button>
 </div>
 
@@ -43,11 +46,25 @@
 </div>
 
 <!-- DownloadEdit allows input and info about a download to be edited.-->
-<div id="downloadEditor"></div>
+<div id="downloadEditor">
+    <div id="editor">
+    <h1>Editor: </h1>
+    </div>
+</div>
 
 
 <!-- Lists all current download files -->
 <div id="currentDownloads">
+
+    <div id="NAVdownloads">
+        <button class="NAVscontent" id="NewDownload" onclick="newDownload()">New Download</button>
+        <button class="NAVscontent" id="SelectDownlaod">Select Downloads</button>
+    </div>
+
+    <div id="DownloadSearch">
+
+    </div>
+
     <h2 class="heading">Downloads: </h2>
 
     <?php

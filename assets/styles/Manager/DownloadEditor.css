@@ -1,0 +1,11 @@
+#downloadEditor {
+    
+    background: rgba(40, 40, 40, 0.5);
+    
+    display: none;
+    
+    width: 100%;
+    height: 100%;
+    
+    padding: 2%;
+}

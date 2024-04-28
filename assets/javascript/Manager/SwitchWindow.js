@@ -36,6 +36,13 @@ function switchWindow(window) {
             document.getElementById("NAVhistory").style.backgroundColor = "red";
             document.getElementById("SignInHistory").style.display = "flex";
             break;
+
+        // Editor window
+        case 6:
+            setAllNone();
+            document.getElementById("NAVdownload").style.backgroundColor = "red";
+            document.getElementById("downloadEditor").style.display = "flex";
+            break;
     }
 }
 
