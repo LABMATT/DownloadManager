@@ -1,3 +1,6 @@
+//If the editor is close then trigger reset.
+
+// If the editor download is enabled or disabled
 var downloadEnabled = true;
 
 // When triggered will open download page and allow entering of download infomation.
@@ -7,6 +10,7 @@ function newDownload() {
     switchWindow(6);
 }
 
+// Toggle between enabled and dissabled. 
 function EnabledDisabled(state) {
 
     downloadEnabled = state;
@@ -21,4 +25,20 @@ function EnabledDisabled(state) {
             document.getElementById("Disabled").style.background = "#323232";
             break;
     }
+}
+
+// if the editor has changed form default values then return true
+function editorChanges() {
+
+    if(document.getElementById("editorName").value !== "") {
+        return true;
+    }
+}
+
+
+// Reset the editor to default valus.
+function resetEditor() {
+
+    EnabledDisabled(1);
+    document.getElementById("editorName").value = "";
 }

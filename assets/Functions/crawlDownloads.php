@@ -30,6 +30,7 @@ foreach ($scanedDIR as $file) {
             echo "<div class=\"existingDownload\">";
             echo "<p class=\"txtContent\">" . $json->Manifest->DownloadName ."</p>";
             echo "<a class=\"txtContent\" href=\"http://localhost/DownloadManager/?dlid=1&auto=0\" target=\"_blank\">DLID: " . $dlid . "</a>";
+            echo "<p class=\"txtContent\">VGID: " . $json->Manifest->VersionGroupID ."</p>";
             echo "<p class=\"txtContent\">Version: " . $json->Manifest->Version ."</p>";
             echo "<p class=\"txtContent\">Filetype: " . $json->Manifest->FileType . "</p>";
             echo "<p class=\"txtContent\">Size: " . $json->Manifest->FileSize ."</p>";

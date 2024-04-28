@@ -1,48 +1,66 @@
+var currentWiddow = 1
+
 // Switches what content on the page is activly been displayed. 
 function switchWindow(window) {
 
-    switch (window) {
+    var switching = true;
 
-        // Downloads
-        case 1:
-            setAllNone();
-            document.getElementById("NAVdownload").style.backgroundColor = "red";
-            document.getElementById("currentDownloads").style.display = "flex";
-            break;
+    if (currentWiddow == 6 && editorChanges()) {
 
-        // versions
-        case 2:
-            setAllNone();
-            document.getElementById("NAVversion").style.backgroundColor = "red";
-            document.getElementById("versionDiv").style.display = "flex";
-            break;
+        switching = confirm("By Leaving The Editor You Will Loose All Changes.");
+    }
 
-        // Deleted
-        case 3:
-            setAllNone();
-            document.getElementById("NAVdeleted").style.backgroundColor = "red";
-            document.getElementById("DeletedDownlaods").style.display = "flex";
-            break;
+    if (switching) {
+        switch (window) {
 
-        // Error
-        case 4:
-            setAllNone();
-            document.getElementById("NAVerror").style.backgroundColor = "red";
-            document.getElementById("errorMenu").style.display = "flex";
-            break;
+            // Downloads
+            case 1:
+                setAllNone();
+                document.getElementById("NAVdownload").style.backgroundColor = "red";
+                document.getElementById("currentDownloads").style.display = "flex";
+                currentWiddow = 1;
+                break;
 
-        case 5:
-            setAllNone();
-            document.getElementById("NAVhistory").style.backgroundColor = "red";
-            document.getElementById("SignInHistory").style.display = "flex";
-            break;
+            // versions
+            case 2:
+                setAllNone();
+                document.getElementById("NAVversion").style.backgroundColor = "red";
+                document.getElementById("versionDiv").style.display = "flex";
+                currentWiddow = 2;
+                break;
 
-        // Editor window
-        case 6:
-            setAllNone();
-            document.getElementById("NAVdownload").style.backgroundColor = "red";
-            document.getElementById("downloadEditor").style.display = "flex";
-            break;
+            // Deleted
+            case 3:
+                setAllNone();
+                document.getElementById("NAVdeleted").style.backgroundColor = "red";
+                document.getElementById("DeletedDownlaods").style.display = "flex";
+                currentWiddow = 3;
+                break;
+
+            // Error
+            case 4:
+                setAllNone();
+                document.getElementById("NAVerror").style.backgroundColor = "red";
+                document.getElementById("errorMenu").style.display = "flex";
+                currentWiddow = 4;
+                break;
+
+            case 5:
+                setAllNone();
+                document.getElementById("NAVhistory").style.backgroundColor = "red";
+                document.getElementById("SignInHistory").style.display = "flex";
+                currentWiddow = 5;
+                break;
+
+            // Editor window
+            case 6:
+                setAllNone();
+                resetEditor();
+                document.getElementById("NAVdownload").style.backgroundColor = "red";
+                document.getElementById("downloadEditor").style.display = "flex";
+                currentWiddow = 6;
+                break;
+        }
     }
 }
 

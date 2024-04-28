@@ -27,7 +27,7 @@ function VerifyJSONManifest($inJSON, $dlid)
         if (!isset($inJSON->Manifest->Password)) {
             throw new Exception("Download Manifest Format Error(Line 8) in DLID: " . $dlid);
         }
-        if (!isset($inJSON->Manifest->VersionGroup)) {
+        if (!isset($inJSON->Manifest->VersionGroupID)) {
             throw new Exception("Download Manifest Format Error(Line 9) in DLID: " . $dlid);
         }
         if (!isset($inJSON->Manifest->FileName)) {

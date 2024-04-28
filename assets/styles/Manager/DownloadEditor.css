@@ -12,6 +12,11 @@
     flex-grow: 1;
 }
 
+.editorHeadings {
+    
+    color: aqua;
+}
+
 #EditorEnableDisable {
     
     display: flex;
@@ -26,6 +31,7 @@
 
 #Enabled {
     
+    padding: 1%;
     background-color: green;
 }
 
@@ -42,5 +48,6 @@
 
 .editorFormInput {
     
+    font-size: 1.1em;
     width: 30%;
 }
