@@ -48,7 +48,52 @@
 <!-- DownloadEdit allows input and info about a download to be edited.-->
 <div id="downloadEditor">
     <div id="editor">
-    <h1>Editor: </h1>
+        <h1>Editor: </h1>
+
+        <p>Should the download Webpage Be Acessable?
+            <br>
+            Enabled = Download Page Visable.
+            <br>
+            Disabled = Download Link Leads To "Download Not Aviable".
+            <br>
+            #NOTE Download Will Still Be Acessable Via WGET.
+        </p>
+        
+        <div id="EditorEnableDisable">
+            <button class="NAVscontent" id="Enabled" onclick="EnabledDisabled(1);">Enabled</button>
+            <button class="NAVscontent" id="Disabled" onclick="EnabledDisabled(0);">Disabled</button>
+        </div>
+
+        <form id="editorForm">
+            <label for="Name" class="editorFormLabel">Downlaod Name: (Required)</label><br>
+            <input type="text" id="Name" name="name" class="editorFormInput" placeholder="FEX: Texture Pack"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">Downlaod Version: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput" placeholder="FEX: alpha 1.5.4b"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">Downlaod Version: (Required)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput" placeholder="FEX: 3"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">Date Created: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput" placeholder="auto"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">Date Modifed: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput" placeholder="auto"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">File Type: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput" placeholder="auto"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">Creator / Source: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput"
+                   placeholder="FEX: Susan Williams"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">Link: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput"
+                   placeholder="www.labmatt.space/texturepack"><br>
+            <br>
+            <label for="Version" class="editorFormLabel">File Type: (Optional)</label><br>
+            <input type="text" id="Name" name="Version" class="editorFormInput" placeholder="auto"><br>
+        </form>
     </div>
 </div>
 

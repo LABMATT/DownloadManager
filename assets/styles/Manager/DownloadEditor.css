@@ -1,11 +1,46 @@
 #downloadEditor {
     
-    background: rgba(40, 40, 40, 0.5);
-    
     display: none;
+    flex-direction: column;
+    
+    padding: 4%;
+}
+
+#editor {
+    
+    color: white;
+    flex-grow: 1;
+}
+
+#EditorEnableDisable {
+    
+    display: flex;
+    flex-direction: row;
+    
+    background-color: rgb(50,50,50);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
+    width: 30%;
+}
+
+#Enabled {
+    
+    background-color: green;
+}
+
+#editorForm {
     
     width: 100%;
-    height: 100%;
+}
+
+.editorFormLabel {
     
-    padding: 2%;
+    font-weight: bold;
+    color: white;
+}
+
+.editorFormInput {
+    
+    width: 30%;
 }
