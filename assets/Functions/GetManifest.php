@@ -28,15 +28,6 @@ function getManifest($dlid)
         $manifest = file_get_contents($projectPath . DIRECTORY_SEPARATOR . "dlid_" . $dlid . ".json");
     }
     
-    // Decode into json format.
-    /*
-    if ($manifest != null) {
-        
-        $manifest = json_decode($manifest);
-        echo "JSON decoded";
-    }
-    */
-    
     return $manifest;
 }
 ?>

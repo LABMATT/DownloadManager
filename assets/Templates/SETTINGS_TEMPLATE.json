@@ -1,6 +1,13 @@
 {
     "Settings": {
         "HostName": "",
-        "AutoDetectDarkTheme": true
+        "AutoDetectDarkTheme": true,
+        
+        "DLIDNotFoundAuto0": "Page",
+        "DLIDNotFoundAuto1": "Page",
+        "DLIDNotFoundAuto2": "404",
+        "DLIDDisabledAuto0": "DisabledPage",
+        "DLIDDisabledAuto1": "DisabledPage",
+        "DLIDDisabledAuto2": "404"
     }
 }

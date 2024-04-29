@@ -1,45 +1,70 @@
 <?php
 
 require("assets\Functions\LoginFunctions\ProgramFiles.php");
+require("assets\Functions\DownloadError.php");
 require 'assets\Functions\Sanitize.php';
 require("assets\Functions\GetDownload.php");
 require("assets\Functions\GetSettings.php");
 require("assets\Functions\GetManifest.php");
 require("assets\Functions\VerifySettings.php");
-require("assets\Functions\Verify_DLID_Manifest.php");
-
-// START OF NEW REFORMATTING ATTEMPT:
+require("assets\Functions\VerifyManifest.php");
 
 $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
-$inDLID = 1;
+$inAUTO = htmlspecialchars($_GET["auto"] ?? null);
 
-//$inDLID = santize($inDLID);
-
-
-// Get the Manifest for this Download ID
-// Verify that the manifest is valid for use. Return false if not ready and error.
-$manifest = getManifest($inDLID);
-$manifestJSON = json_decode($manifest);
-
-// Get settings then decode them.
-$settings = getSettings();
-$settingsJSON = json_decode($settings);
-
-
-// Verify That both are not formatted badly.
-$verifyManifest = VerifyJSONManifest($manifestJSON, $inDLID);
-$verifySettings = VerifySettings($settingsJSON);
+$validDLID = sanitize($inDLID);
+$validAUTO = sanitize($inAUTO);
 
 $fileLink = "";
+$verifyManifest = false;
+$verifySettings = false;
 
 
-if (($manifest != null && $verifyManifest) && ($settings != null && $verifySettings)) {
+// If the auto veriable is empty or invalid then set it to 0.
+if (!$validAUTO || $inAUTO == "") {
+
+    $inAUTO = 0;
+}
+
+
+// Make sure the auto is a valid veriable. If not then do nothing.
+switch ($inAUTO) {
+    case 0:
+    case 1:
+    case 2:
+        break;
+    default:
+        $inAUTO = 0;
+}
+
+
+// Get the Manifest for this Download ID and the Servers settings.
+$manifest = getManifest($inDLID);
+$settings = getSettings();
+
+
+// Verify that the manifest and settings were gettable.
+// If SO then decode the json.
+// IF NOT then later we will throw an error page.
+if ($manifest != null && $settings != null) {
+
+    $manifestJSON = json_decode($manifest);
+    $settingsJSON = json_decode($settings);
+
+    $verifyManifest = VerifyJSONManifest($manifestJSON, $inDLID);
+    $verifySettings = VerifySettings($settingsJSON);
+}
+
+
+if ($verifyManifest && $verifySettings) {
 
     if ($manifestJSON->Manifest->Deleted == true) {
 
+        header("Location: DownloadRemoved.php");
 
     } else if ($manifestJSON->Manifest->Enabled == false) {
 
+        header("Location: DownloadDisabled.php");
     } else {
 
         // Using hostname and the files name get the file path.
@@ -65,6 +90,7 @@ if (($manifest != null && $verifyManifest) && ($settings != null && $verifySetti
     <!-- Include nessary script files. -->
     <!--<script type="text/javascript" src="assets\javascript\update.js"></script>-->
     <script type="text/javascript" src="assets\javascript\WGETCopy.js"></script>
+    <script type="text/javascript" src="assets\javascript\DeletedDownload.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Properties.css">
@@ -72,19 +98,21 @@ if (($manifest != null && $verifyManifest) && ($settings != null && $verifySetti
     <link rel="stylesheet" type="text/css" href="assets\styles\Description.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\wget.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\download.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\download.css">
 
 </head>
 
 <!-- Main Html Body -->
 <body>
 
-<!-- This is the top text that says what page your on -->
-<header>
-    <h1>Download Portal</h1>
-    <p id="action">Click the "Download" button below when ready.</p>
-</header>
 
 <div id="MainContent">
+
+    <!-- This is the top text that says what page your on -->
+    <header>
+        <h1>Download Portal</h1>
+        <p id="action">Click the "Download" button below when ready.</p>
+    </header>
 
     <!-- Download buttons that show when they have href applied to them -->
     <div id="dwl">
