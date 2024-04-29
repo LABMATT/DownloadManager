@@ -1,3 +1,5 @@
+var copyCount = 0;
+
 // When clicked copy the wget text to clipboard
 function copy() {
 
@@ -7,8 +9,10 @@ function copy() {
     navigator.clipboard.writeText(document.getElementById("wget").textContent);
 
     if (!wgetBox.classList.contains("wgetHighlight")) {
+        
         wgetBox.classList.add("wgetHighlight");
         setTimeout(function () {
+            
             wgetBox.classList.remove("wgetHighlight");
         }, 700)
 

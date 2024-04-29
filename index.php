@@ -88,9 +88,9 @@ if ($verifyManifest && $verifySettings) {
     <meta charset="UTF-8">
 
     <!-- Include nessary script files. -->
-    <!--<script type="text/javascript" src="assets\javascript\update.js"></script>-->
     <script type="text/javascript" src="assets\javascript\WGETCopy.js"></script>
     <script type="text/javascript" src="assets\javascript\DeletedDownload.js"></script>
+    <script type="text/javascript" src="assets\javascript\AutoDownload.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Properties.css">
@@ -221,3 +221,9 @@ if ($verifyManifest && $verifySettings) {
 
 </body>
 </html>
+
+<?php
+
+echo "<script>autoAction(" . $inAUTO . ");</script>";
+
+?>
