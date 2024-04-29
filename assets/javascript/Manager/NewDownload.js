@@ -1,7 +1,7 @@
 //If the editor is close then trigger reset.
 
-// If the editor download is enabled or disabled
-var downloadEnabled = true;
+
+var passwordProtected = false;
 
 // When triggered will open download page and allow entering of download infomation.
 function newDownload() {
@@ -10,27 +10,11 @@ function newDownload() {
     switchWindow(6);
 }
 
-// Toggle between enabled and dissabled. 
-function EnabledDisabled(state) {
-
-    downloadEnabled = state;
-
-    switch (state) {
-        case 0:
-            document.getElementById("Enabled").style.background = "#323232";
-            document.getElementById("Disabled").style.background = "red";
-            break;
-        case 1:
-            document.getElementById("Enabled").style.background = "green";
-            document.getElementById("Disabled").style.background = "#323232";
-            break;
-    }
-}
 
 // if the editor has changed form default values then return true
 function editorChanges() {
 
-    if(document.getElementById("editorName").value !== "") {
+    if (document.getElementById("editorName").value !== "") {
         return true;
     }
 }
@@ -44,14 +28,24 @@ function resetEditor() {
 }
 
 
-//
+// Gets the data from the form and then compiles into a json.
+// Submits the fform with json data.
 function compile() {
     var data = {"Manifest":{}};
     
     data.Manifest.DownloadName = document.getElementById("editorName").value;
     data.Manifest.Enabled = downloadEnabled;
     data.Manifest.Version = document.getElementById("editorVersion").value;
-    
+    data.Manifest.Description = document.getElementById("editorDescription").value;
+    data.Manifest.CreatorSource = document.getElementById("editorSource").value;
+    data.Manifest.Link = document.getElementById("editorLink").value;
+    data.Manifest.PasswordProtected = passwordState;
+    data.Manifest.Password = document.getElementById("editorPassword").value;
+
+    data.Manifest.VersionGorupName = document.getElementById("editorVGN").value;
+    data.Manifest.Branch = document.getElementById("editorBranch").value;
+    data.Manifest.VGIDversion = document.getElementById("editorVGIDversion").value;
+
     document.getElementById("jsonDATA").value = JSON.stringify(data);
     document.getElementById("editorSubmit").submit();
 }

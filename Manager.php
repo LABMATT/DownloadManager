@@ -13,6 +13,7 @@
     <script type="text/javascript" src="assets\javascript\Manager\SwitchWindow.js"></script>
     <script type="text/javascript" src="assets\javascript\Manager\Dlids.js"></script>
     <script type="text/javascript" src="assets\javascript\Manager\NewDownload.js"></script>
+    <script type="text/javascript" src="assets\javascript\Manager\Switches.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Manger.css">
@@ -53,11 +54,12 @@
         <h1 class="editorHeadings">Download Editor: </h1>
         <h2 class="editorHeadings">Upload File:</h2>
 
-        <form id="editorSubmit" action="assets\Functions\MangerFunctions\NewDownload.php" method="post" enctype="multipart/form-data" target="_blank">
+        <form id="editorSubmit" action="assets\Functions\MangerFunctions\NewDownload.php" method="post"
+              enctype="multipart/form-data" target="_blank">
             <input type="file" name="fileUpload" id="fileUpload">
             <input type="text" name="jsonData" value="John" id="jsonDATA"><br>
             <input type="text" name="autho" value="John" id="autho"><br>
-     
+
         </form>
         <br>
 
@@ -71,7 +73,7 @@
             #NOTE Download Will Still Be Acessable Via WGET.
         </p>
 
-        <div id="EditorEnableDisable">
+        <div class="EditorEnableDisable">
             <button class="NAVscontent" id="Enabled" onclick="EnabledDisabled(1);">Enabled</button>
             <button class="NAVscontent" id="Disabled" onclick="EnabledDisabled(0);">Disabled</button>
         </div>
@@ -138,14 +140,30 @@
 
         <form id="editorForm">
             <label for="Name" class="editorFormLabel">Version Gorup Name:</label><br>
-            <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: Textures"><br>
+            <input type="text" id="editorVGN" name="name" class="editorFormInput" placeholder="FEX: Textures"><br>
             <br>
             <label for="Name" class="editorFormLabel">Branch:</label><br>
-            <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: beta"><br>
+            <input type="text" id="editorBranch" name="name" class="editorFormInput" placeholder="FEX: beta"><br>
             <br>
             <label for="Name" class="editorFormLabel">VGIDVersion:</label><br>
-            <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: 1.2"><br>
+            <input type="text" id="editorVGIDversion" name="name" class="editorFormInput" placeholder="FEX: 1.2"><br>
         </form>
+
+
+        <!-- IF FILE IS PASSWORD PROTECTED -->
+        <h2 class="editorHeadings">Password Protected: (Optional)</h2>
+        <div class="EditorEnableDisable">
+            <button class="NAVscontent" id="passwordStateTrue" onclick="passwordProtected(1);">Enabled</button>
+            <button class="NAVscontent" id="passwordStateFalse" onclick="passwordProtected(0);">Disabled</button>
+        </div>
+
+        <form id="editorPasswordForm">
+            <label for="Name" class="editorFormLabel">Passworde: (Required)</label><br>
+            <input type="text" id="editorPassword" name="password" class="editorFormInput" placeholder="FEX: rex_CT-7567"><br>
+        </form>
+
+
+        <!-- SAVE AND CLOSE BUTTONS -->
 
         <div id="EditorButtons">
             <button class="editorButtonStyle" id="editorSave" onclick="compile()">Save</button>

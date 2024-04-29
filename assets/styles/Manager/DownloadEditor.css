@@ -17,7 +17,7 @@
     color: aqua;
 }
 
-#EditorEnableDisable {
+.EditorEnableDisable {
     
     display: flex;
     flex-direction: row;
@@ -89,6 +89,16 @@
 }
 
 #autho {
+    
+    display: none;
+}
+
+#passwordStateFalse {
+    
+    background-color: red;
+}
+
+#editorPasswordForm {
     
     display: none;
 }
