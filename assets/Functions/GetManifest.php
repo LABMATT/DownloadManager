@@ -1,6 +1,6 @@
 <?php
 
-require("assets\Functions\LoginFunctions\ProgramFiles.php");
+
 
 // Gets a Manifest based on the DLID.
 function getManifest($dlid)
@@ -22,7 +22,6 @@ function getManifest($dlid)
         
         $validDLID = true;
     }
-    echo "op";
     
     if($validDLID) {
         

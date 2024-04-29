@@ -1,3 +1,59 @@
+<?php
+
+require("assets\Functions\LoginFunctions\ProgramFiles.php");
+require 'assets\Functions\Sanitize.php';
+require("assets\Functions\GetDownload.php");
+require("assets\Functions\GetSettings.php");
+require("assets\Functions\GetManifest.php");
+require("assets\Functions\VerifySettings.php");
+require("assets\Functions\Verify_DLID_Manifest.php");
+
+// START OF NEW REFORMATTING ATTEMPT:
+
+$inDLID = htmlspecialchars($_GET["dlid"] ?? null);
+$inDLID = 1;
+
+//$inDLID = santize($inDLID);
+
+
+// Get the Manifest for this Download ID
+// Verify that the manifest is valid for use. Return false if not ready and error.
+$manifest = getManifest($inDLID);
+$manifestJSON = json_decode($manifest);
+
+// Get settings then decode them.
+$settings = getSettings();
+$settingsJSON = json_decode($settings);
+
+
+// Verify That both are not formatted badly.
+$verifyManifest = VerifyJSONManifest($manifestJSON, $inDLID);
+$verifySettings = VerifySettings($settingsJSON);
+
+$fileLink = "";
+
+
+if (($manifest != null && $verifyManifest) && ($settings != null && $verifySettings)) {
+
+    if ($manifestJSON->Manifest->Deleted == true) {
+
+
+    } else if ($manifestJSON->Manifest->Enabled == false) {
+
+    } else {
+
+        // Using hostname and the files name get the file path.
+        $fileLink = $settingsJSON->Settings->HostName . "Downloads/" . "dlid_" . $manifestJSON->Manifest->dlid . "/" . $manifestJSON->Manifest->FileName;
+        $wgetLink = "sudo wget --content-disposition " . $fileLink;
+    }
+
+} else {
+
+    // Error getting settings or dlid.
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +64,7 @@
 
     <!-- Include nessary script files. -->
     <!--<script type="text/javascript" src="assets\javascript\update.js"></script>-->
-    <script type="text/javascript" src="assets\javascript\UpdateDownload.js"></script>
+    <script type="text/javascript" src="assets\javascript\WGETCopy.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Properties.css">
@@ -32,7 +88,7 @@
 
     <!-- Download buttons that show when they have href applied to them -->
     <div id="dwl">
-        <a id="dwll" href="" rel="noopener noreferrer" target="_blank" download>Download</a>
+        <a id="dwll" href="<?php echo $fileLink ?>" rel="noopener noreferrer" target="_blank" download>Download</a>
     </div>
 
     <br>
@@ -46,47 +102,47 @@
 
             <div id="propContainer">
                 <p class="subPropkey">Name:</p>
-                <p class="subPropVal" id="pname"></p>
+                <p class="subPropVal" id="pname"><?php echo $manifestJSON->Manifest->DownloadName ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Creator:</p>
-                <p class="subPropVal" id="pcreatorSource"></p>
+                <p class="subPropVal" id="pcreatorSource"><?php echo $manifestJSON->Manifest->CreatorSource ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Links:</p>
-                <p class="subPropVal" id="plink"></p>
+                <p class="subPropVal" id="plink"><?php echo $manifestJSON->Manifest->Link ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Version:</p>
-                <p class="subPropVal" id="pversion"></p>
+                <p class="subPropVal" id="pversion"><?php echo $manifestJSON->Manifest->Version ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Downloads:</p>
-                <p class="subPropVal" id="pnumberOfDownloads"></p>
+                <p class="subPropVal" id="pnumberOfDownloads"><?php echo $manifestJSON->Manifest->Downloads ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Date-Created:</p>
-                <p class="subPropVal" id="pdatec"></p>
+                <p class="subPropVal" id="pdatec"><?php echo $manifestJSON->Manifest->DateCreated ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Date-Modifed:</p>
-                <p class="subPropVal" id="pdatem"></p>
+                <p class="subPropVal" id="pdatem"><?php echo $manifestJSON->Manifest->DateModifed ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">File-type:</p>
-                <p class="subPropVal" id="ptype"></p>
+                <p class="subPropVal" id="ptype"><?php echo $manifestJSON->Manifest->FileType ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Size:</p>
-                <p class="subPropVal" id="psize"></p>
+                <p class="subPropVal" id="psize"><?php echo $manifestJSON->Manifest->FileSize ?></p>
             </div>
 
         </div>
@@ -96,7 +152,7 @@
             <p id="desTitle"><b>Description:</b></p>
 
             <p id="pdescription">
-                This is the descripy
+                <?php echo $manifestJSON->Manifest->Description ?>
             </p>
 
         </div>
@@ -105,44 +161,28 @@
 
     <!-- The wget window where you get easy acces to the command to download this file using wget -->
     <p id="wgettitle">WGET for linux terminals (click to copy):</p>
-    <p id="wget" onclick="copy()"></p>
+    <p id="wget" onclick="copy()"><?php echo $wgetLink ?></p>
     <p id="copyed"><b>Copied!</b></p>
 
     <br>
 
-    <div id="versionHistory">
-        <p id="versionTitle"><b>Previous Versions:</b></p>
+    <?php
 
-        <div class="subVersion">
-            <p class="versionTextFormat">Name:</p>
-            <p class="versionTextFormat">Created:</p>
-            <p class="versionTextFormat">Version:</p>
-            <a class="versionTextFormat" href="">DLID:</a>
-            <p class="versionTextFormat"></p>
-        </div>
-        <div class="subVersion">
-            <p class="versionTextFormat">Name:</p>
-            <p class="versionTextFormat">Created:</p>
-            <p class="versionTextFormat">Version:</p>
-            <a class="versionTextFormat" href="">DLID:</a>
-            <p class="versionTextFormat"></p>
-        </div>
-        <div class="subVersion">
-            <p class="versionTextFormat">Name:</p>
-            <p class="versionTextFormat">Created:</p>
-            <p class="versionTextFormat">Version:</p>
-            <a class="versionTextFormat" href="">DLID:</a>
-            <p class="versionTextFormat"></p>
-        </div>
-        <div class="subVersion">
-            <p class="versionTextFormat">Name:</p>
-            <p class="versionTextFormat">Created:</p>
-            <p class="versionTextFormat">Version:</p>
-            <a class="versionTextFormat" href="">DLID:</a>
-            <p class="versionTextFormat"></p>
-        </div>
+    if ($manifestJSON->Manifest->VersionGroupID != "") {
 
-    </div>
+        echo "<div id=\"versionHistory\">";
+        echo "<p id=\"versionTitle\"><b>Previous Versions:</b></p>";
+
+        echo "<div class=\"subVersion\">";
+        echo "<p class=\"versionTextFormat\">Name:</p>";
+        echo "<p class=\"versionTextFormat\">Created:</p>";
+        echo "<p class=\"versionTextFormat\">Version:</p>";
+        echo "<a class=\"versionTextFormat\" href=\"\">DLID:</a>";
+        echo "<p class=\"versionTextFormat\"></p>";
+        echo "</div>";
+        echo "</div>";
+    }
+    ?>
 
 </div>
 
@@ -153,103 +193,3 @@
 
 </body>
 </html>
-
-
-<?php
-
-require 'assets\Functions\verifyManifest.php';
-require 'assets\Functions\verifyLocalManifest.php';
-require 'assets\Functions\msg.php';
-require 'assets\Functions\processDownload.php';
-require 'assets\Functions\Sanitize.php';
-
-// THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
-
-/*
-try {
-    
-    
-
-    // Get the input
-    $inFile = htmlspecialchars($_GET["dlid"] ?? null);
-    $inAuto = htmlspecialchars($_GET["auto"] ?? null);
-
-    // return Bool, Check if all good.
-    $isOK = sanitize($inFile, 25);
-    $isautoK = sanitize($inAuto, 2);
-
-    if ($isOK && $isautoK) {
-
-        // Call main file lookup service
-        $verifyManifest = verifyManifest($inFile);
-        $localManifestjson = 0;
-        $dlidStr = "dlid_" . $inFile;
-
-
-        // From our result, we either 0-DO NOTHING, else move on to checking if password protected.
-        if (!$verifyManifest == 0) {
-            if ($verifyManifest->downloads->$dlidStr->passwordProtected == true) {
-
-                // REQUIRES EXTERNAL SERVER CONNECTION.
-
-            } else {
-                // Verify the LocalManifest for  that download. Then return the json
-                $localManifestjson = verifyLocalManifest($inFile);
-            }
-        }
-
-        // If its 0 then there was an error. Else proceed with download.
-        if (!$localManifestjson == 0) {
-
-            // See if download has been removed from server or not. check status.
-            if ($verifyManifest->downloads->$dlidStr->status == false) {
-                echo "<script type='text/javascript'>downloadRemoved('" . $verifyManifest->downloads->$dlidStr->reason . "', '" . $verifyManifest->downloads->$dlidStr->downloadName . "');</script>";
-            } else {
-                processDownload($inFile, $localManifestjson, $verifyManifest, $inAuto);
-            }
-        }
-    }
-
-} catch (Exception $e) {
-    $error = $e->getMessage();
-
-    msg("red", $error);
-    
-}
-    */
-
-
-// START OF NEW REFORMATTING ATTEMPT:
-
-$inDLID = htmlspecialchars($_GET["dlid"] ?? null);
-$inDLID = 1;
-
-//$inDLID = santize($inDLID);
-
-require("assets\Functions\GetDownload.php");
-require("assets\Functions\GetManifest.php");
-require("assets\Functions\Verify_DLID_Manifest.php");
-
-
-// Get the Manifest for this Download ID
-// Verify that the manifest is valid for use. Return false if not ready and error.
-$manifest = getManifest($inDLID);
-$downloadJSON = json_decode($manifest);
-$verifyDLIDManifest = VerifyJSONManifest($downloadJSON, $inDLID);
-$settings = "";
-
-echo "Veriffy: " . $verifyDLIDManifest;
-
-if ($downloadJSON != null && $verifyDLIDManifest) {
-    if ($downloadJSON->Manifest->Deleted == true) {
-
-    } else if ($downloadJSON->Manifest->Enabled == false) {
-
-    } else {
-
-        //$downloadFile = getDownload($inDLID);
-        echo "<script>updatePage(" . json_encode($downloadJSON) . ", " . $settings . ");</script>";
-    }
-}
-
-?> 
