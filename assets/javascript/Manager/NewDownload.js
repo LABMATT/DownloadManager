@@ -42,3 +42,16 @@ function resetEditor() {
     EnabledDisabled(1);
     document.getElementById("editorName").value = "";
 }
+
+
+//
+function compile() {
+    var data = {"Manifest":{}};
+    
+    data.Manifest.DownloadName = document.getElementById("editorName").value;
+    data.Manifest.Enabled = downloadEnabled;
+    data.Manifest.Version = document.getElementById("editorVersion").value;
+    
+    document.getElementById("jsonDATA").value = JSON.stringify(data);
+    document.getElementById("editorSubmit").submit();
+}

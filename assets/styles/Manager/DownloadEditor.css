@@ -83,3 +83,12 @@
     
     background-color: red;
 }
+
+#jsonDATA {
+    display: none;
+}
+
+#autho {
+    
+    display: none;
+}

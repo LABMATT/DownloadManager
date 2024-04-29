@@ -53,9 +53,11 @@
         <h1 class="editorHeadings">Download Editor: </h1>
         <h2 class="editorHeadings">Upload File:</h2>
 
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+        <form id="editorSubmit" action="assets\Functions\MangerFunctions\NewDownload.php" method="post" enctype="multipart/form-data" target="_blank">
             <input type="file" name="fileUpload" id="fileUpload">
-            <input type="submit" value="Upload" name="submit" id="fileUploadButton">
+            <input type="text" name="jsonData" value="John" id="jsonDATA"><br>
+            <input type="text" name="autho" value="John" id="autho"><br>
+     
         </form>
         <br>
 
@@ -146,10 +148,10 @@
         </form>
 
         <div id="EditorButtons">
-            <button class="editorButtonStyle" id="editorSave">Save</button>
+            <button class="editorButtonStyle" id="editorSave" onclick="compile()">Save</button>
             <button class="editorButtonStyle" id="editorClose" onclick="switchWindow(1);">Close</button>
         </div>
-        
+
     </div>
 </div>
 
