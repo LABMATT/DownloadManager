@@ -1,13 +1,12 @@
 <?php
 
 require("assets\Functions\LoginFunctions\ProgramFiles.php");
-require("assets\Functions\DownloadError.php");
-require 'assets\Functions\Sanitize.php';
-require("assets\Functions\GetDownload.php");
-require("assets\Functions\GetSettings.php");
-require("assets\Functions\GetManifest.php");
-require("assets\Functions\VerifySettings.php");
-require("assets\Functions\VerifyManifest.php");
+require("assets\Functions\MangerFunctions\Sanitize.php");
+require("assets\Functions\MangerFunctions\GetDownload.php");
+require("assets\Functions\MangerFunctions\GetSettings.php");
+require("assets\Functions\MangerFunctions\GetManifest.php");
+require("assets\Functions\MangerFunctions\VerifySettings.php");
+require("assets\Functions\MangerFunctions\VerifyManifest.php");
 
 $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
 $inAUTO = htmlspecialchars($_GET["auto"] ?? null);
@@ -75,7 +74,13 @@ if ($verifyManifest && $verifySettings) {
 
         // Using hostname and the files name get the file path.
         $fileLink = $settingsJSON->Settings->HostName . "Downloads/" . "dlid_" . $manifestJSON->Manifest->dlid . "/" . $manifestJSON->Manifest->FileName;
-        $wgetLink = "sudo wget --content-disposition " . $fileLink;
+        $wgetLink = "wget --content-disposition " . $fileLink;
+
+        // If redirect then send to the file directly.
+        if ($inAUTO == 2) {
+
+            header("Location: " . $fileLink, true, 301);
+        }
     }
 
 } else {
@@ -98,16 +103,14 @@ if ($verifyManifest && $verifySettings) {
         <!-- Include nessary script files. -->
         <script type="text/javascript" src="assets\javascript\Index\Init.js"></script>
         <script type="text/javascript" src="assets\javascript\Index\WGETCopy.js"></script>
-    <script type="text/javascript" src="assets\javascript\DeletedDownload.js"></script>
-        <script type="text/javascript" src="assets\javascript\AutoDownload.js"></script>
+        <script type="text/javascript" src="assets\javascript\Index\AutoDownload.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
-        <link rel="stylesheet" type="text/css" href="assets\styles\Properties.css">
-        <link rel="stylesheet" type="text/css" href="assets\styles\versionHistory.css">
-        <link rel="stylesheet" type="text/css" href="assets\styles\Description.css">
-        <link rel="stylesheet" type="text/css" href="assets\styles\wget.css">
-        <link rel="stylesheet" type="text/css" href="assets\styles\download.css">
-        <link rel="stylesheet" type="text/css" href="assets\styles\download.css">
+        <link rel="stylesheet" type="text/css" href="assets\styles\Index\styles.css">
+        <link rel="stylesheet" type="text/css" href="assets\styles\Index\Properties.css">
+        <link rel="stylesheet" type="text/css" href="assets\styles\Index\versionHistory.css">
+        <link rel="stylesheet" type="text/css" href="assets\styles\Index\Description.css">
+        <link rel="stylesheet" type="text/css" href="assets\styles\Index\wget.css">
+        <link rel="stylesheet" type="text/css" href="assets\styles\Index\download.css">
 
     </head>
 

@@ -15,8 +15,8 @@
     <script type="text/javascript" src="assets\javascript\Manager\NewDownload.js"></script>
 
 
-    <link rel="stylesheet" type="text/css" href="assets\styles\Manger.css">
-    <link rel="stylesheet" type="text/css" href="assets\styles\errorMenu.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Manger.css">
+    <link rel="stylesheet" type="text/css" href="assets\styles\Manager\errorMenu.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Editor.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Deleted.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\Version.css">

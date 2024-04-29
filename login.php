@@ -7,15 +7,14 @@
     <meta charset="UTF-8">
 
     <!-- Include nessary script files. -->
-    <script type="text/javascript" src="assets\javascript\failedLogin.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets\styles\login.css">
+    <!-- <script type="text/javascript" src="assets\javascript\failedLogin.js"></script> -->
+    
+    <link rel="stylesheet" type="text/css" href="assets\styles\Login\login.css">
+    
 </head>
 
 <!-- Main Html Body -->
 <body>
-
-
-
 
 
 <div id="LoginDiv">

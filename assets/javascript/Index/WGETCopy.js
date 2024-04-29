@@ -6,7 +6,7 @@ function copy() {
     var wgetBox = document.getElementById("wget");
     var wgettitle = document.getElementById("wgettitle");
 
-    
+
     try {
 
         navigator.clipboard.writeText(document.getElementById("wget").textContent);
@@ -28,7 +28,7 @@ function copy() {
             }
         }
     } catch (e) {
-        
+
         console.log("Failed To Copy To Clipboard! Make Sure Its A HTTPS Site.");
         wgettitle.innerText = "WGET: Failed To Copy (You might have to copy manualy)...";
         wgettitle.style.backgroundColor = "red";
