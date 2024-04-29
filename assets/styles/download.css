@@ -18,3 +18,28 @@
     color: white;
 }
 
+#dwl {
+    
+    display: block;
+}
+
+@media screen and (max-width: 1000px) {
+    
+    #dwll {
+        background-color: rgb(48, 48, 48);
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+
+        font-size: 1em;
+        transition-duration: 0.4s;
+        font-weight: bold;
+    }
+    
+    #dwl {
+        display: flex;
+        flex-direction: column;
+    }
+}
