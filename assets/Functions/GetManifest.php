@@ -30,11 +30,13 @@ function getManifest($dlid)
     }
     
     // Decode into json format.
+    /*
     if ($manifest != null) {
         
         $manifest = json_decode($manifest);
         echo "JSON decoded";
     }
+    */
     
     return $manifest;
 }

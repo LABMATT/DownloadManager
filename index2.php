@@ -1,3 +1,38 @@
+<?php
+
+require 'assets\Functions\Sanitize.php';
+
+// START OF NEW REFORMATTING ATTEMPT:
+
+$inDLID = htmlspecialchars($_GET["dlid"] ?? null);
+$inDLID = 1;
+
+//$inDLID = santize($inDLID);
+
+require("assets\Functions\GetDownload.php");
+require("assets\Functions\GetManifest.php");
+require("assets\Functions\Verify_DLID_Manifest.php");
+
+
+// Get the Manifest for this Download ID
+// Verify that the manifest is valid for use. Return false if not ready and error.
+$manifest = getManifest($inDLID);
+$downloadJSON = json_decode($manifest);
+$verifyDLIDManifest = VerifyJSONManifest($downloadJSON, $inDLID);
+$settings = "";
+
+echo "Veriffy: " . $verifyDLIDManifest;
+
+if ($downloadJSON != null && $verifyDLIDManifest) {
+    if ($downloadJSON->Manifest->Deleted == true) {
+
+    } else if ($downloadJSON->Manifest->Enabled == false) {
+
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,47 +81,47 @@
 
             <div id="propContainer">
                 <p class="subPropkey">Name:</p>
-                <p class="subPropVal" id="pname"></p>
+                <p class="subPropVal" id="pname"><?php echo $downloadJSON->Manifest->DownloadName ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Creator:</p>
-                <p class="subPropVal" id="pcreatorSource"></p>
+                <p class="subPropVal" id="pcreatorSource"><?php echo $downloadJSON->Manifest->CreatorSource ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Links:</p>
-                <p class="subPropVal" id="plink"></p>
+                <p class="subPropVal" id="plink"><?php echo $downloadJSON->Manifest->Link ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Version:</p>
-                <p class="subPropVal" id="pversion"></p>
+                <p class="subPropVal" id="pversion"><?php echo $downloadJSON->Manifest->Version ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Downloads:</p>
-                <p class="subPropVal" id="pnumberOfDownloads"></p>
+                <p class="subPropVal" id="pnumberOfDownloads"><?php echo $downloadJSON->Manifest->Downloads ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Date-Created:</p>
-                <p class="subPropVal" id="pdatec"></p>
+                <p class="subPropVal" id="pdatec"><?php echo $downloadJSON->Manifest->DateCreated ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Date-Modifed:</p>
-                <p class="subPropVal" id="pdatem"></p>
+                <p class="subPropVal" id="pdatem"><?php echo $downloadJSON->Manifest->DateModifed ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">File-type:</p>
-                <p class="subPropVal" id="ptype"></p>
+                <p class="subPropVal" id="ptype"><?php echo $downloadJSON->Manifest->FileType ?></p>
             </div>
 
             <div id="propContainer">
                 <p class="subPropkey">Size:</p>
-                <p class="subPropVal" id="psize"></p>
+                <p class="subPropVal" id="psize"><?php echo $downloadJSON->Manifest->FileSize ?></p>
             </div>
 
         </div>
@@ -96,7 +131,7 @@
             <p id="desTitle"><b>Description:</b></p>
 
             <p id="pdescription">
-                This is the descripy
+                <?php echo $downloadJSON->Manifest->Description ?>
             </p>
 
         </div>
@@ -153,103 +188,3 @@
 
 </body>
 </html>
-
-
-<?php
-
-require 'assets\Functions\verifyManifest.php';
-require 'assets\Functions\verifyLocalManifest.php';
-require 'assets\Functions\msg.php';
-require 'assets\Functions\processDownload.php';
-require 'assets\Functions\Sanitize.php';
-
-// THIS NEEDS TO CHECK IF FILE EXISTS BEFORE SENDING THE LINK!
-
-/*
-try {
-    
-    
-
-    // Get the input
-    $inFile = htmlspecialchars($_GET["dlid"] ?? null);
-    $inAuto = htmlspecialchars($_GET["auto"] ?? null);
-
-    // return Bool, Check if all good.
-    $isOK = sanitize($inFile, 25);
-    $isautoK = sanitize($inAuto, 2);
-
-    if ($isOK && $isautoK) {
-
-        // Call main file lookup service
-        $verifyManifest = verifyManifest($inFile);
-        $localManifestjson = 0;
-        $dlidStr = "dlid_" . $inFile;
-
-
-        // From our result, we either 0-DO NOTHING, else move on to checking if password protected.
-        if (!$verifyManifest == 0) {
-            if ($verifyManifest->downloads->$dlidStr->passwordProtected == true) {
-
-                // REQUIRES EXTERNAL SERVER CONNECTION.
-
-            } else {
-                // Verify the LocalManifest for  that download. Then return the json
-                $localManifestjson = verifyLocalManifest($inFile);
-            }
-        }
-
-        // If its 0 then there was an error. Else proceed with download.
-        if (!$localManifestjson == 0) {
-
-            // See if download has been removed from server or not. check status.
-            if ($verifyManifest->downloads->$dlidStr->status == false) {
-                echo "<script type='text/javascript'>downloadRemoved('" . $verifyManifest->downloads->$dlidStr->reason . "', '" . $verifyManifest->downloads->$dlidStr->downloadName . "');</script>";
-            } else {
-                processDownload($inFile, $localManifestjson, $verifyManifest, $inAuto);
-            }
-        }
-    }
-
-} catch (Exception $e) {
-    $error = $e->getMessage();
-
-    msg("red", $error);
-    
-}
-    */
-
-
-// START OF NEW REFORMATTING ATTEMPT:
-
-$inDLID = htmlspecialchars($_GET["dlid"] ?? null);
-$inDLID = 1;
-
-//$inDLID = santize($inDLID);
-
-require("assets\Functions\GetDownload.php");
-require("assets\Functions\GetManifest.php");
-require("assets\Functions\Verify_DLID_Manifest.php");
-
-
-// Get the Manifest for this Download ID
-// Verify that the manifest is valid for use. Return false if not ready and error.
-$manifest = getManifest($inDLID);
-$downloadJSON = json_decode($manifest);
-$verifyDLIDManifest = VerifyJSONManifest($downloadJSON, $inDLID);
-$settings = "";
-
-echo "Veriffy: " . $verifyDLIDManifest;
-
-if ($downloadJSON != null && $verifyDLIDManifest) {
-    if ($downloadJSON->Manifest->Deleted == true) {
-
-    } else if ($downloadJSON->Manifest->Enabled == false) {
-
-    } else {
-
-        //$downloadFile = getDownload($inDLID);
-        echo "<script>updatePage(" . json_encode($downloadJSON) . ", " . $settings . ");</script>";
-    }
-}
-
-?> 

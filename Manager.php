@@ -145,10 +145,11 @@
             <input type="text" id="editorName" name="name" class="editorFormInput" placeholder="FEX: 1.2"><br>
         </form>
 
-        <div>
-            <button>Save</button>
-            <button onclick="switchWindow(1);">Close</button>
+        <div id="EditorButtons">
+            <button class="editorButtonStyle" id="editorSave">Save</button>
+            <button class="editorButtonStyle" id="editorClose" onclick="switchWindow(1);">Close</button>
         </div>
+        
     </div>
 </div>
 

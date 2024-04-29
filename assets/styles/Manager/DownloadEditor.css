@@ -55,3 +55,31 @@
 #fileUploadButton {
     display: none;
 }
+
+#EditorButtons {
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.editorButtonStyle {
+    
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2%;
+    
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 2%;
+}
+
+#editorSave {
+    
+    background-color: green;
+}
+
+#editorClose {
+    
+    background-color: red;
+}
