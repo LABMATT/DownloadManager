@@ -5,16 +5,14 @@ function verifyJSON($jsonData)
 {
 
         // Verify if its json
-    $decoding = json_decode($jsonData);
+    $jsonData = json_decode($jsonData);
 
 
-    if ($decoding == null) {
+    if ($jsonData == null) {
         
         return false;
     }
     
-
-
     // Make sure all required feilds are met.
     try {
         if (!isset($jsonData->Manifest)) {
@@ -50,13 +48,15 @@ function verifyJSON($jsonData)
         if (!isset($jsonData->Manifest->VGIDversion)) {
             throw new Exception("Data Failure. No Branch Tag.");
         }
+        
+        return true;
 
     } catch (Exception $exception) {
         
         echo $exception;
     }
     
-    return true;
+    return false;
 }
 
 ?>
