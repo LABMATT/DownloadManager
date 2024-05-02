@@ -9,6 +9,7 @@ function getManifest($dlid)
     $projectPath = $projectPath . DIRECTORY_SEPARATOR . "Manifests";
     
     $manifest = null;
+    $validDLID = false;
     
     // Check if the Manifest folder exists
     if(!is_dir($projectPath)) {
@@ -17,7 +18,6 @@ function getManifest($dlid)
     }
     
     // IF they folder exist then make sure that we get the contents of the manifest
-    $validDLID = false;
     if(is_file($projectPath . DIRECTORY_SEPARATOR . "dlid_" . $dlid . ".json")) {
         
         $validDLID = true;

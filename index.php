@@ -1,5 +1,6 @@
 <?php
 
+require("assets\Functions\ErrorLog.php");
 require("assets\Functions\LoginFunctions\ProgramFiles.php");
 require("assets\Functions\MangerFunctions\Sanitize.php");
 require("assets\Functions\MangerFunctions\GetDownload.php");
@@ -7,6 +8,7 @@ require("assets\Functions\MangerFunctions\GetSettings.php");
 require("assets\Functions\MangerFunctions\GetManifest.php");
 require("assets\Functions\MangerFunctions\VerifySettings.php");
 require("assets\Functions\MangerFunctions\VerifyManifest.php");
+
 
 $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
 $inAUTO = htmlspecialchars($_GET["auto"] ?? null);
@@ -18,10 +20,13 @@ $fileLink = "";
 $verifyManifest = false;
 $verifySettings = false;
 
+$errorFLAG = 0;
+
 
 if (!$validDLID || $inDLID == null) {
 
-    header("Location: Error.php");
+    // Throw ERROR, DLID NOT DEFINED.
+    $errorFLAG = 2;
 }
 
 
@@ -58,6 +63,10 @@ if ($manifest != null && $settings != null) {
 
     $verifyManifest = VerifyJSONManifest($manifestJSON, $inDLID);
     $verifySettings = VerifySettings($settingsJSON);
+} else {
+
+    // THROW ERROR AS DLID IS NOT DEFINED.
+    $errorFLAG = 2;
 }
 
 
@@ -65,11 +74,19 @@ if ($verifyManifest && $verifySettings) {
 
     if ($manifestJSON->Manifest->Deleted == true) {
 
-        header("Location: Error.php");
+        // If deleted then trigger a flag for delted download.
+        if ($errorFLAG == 0) {
+
+            $errorFLAG = 4;
+        }
 
     } else if ($manifestJSON->Manifest->Enabled == false) {
 
-        header("Location: Error.php");
+        // If disabled then trigger a flag for dissabled download.
+        if ($errorFLAG == 0) {
+
+            $errorFLAG = 3;
+        }
     } else {
 
         // Using hostname and the files name get the file path.
@@ -85,8 +102,36 @@ if ($verifyManifest && $verifySettings) {
 
 } else {
 
-    // Error getting settings or dlid.
-    header("Location: Error.php");
+    // SERVER ERROR, NO MANIFEST OR SETTINGS
+    if ($errorFLAG == 0) {
+
+        $errorFLAG = 1;
+    }
+}
+
+switch ($errorFLAG) {
+    case 0;
+        break;
+
+    // SERVER ERROR
+    case 1;
+        header("Location: Error.php?dlid=" . $inDLID . "&reason=1");
+        break;
+
+    // DLID NOT DEFINED 
+    case 2;
+        header("Location: Error.php?dlid=" . $inDLID . "&reason=2");
+        break;
+
+    // Download Disabled
+    case 3;
+        header("Location: Error.php?dlid=" . $inDLID . "&reason=3");
+        break;
+
+    // Download Deleted
+    case 4:
+        header("Location: Error.php?dlid=" . $inDLID . "&reason=4");
+        break;
 }
 ?>
 
@@ -230,6 +275,12 @@ if ($verifyManifest && $verifySettings) {
     <p id="msg"></p>
 
     <br>
+
+
+    <!-- ON error  then submit this form with error data -->
+    <form action="Error.php">
+        <input type="text">
+    </form>
 
     </body>
     </html>

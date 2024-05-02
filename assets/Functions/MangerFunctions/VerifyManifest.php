@@ -65,7 +65,7 @@ function VerifyJSONManifest($inJSON, $dlid)
         
     } catch (Exception $exception) {
         
-        echo $exception;
+        logError("VerifyManifest", $exception->getMessage());
         // MSG eception
         return false;
     }
