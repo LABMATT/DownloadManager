@@ -23,9 +23,9 @@ $verifySettings = false;
 $errorFLAG = 0;
 
 
+// FLAG ERROR, DLID NOT DEFINED.
 if (!$validDLID || $inDLID == null) {
 
-    // Throw ERROR, DLID NOT DEFINED.
     $errorFLAG = 2;
 }
 
@@ -65,7 +65,7 @@ if ($manifest != null && $settings != null) {
     $verifySettings = VerifySettings($settingsJSON);
 } else {
 
-    // THROW ERROR AS DLID IS NOT DEFINED.
+    // FLAG AS DLID IS NOT DEFINED.
     $errorFLAG = 2;
 }
 
@@ -74,7 +74,7 @@ if ($verifyManifest && $verifySettings) {
 
     if ($manifestJSON->Manifest->Deleted == true) {
 
-        // If deleted then trigger a flag for delted download.
+        // FLAG ERROR If deleted then trigger a flag for delted download.
         if ($errorFLAG == 0) {
 
             $errorFLAG = 4;
@@ -82,7 +82,7 @@ if ($verifyManifest && $verifySettings) {
 
     } else if ($manifestJSON->Manifest->Enabled == false) {
 
-        // If disabled then trigger a flag for dissabled download.
+        // FLAG ERROR If disabled then trigger a flag for dissabled download.
         if ($errorFLAG == 0) {
 
             $errorFLAG = 3;
@@ -109,6 +109,10 @@ if ($verifyManifest && $verifySettings) {
     }
 }
 
+
+// CATCH ERRORS, if an error has been triggerd then deal with the redirect here.
+// Using this statment prevents errors overwriting eachother.
+// FEX when a Server error header redirect over writes the DLID missing header because the server error header was later in code. 
 switch ($errorFLAG) {
     case 0;
         break;
@@ -275,12 +279,6 @@ switch ($errorFLAG) {
     <p id="msg"></p>
 
     <br>
-
-
-    <!-- ON error  then submit this form with error data -->
-    <form action="Error.php">
-        <input type="text">
-    </form>
 
     </body>
     </html>

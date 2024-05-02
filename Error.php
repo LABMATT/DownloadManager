@@ -3,18 +3,18 @@
 <head>
 
     <!-- Inportnet info -->
-    <title>Error</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
     <!-- Include nessary script files. -->
-    <!-- <script type="text/javascript" src="assets\javascript\failedLogin.js"></script> -->
+    <script type="text/javascript" src="assets\javascript\error\ErrorButton.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets\styles\Error\Error.css">
 
 </head>
 
 <!-- Main Html Body -->
-<body>
+<body onload="init()">
 
 <div id="ErrorDiv">
 
@@ -51,17 +51,20 @@
             case 1:
                 echo "<h1>Server Error</h1>";
                 echo "<h3>Reason: An Error Occured While Getting The Download.</h3>";
+                echo "<title>Server Error</title>";
                 break;
 
             // Unknown DLID
             case 2:
                 echo "<h1>Unknown Download ID</h1>";
                 echo "<h3>Reason: Unknown Download ID <" . $inDLID . "></h3>";
+                echo "<title>Unknown Download</title>";
                 break;
 
             // Download is disabled in manifest
             case 3:
                 echo "<h1>Download Unavailable (Disabled)</h1>";
+                echo "<title>Download Unavailable</title>";
                 if ($verifyManifest && $json->Manifest->Reason != "") {
 
                     echo "<h3>Reason: " . $json->Manifest->Reason . "</h3>";
@@ -75,6 +78,7 @@
             // Download Deleated
             case 4:
                 echo "<h1>Download Deleted</h1>";
+                echo "<title>Download Deleted</title>";
                 if ($verifyManifest && $json->Manifest->Reason != "") {
 
                     echo "<h3>Reason: " . $json->Manifest->Reason . "</h3>";
@@ -86,15 +90,25 @@
 
             default:
                 echo "<h1>Server Error</h1>";
+                echo "<title>Server Error</title>";
                 break;
         }
 
     } else {
 
         echo "<h1>Server Error</h1>";
+        echo "<title>Server Error</title>";
+        
     }
     ?>
+
+
 </div>
+
+<div id="buttonDIV">
+    <button id="closeButton">Close This Tab</button>
+</div>
+
 
 </body>
 </html>
