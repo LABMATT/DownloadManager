@@ -5,7 +5,7 @@ function logError($source, $error)
 {
 
     $projectPath = GetSystemPath("DownloadManager");
-    $projectPathLogs = $projectPath . DIRECTORY_SEPARATOR . "Logs";
+    $projectPathLogs = $projectPath . "Logs";
 
     // Check if the Manifest folder exists
     if (!is_dir($projectPath)) {

@@ -8,6 +8,7 @@ require("assets\Functions\MangerFunctions\GetSettings.php");
 require("assets\Functions\MangerFunctions\GetManifest.php");
 require("assets\Functions\MangerFunctions\VerifySettings.php");
 require("assets\Functions\MangerFunctions\VerifyManifest.php");
+require("assets\Functions\DownloadFunctions\DownloadIncrement.php");
 
 
 $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
@@ -35,7 +36,6 @@ if (!$validAUTO || $inAUTO == null) {
 
     $inAUTO = 0;
 }
-
 
 // Make sure the auto is a valid veriable. If not then do nothing.
 switch ($inAUTO) {
@@ -71,14 +71,14 @@ if ($manifest != null && $settings != null) {
 
 
 if ($verifyManifest && $verifySettings) {
-
+    
     if ($manifestJSON->Manifest->Deleted == true) {
 
         // FLAG ERROR If deleted then trigger a flag for delted download.
         if ($errorFLAG == 0) {
 
             $errorFLAG = 4;
-        }
+        } 
 
     } else if ($manifestJSON->Manifest->Enabled == false) {
 
@@ -91,11 +91,14 @@ if ($verifyManifest && $verifySettings) {
 
         // Using hostname and the files name get the file path.
         $fileLink = $settingsJSON->Settings->HostName . "Downloads/" . "dlid_" . $manifestJSON->Manifest->dlid . "/" . $manifestJSON->Manifest->FileName;
-        $wgetLink = "wget --content-disposition " . $fileLink;
+        $wgetString = $settingsJSON->Settings->HostName . "index.php?dlid=" . $inDLID . "&auto=2";
+        $wgetLink = "wget --content-disposition \"" . $wgetString . "\"";
 
         // If redirect then send to the file directly.
         if ($inAUTO == 2) {
 
+            // Increments the download amount. 
+            addDownload($inDLID);
             header("Location: " . $fileLink, true, 301);
         }
     }
@@ -153,6 +156,7 @@ switch ($errorFLAG) {
         <script type="text/javascript" src="assets\javascript\Index\Init.js"></script>
         <script type="text/javascript" src="assets\javascript\Index\WGETCopy.js"></script>
         <script type="text/javascript" src="assets\javascript\Index\AutoDownload.js"></script>
+        <script type="text/javascript" src="assets\javascript\Index\DownloadClicked.js"></script>
 
         <link rel="stylesheet" type="text/css" href="assets\styles\Index\styles.css">
         <link rel="stylesheet" type="text/css" href="assets\styles\Index\Properties.css">
@@ -165,6 +169,7 @@ switch ($errorFLAG) {
 
     <!-- Main Html Body -->
     <body onload="init()">
+    <?php echo "<script> setDLID(" . $manifestJSON->Manifest->dlid . "); </script>" ?>
 
 
     <div id="MainContent">
