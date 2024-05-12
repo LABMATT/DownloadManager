@@ -19,11 +19,11 @@
 <div id="ErrorDiv">
 
     <?php
-    require("assets\Functions\ErrorLog.php");
-    require "assets\Functions\LoginFunctions\ProgramFiles.php";
-    require "assets\Functions\MangerFunctions\Sanitize.php";
-    require "assets\Functions\MangerFunctions\GetManifest.php";
-    require "assets\Functions\MangerFunctions\VerifyManifest.php";
+    require "assets/Functions/ErrorLog.php";
+    require "assets/Functions/LoginFunctions/ProgramFiles.php";
+    require "assets/Functions/MangerFunctions/Sanitize.php";
+    require "assets/Functions/MangerFunctions/GetManifest.php";
+    require "assets/Functions/MangerFunctions/VerifyManifest.php";
 
 
     $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
@@ -98,7 +98,7 @@
 
         echo "<h1>Server Error</h1>";
         echo "<title>Server Error</title>";
-        
+
     }
     ?>
 
