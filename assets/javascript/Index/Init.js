@@ -11,3 +11,14 @@ function setDLID(indlid) {
     
     downloadID = indlid;
 }
+
+function downloadClicked() {
+
+    console.log("DOWNLAOD INCRMENT");
+
+    //document.getElementById("iframe").style.display = "none";
+    //document.getElementById("iframe").src = "DownloadIncCall.php?dlid=" . downloadID;
+
+    document.getElementById("iframe").src = "DownloadIncCall.php?dlid=".downloadID;
+
+}

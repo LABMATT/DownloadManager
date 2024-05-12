@@ -1,14 +1,14 @@
 <?php
 
-require("assets\Functions\ErrorLog.php");
-require("assets\Functions\LoginFunctions\ProgramFiles.php");
-require("assets\Functions\MangerFunctions\Sanitize.php");
-require("assets\Functions\MangerFunctions\GetDownload.php");
-require("assets\Functions\MangerFunctions\GetSettings.php");
-require("assets\Functions\MangerFunctions\GetManifest.php");
-require("assets\Functions\MangerFunctions\VerifySettings.php");
-require("assets\Functions\MangerFunctions\VerifyManifest.php");
-require("assets\Functions\DownloadFunctions\DownloadIncrement.php");
+require "assets/Functions/ErrorLog.php";
+require "assets/Functions/LoginFunctions/ProgramFiles.php" ;
+require "assets/Functions/MangerFunctions/Sanitize.php";
+require "assets/Functions/MangerFunctions/GetDownload.php";
+require "assets/Functions/MangerFunctions/GetSettings.php";
+require "assets/Functions/MangerFunctions/GetManifest.php";
+require "assets/Functions/MangerFunctions/VerifySettings.php";
+require "assets/Functions/MangerFunctions/VerifyManifest.php";
+require "assets/Functions/DownloadFunctions/DownloadIncrement.php";
 
 
 $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
@@ -71,14 +71,14 @@ if ($manifest != null && $settings != null) {
 
 
 if ($verifyManifest && $verifySettings) {
-    
+
     if ($manifestJSON->Manifest->Deleted == true) {
 
         // FLAG ERROR If deleted then trigger a flag for delted download.
         if ($errorFLAG == 0) {
 
             $errorFLAG = 4;
-        } 
+        }
 
     } else if ($manifestJSON->Manifest->Enabled == false) {
 
@@ -284,6 +284,9 @@ switch ($errorFLAG) {
     <p id="msg"></p>
 
     <br>
+
+    <!-- This iframe is populated on the download button click. This updates the download count. -->
+    <iframe id="iframe" style="height:0px; width:0px; border:none;"></iframe>
 
     </body>
     </html>

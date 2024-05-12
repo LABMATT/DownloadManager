@@ -1,11 +1,13 @@
 <?php
 
+require "assets\Functions\ErrorLog.php";
 require "assets\Functions\LoginFunctions\ProgramFiles.php";
 require "assets\Functions\MangerFunctions\VerifyManifest.php";
 require "assets\Functions\MangerFunctions\GetManifest.php";
 require "assets\Functions\DownloadFunctions\DownloadIncrement.php";
+require "assets\Functions\MangerFunctions\Sanitize.php";
 
-$inDLID = htmlspecialchars($_REQUEST["dlid"] ?? null);
+$inDLID = htmlspecialchars($_GET["dlid"] ?? null);
 $inDLIDFlag = sanitize($inDLID);
 
 if($inDLIDFlag && $inDLID != null) {
@@ -24,6 +26,7 @@ if($inDLIDFlag && $inDLID != null) {
     if($verifyJson == true) {
         
         addDownload($inDLID);
+        echo "Download Added: " . $inDLID;
     }
 }
 ?>
