@@ -10,6 +10,7 @@
     <script type="text/javascript" src="assets\javascript\error\ErrorButton.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets\styles\Error\Error.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/Styles/CriticalError.css">
 
 </head>
 
@@ -19,12 +20,12 @@
 <div id="ErrorDiv">
 
     <?php
+    require "assets/Functions/SystemFunctions/EchoPageFault.php";
     require "assets/Functions/ErrorLog.php";
-    require "assets/Functions/LoginFunctions/ProgramFiles.php";
+    require "assets/Functions/SystemFunctions/ProgramFiles.php";
     require "assets/Functions/MangerFunctions/Sanitize.php";
     require "assets/Functions/MangerFunctions/GetManifest.php";
     require "assets/Functions/MangerFunctions/VerifyManifest.php";
-
 
     $inDLID = htmlspecialchars($_GET["dlid"] ?? null);
     $inTYPE = htmlspecialchars($_GET["reason"] ?? null);

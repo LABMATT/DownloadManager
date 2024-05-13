@@ -1,7 +1,7 @@
 <?php
 
-require("assets\Functions\LoginFunctions\ProgramFiles.php");
-require("assets\Functions\MangerFunctions\VerifyManifest.php");
+require "assets/Functions/SystemFunctions/ProgramFiles.php";
+require "assets/Functions/MangerFunctions/VerifyManifest.php";
 
 $path = GetSystemPath("DownloadManager") . DIRECTORY_SEPARATOR . "Manifests";
 

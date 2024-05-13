@@ -8,10 +8,32 @@
 function GetSystemPath($projectName)
 {
 
+    // Require the functions only this class will use realted to reading the local config.
+    require "assets/Functions/SystemFunctions/GetLocalConfig.php";
+    require "assets/Functions/SystemFunctions/VerifyLocalConfig.php";
+
     $osFamily = PHP_OS_FAMILY;
     $filePath = null;
 
+    // Check and get contents of local confing
+    $localConfig = null;
+    $localConfig = GetLocalConfig();
+    $verifyLocal = false;
 
+    if($localConfig == null) {
+
+        return false;
+    }
+
+    $verifyLocal = VerifyLocalConfig($localConfig);
+
+    if(!$verifyLocal) {
+
+        return false;
+    }
+
+
+    // Using this OS family get the file path.
     switch ($osFamily) {
         case "Windows":
             $filePath = getenv("APPDATA");

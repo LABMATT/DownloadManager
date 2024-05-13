@@ -1,3 +1,9 @@
+<?php
+
+require "assets/Functions/SystemFunctions/EchoPageFault.php";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +16,7 @@
     <!-- <script type="text/javascript" src="assets\javascript\failedLogin.js"></script> -->
     
     <link rel="stylesheet" type="text/css" href="assets\styles\Login\login.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/Styles/CriticalError.css">
     
 </head>
 

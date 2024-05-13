@@ -1,3 +1,9 @@
+<?php
+
+require "assets/Functions/SystemFunctions/EchoPageFault.php";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\NAVdownloads.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\DownloadEditor.css">
     <link rel="stylesheet" type="text/css" href="assets\styles\Manager\ExistingDownload.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/Styles/CriticalError.css">
 
 </head>
 
@@ -159,7 +166,8 @@
 
         <form id="editorPasswordForm">
             <label for="Name" class="editorFormLabel">Passworde: (Required)</label><br>
-            <input type="text" id="editorPassword" name="password" class="editorFormInput" placeholder="FEX: rex_CT-7567"><br>
+            <input type="text" id="editorPassword" name="password" class="editorFormInput"
+                   placeholder="FEX: rex_CT-7567"><br>
         </form>
 
 

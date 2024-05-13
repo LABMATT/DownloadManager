@@ -1,7 +1,8 @@
 <?php
 
+require "assets/Functions/SystemFunctions/EchoPageFault.php";
 require "assets/Functions/ErrorLog.php";
-require "assets/Functions/LoginFunctions/ProgramFiles.php" ;
+require "assets/Functions/SystemFunctions/ProgramFiles.php" ;
 require "assets/Functions/MangerFunctions/Sanitize.php";
 require "assets/Functions/MangerFunctions/GetDownload.php";
 require "assets/Functions/MangerFunctions/GetSettings.php";
@@ -164,6 +165,7 @@ switch ($errorFLAG) {
         <link rel="stylesheet" type="text/css" href="assets\styles\Index\Description.css">
         <link rel="stylesheet" type="text/css" href="assets\styles\Index\wget.css">
         <link rel="stylesheet" type="text/css" href="assets\styles\Index\download.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/Styles/CriticalError.css">
 
     </head>
 

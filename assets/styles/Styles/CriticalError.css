@@ -1,0 +1,13 @@
+.criticalError {
+
+    text-align: left;
+    padding: 1%;
+    background-color: red;
+    color: white;
+}
+
+.criticalErrorHead {
+
+    font-family: monospace;
+    font-weight: bold;
+}
