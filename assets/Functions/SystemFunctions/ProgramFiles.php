@@ -9,8 +9,8 @@ function GetSystemPath($projectName)
 {
 
     // Require the functions only this class will use realted to reading the local config.
-    require "assets/Functions/SystemFunctions/GetLocalConfig.php";
-    require "assets/Functions/SystemFunctions/VerifyLocalConfig.php";
+    require_once "assets/Functions/SystemFunctions/GetLocalConfig.php";
+    require_once "assets/Functions/SystemFunctions/VerifyLocalConfig.php";
 
     $osFamily = PHP_OS_FAMILY;
     $filePath = null;
@@ -20,14 +20,14 @@ function GetSystemPath($projectName)
     $localConfig = GetLocalConfig();
     $verifyLocal = false;
 
-    if($localConfig == null) {
+    if ($localConfig == null) {
 
         return false;
     }
 
     $verifyLocal = VerifyLocalConfig($localConfig);
 
-    if(!$verifyLocal) {
+    if (!$verifyLocal) {
 
         return false;
     }
@@ -36,12 +36,15 @@ function GetSystemPath($projectName)
     // Using this OS family get the file path.
     switch ($osFamily) {
         case "Windows":
-            $filePath = getenv("APPDATA");
+            $filePath = windowsMode($verifyLocal);
             break;
 
         case "Mac":
+            $filePath = macMode($verifyLocal);
+            break;
+            
         case "Linux":
-            $filePath = DIRECTORY_SEPARATOR . "opt";
+            $filePath = linuxMode($verifyLocal);
             break;
 
         case "Unknown":
@@ -59,7 +62,39 @@ function GetSystemPath($projectName)
 
         return $filePath . DIRECTORY_SEPARATOR . $projectName . DIRECTORY_SEPARATOR;
     }
-    
-   return false;
+
+    return false;
 }
+
+
+// These below functions get and check paths spersifcic to the OS.
+function windowsMode($jsonIN)
+{
+    if ($jsonIN->SettingAndResourceLocation->Windows == "%appdata%") {
+
+        return getenv("APPDATA");
+    }
+
+    return $jsonIN->SettingAndResourceLocation->Windows;
+}
+
+
+function linuxMode($jsonIN)
+{
+    if ($jsonIN->SettingAndResourceLocation->Linux == "/home/<user>") {
+
+        spawnError("ProgramFiles", "Please change the default file/settings path in the \"LocalConfig.json\" located in your DownloadManager site directory. FEX: \"/home/<user>\" --> \"/home/matthew\"");
+        return null;
+    }
+
+    return $jsonIN->SettingAndResourceLocation->Linux;
+
+}
+
+
+function macMode($jsonIN)
+{
+    return $jsonIN->SettingAndResourceLocation->Mac;
+}
+
 ?>

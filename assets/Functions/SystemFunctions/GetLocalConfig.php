@@ -5,7 +5,7 @@
 // If not found then throw and critical error to webpage.
 function GetLocalConfig() {
 
-    $localConfigPath = "/LocalConfig.json";
+    $localConfigPath = "LocalConfig.json";
     $configContents = null;
     $errorFlag = false;
 
