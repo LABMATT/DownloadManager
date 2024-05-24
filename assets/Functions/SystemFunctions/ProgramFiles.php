@@ -34,6 +34,7 @@ function GetSystemPath($projectName)
 
 
     // Using this OS family get the file path.
+    // Check the file for this path.
     switch ($osFamily) {
         case "Windows":
             $filePath = windowsMode($verifyLocal);
