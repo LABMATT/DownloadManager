@@ -1,7 +1,0 @@
-{
-    "SettingAndResourceLocation": {
-        "Windows": "%appdata%",
-        "Linux": "/home/matthew",
-        "Mac": "/home/<user>"
-    }
-}

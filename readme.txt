@@ -1,47 +1,43 @@
 INFO FACT SHEET FOR DOWNLOAD MANGER BY LABMATT (MATTHEW LEWINGTON)
 
-// DLID = download ID for the file.
-EXAMPLE:
-https://download.labmatt.space/?dlid=1&auto=0
-THIS BREAKS DOWN TO: //https://HOST NAME/?dlid= A NUBMER FROM 0 to 65535 &auto= 0 or 1 for auto download on page open
 
-// URL php term "auto=" allows the files to be auto downloaded when the page is opened.
-if(auto == 2) DIRECT REDIRECT.
-if(auto == 1) THEN AUTO DOWNLAOD ON PAGE OPEN.
-if(auto == 0) THEN DO NOTHING ON PAGE OPEN.
+// DLID = download ID for the file. Randomly gernated on files upload to the download server.
+EXAMPLE: (Download Identifcation of 166)
+https://download.labmatt.space/?dlid=166&auto=0
 
-// A DLID (Download ID) is a randomly genrated ID between 0 and 65535.
-dlid=1 ---> Leads to info in the Manifest.json that relates to the file.
-       ---> Definds a folder in the Downloads Folder labed the same "1"
-       ---> Inside this folder is A LocalManifest.json Containing the downloads info and file name.
-       
-// SETTIGNS LOCATED IN Manifest.json
-//Under the "settings" tab you should have
- ---> hostName: 192.168.1.1        // You should change this to your website/server ip. This feild is importent for WGET. EG: download.labmatt.space
+
+// AUTO = If the download should start automaticly.
+EXAMPLE: (Download automaticly)
+https://download.labmatt.space/?dlid=166&auto=1
+
+if(auto == 0) USER WILL HAVE TO CLICK DOWNLOAD BUTTON MANUALY.
+if(auto == 1) AUTOMATICLY DOWNLAOD ON PAGE OPEN.
+if(auto == 2) DIRECT REDIRECT TO DOWNLOAD FILE.
+
+
+// SETTIGNS LOCATED IN Settings.json
+ ---> hostName: 192.168.1.1        // You should change this to your website/server ip. This fild is importent for WGET. EG: download.labmatt.space
  ---> displayGithub: false         // If true the downloadManger GITHUB link displays at the bottom of every download page. if false it does not.
- ---> forceDisplayWGET             // WGET box provids an easy way for people to download the item on linux terminals.
-                                   // 0 - leaves this to the indivual download page. Default Enabled.
-                                   // 1 - Forces all downloads to have it.
-                                   // 2 - Forces all downlaods not to have it.
- ---> autoDectectDarkTheme: true   // The download page deteacts if browser is using a dark theme then ajusts for it.   
+ ---> DarkTheme: true              // True = dark theme, False = Normal white, null = auto detect
+ ---> Sitemap: true                // Lists all the downloads on the server in one location.
+ ---> AdminPortal: true            // Enables the admin portal to change settings.
 
 
-// "downloads": Format in Manifest.json
-// The dlid_number is a sub catogry under the downlaod, it provides inital info on the downlaod before the local manifest. local provid more spersific info.
- ---> dlid_downloadNumber(0-65535):
-  ---> downloadName                // Name of the download                                   EG: example.jpg
-  ---> status                      // If the download is still on the server. If not
-                                   // A message/Reason can be left.                          EG: false - No longer available. true - still avaible
-  ---> reason                      // Reason why the download is not avaiable                EG: A newer version has been release, click here for new link.
-  ---> passwordProtected           // If passwordProtected Then we have to use the
-                                   // Exteral Server to aquire thed ownload using
-                                   // Websockets                                             EG: true - its passwrod protected, false - its not and is normal downloadble.
+// Download Manager structure:
+1. File is uploaded and given and ID.
+2. A Manifest is created and placed into "Manifests" named after the uploads ID. Settings are populated
+3. A folder is created in the "Downloads" folder named after the uploaded files ID.
+4. The uploaded file is placed in the "Downloads" > "ID NUMBER".
+5. When a user wants to dowload that file. Program looks up manifest, then gets the info and the downloads name.
 
 
-// LocalManifest.json Setup.
-// LocalManifest.json is located in each dlid folder within the downloads folder.
-// It provides info about the download.
- ---> downloadName:                // The Name of the download as shown on downlaod webpage. EG photo of gate.
+
+// Format of Manifest for a file on the server.
+ ---> dlid:                        // Download ID
+ ---> downloadName:                // Name of the download                                   EG: example.jpg
+ ---> status:                      // If the download is still on the server.                EG: false - No longer available. true - still avaible.
+ ---> reason:                      // If download has been removed then why.                 EG: Removed to save space
+ ---> passwordProtected:           // If passwordProtected Then we have to use the           EG: True
  ---> fileName:                    // The name of the File in the folder.                    EG: example.jpg
  ---> version:                     // Version of the file. If you got things with same name  EG: 1
  ---> dateCreated:                 // The date the file was made (unix timestamp             EG: 1/1/1970 - 0 in unix time stamp
@@ -52,8 +48,3 @@ dlid=1 ---> Leads to info in the Manifest.json that relates to the file.
  ---> link                         // Link to profile or site related to download.           EG: www.labmatt.space
  ---> numberOfDownloads            // Number of times the download button has been clicked   EG: 4 times
  ---> fileSize                     // fileSize in bytes                                      EG: 4 bytes
- ---> strictParameters             // If enabled All vars such as date created, modifed size
-                                   // type and all must match the manifed and are compaired
-                                   // to the file systems info. Else program will error      EG: true - has to match else error, false - dont check.
-                                   
-                                   
