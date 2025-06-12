@@ -1,7 +1,7 @@
 INFO FACT SHEET FOR DOWNLOAD MANGER BY LABMATT (MATTHEW LEWINGTON)
 
-// DLID is the download ID for the file. It will get looked for and is what link is sent back.
-// EXAMPLE LINK WOULD BE
+// DLID = download ID for the file.
+EXAMPLE:
 https://download.labmatt.space/?dlid=1&auto=0
 THIS BREAKS DOWN TO: //https://HOST NAME/?dlid= A NUBMER FROM 0 to 65535 &auto= 0 or 1 for auto download on page open
 
