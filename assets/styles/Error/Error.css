@@ -1,52 +1,66 @@
-body {
+.body {
     
+    background-color: rgb(10,10,10);
+    min-height: 100svh;
+
+    padding: 0;
+    margin: 0;
+
     display: flex;
     flex-direction: column;
 
-    margin: 0%;
-    background-color: rgb(30, 30, 30);
-    background-repeat: no-repeat;
-
-    font-family: Arial;
-    color: white;
+    overflow: hidden;
 }
 
-#ErrorDiv {
+.error404 {
 
-    display: flex;
-    flex-direction: column;
+    margin: 0;
+    padding: 0;
 
+    color: rgb(25,25,25);
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 10em;
     text-align: center;
     
-    padding: 2%;
+    user-select: none;
 }
 
-#buttonDIV {
+.errorCode {
+
+    margin: 0;
+    padding: 0;
+
+    color: rgb(45,45,45);
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.spacer {
+
+    padding: 0.5em;
+    margin-left: 2em;
+    margin-right: 2em;
+
+    border-radius: 2px;
+    background-color: rgba(255,65,74,255);
+
     display: flex;
     flex-direction: row;
     
-    justify-content: center;
+    justify-content: space-around;
 }
 
-#closeButton {
-    display: none;
+.spaverText {
     
-    padding: 2%;
-    padding-left: 4%;
-    padding-right: 4%;
-    
-    border-radius: 2px;
-    border: 2px solid;
-    border-color: rgb(50,50,50);
-    
-    color: white;
+    margin: 0;
+    padding: 0;
+
+    color: rgb(45,45,45);
+    font-family: monospace;
     font-weight: bold;
+    font-size: 1em;
     
-    background-color: rgb(30,30,30);
-}
-
-#closeButton:hover {
-    transition: 0.4s;
-    background-color: red;
-    border-color: white;
+    user-select: none;
 }

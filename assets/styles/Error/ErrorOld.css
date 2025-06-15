@@ -1,0 +1,52 @@
+body {
+    
+    display: flex;
+    flex-direction: column;
+
+    margin: 0%;
+    background-color: rgb(30, 30, 30);
+    background-repeat: no-repeat;
+
+    font-family: Arial;
+    color: white;
+}
+
+#ErrorDiv {
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+    
+    padding: 2%;
+}
+
+#buttonDIV {
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: center;
+}
+
+#closeButton {
+    display: none;
+    
+    padding: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    
+    border-radius: 2px;
+    border: 2px solid;
+    border-color: rgb(50,50,50);
+    
+    color: white;
+    font-weight: bold;
+    
+    background-color: rgb(30,30,30);
+}
+
+#closeButton:hover {
+    transition: 0.4s;
+    background-color: red;
+    border-color: white;
+}
