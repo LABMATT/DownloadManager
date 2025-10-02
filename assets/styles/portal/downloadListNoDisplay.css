@@ -1,0 +1,23 @@
+.downloadListNoDisplay {
+
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    margin: 2em;
+    background-color: rgba(0,0,0,1);
+
+
+    border: 2px solid rgba(255,65,74,255);
+    border-radius: 2px;
+
+
+    text-align: center;
+    color: white;
+}
+
+.downloadListNoDisplayText {
+
+    user-select: none;
+    margin: 0;
+    padding: 0;
+}
