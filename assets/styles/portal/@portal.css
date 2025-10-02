@@ -1,0 +1,34 @@
+@media screen and (max-width: 800px) {
+
+    .portalHeaderDiv {
+        display: flex;
+        flex-direction: column;
+        margin: 2em;
+    }
+
+    .portalHeader {
+
+        background-color: rgba(255, 65, 74, 255);
+        margin: 0;
+        padding: 2em;
+        border-radius: 2px;
+        user-select: none;
+        text-align: center;
+    }
+
+    .portalSubHeader {
+
+        background-color: rgba(255, 65, 74, 255);
+        margin: 0;
+        margin-top: 1em;
+        padding: 0.4em;
+        padding-left: 0;
+        border-radius: 2px;
+        text-align: center;
+    }
+
+    .portalSubHeaderText {
+        padding: 0;
+        margin: 0;
+    }
+}

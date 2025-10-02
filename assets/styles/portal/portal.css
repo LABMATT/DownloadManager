@@ -1,4 +1,52 @@
 #body {
 
+    margin: 0;
     background-color: rgb(10, 10, 10);
+
+    color: rgb(20, 20, 20);
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.links {
+    color: rgb(20, 20, 20);
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.links:hover {
+
+    color:darkred;
+}
+
+
+.portalHeaderDiv {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+}
+
+.portalHeader {
+
+    background-color: rgba(255, 65, 74, 255);
+    margin: 0;
+    padding: 2em;
+    border-radius: 2px;
+    user-select: none;
+}
+
+.portalSubHeader {
+
+    background-color: rgba(255, 65, 74, 255);
+    margin: 0;
+    margin-top: 1em;
+    padding: 0.4em;
+    padding-left: 2em;
+    border-radius: 2px;
+}
+
+.portalSubHeaderText {
+    padding: 0;
+    margin: 0;
 }
