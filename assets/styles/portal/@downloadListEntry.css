@@ -1,0 +1,30 @@
+@media screen and (max-width: 800px) {
+
+    .downloadListEntry {
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+
+        margin: 2em;
+
+        padding: 1em;
+        border: 2px solid rgba(255, 65, 74, 255);
+        border-radius: 2px;
+    }
+
+    .downloadListEntryInfo {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+
+        color: white;
+
+    }
+
+    .downloadListButton {
+
+        padding: 0.5em;
+    }
+}

@@ -1,4 +1,60 @@
 .downloadListEntry {
+
+    display: grid;
+    grid-template-columns: 70fr 30fr;
+    grid-template-rows: 1fr;
+
+    margin: 2em;
+
     padding: 1em;
-    border: ;
+    border: 2px solid rgba(255, 65, 74, 255);
+    border-radius: 2px;
+}
+
+.downloadListEntryInfo {
+
+    display: grid;
+    grid-template-columns: min-content 1fr min-content 1fr;
+    grid-template-rows: auto;
+
+    color: white;
+
+}
+
+.downloadListEntryInfoKEY {
+
+    padding-left: 1em;
+    text-align: right;
+    user-select: none;
+    color: rgb(150,150,150);
+}
+
+
+
+.downloadListButtons {
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+
+    user-select: none;
+}
+
+.downloadListButton {
+
+    background-color: rgba(255, 65, 74, 255);
+    margin: 0;
+    flex-grow: 1;
+    align-content: center;
+}
+
+.downloadListButton:hover {
+
+    background-color:rgba(255,255,255,1);
+}
+
+.downloadListButtonColour2 {
+
+    background-color: rgba(255, 65, 74, 255);
 }
