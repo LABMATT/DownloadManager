@@ -12,5 +12,4 @@ function displayDownloads() {
 
     document.getElementById("downloadListNoDisplay").style.display = "none";
     document.getElementById("downloadList").style.display = "block";
-
 }

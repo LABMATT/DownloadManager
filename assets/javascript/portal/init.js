@@ -7,6 +7,5 @@ function init() {
 
     hideDownloads();
     setInterval(displayDownloads,500);
-
-setInterval(createEntry, 1000);
+    setInterval(createEntry, 1000);
 }

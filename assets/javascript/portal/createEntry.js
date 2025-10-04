@@ -39,6 +39,7 @@ downloadList.append(newEntry);
 }
 
 
+// Crates a p tag with the key and value for the downloads info. Appends this to the main.
 function newKeyValue(element, key, value) {
 
     var downloadListEntryInfoKey = document.createElement("p");
