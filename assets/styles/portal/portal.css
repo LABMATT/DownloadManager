@@ -8,6 +8,11 @@
     font-weight: bold;
 }
 
+#downloadList {
+
+    display: none;
+}
+
 .links {
     color: rgb(20, 20, 20);
     font-family: monospace;

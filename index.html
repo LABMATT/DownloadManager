@@ -13,7 +13,9 @@
 
 
         <!-- Include nessary script files. -->
-        <script type="text/javascript" src=""></script>
+        <script type="text/javascript" src="assets/javascript/portal/init.js"></script>
+        <script type="text/javascript" src="assets/javascript/portal/createEntry.js"></script>
+        <script type="text/javascript" src="assets/javascript/portal/downloadListNoDisplay.js"></script>
 
 
         <!-- Include nesscary css files. -->
@@ -43,13 +45,15 @@
 
     </div>
 
+
+    <div id="downloadListNoDisplay" class="downloadListNoDisplay">
+        <h2 id="downloadMessage" class="downloadListNoDisplayText">LOADING</h2>
+    </div>
+
+
     <div id="downloadList">
 
-        <div id="downloadListNoDisplay" class="downloadListNoDisplay">
-            <h2 class="downloadListNoDisplayText">NO DOWNLOADS TO DISPLAY</h2>
-        </div>
-
-        <div class="downloadListEntry">
+        <div id="templateDownloadListEntry" class="downloadListEntry">
             <div class="downloadListEntryInfo">
                 <p class="downloadListEntryInfoKEY">TITLE&#x2022;&nbsp;</p><p>EPIC MINECRAFT WORLD</p>
                 <p class="downloadListEntryInfoKEY">ID&#x2022;&nbsp;</p><p>03-10-25-7722</p>
@@ -60,9 +64,9 @@
             </div>
             <div class="downloadListButtons">
                 <p class="downloadListButton">VIEW</p>
-                <p class="downloadListButton downloadListButtonColour2">DOWNLOAD</p>
+                <p class="downloadListButton">DOWNLOAD</p>
                 <p class="downloadListButton">SHARE</p>
-                <p class="downloadListButton downloadListButtonColour2">WGET</p>
+                <p class="downloadListButton">WGET</p>
             </div>
         </div>
 
