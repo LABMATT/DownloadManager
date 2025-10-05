@@ -16,10 +16,10 @@ downloadListEntryInfo.classList.add("downloadListEntryInfo");
 
 newKeyValue(downloadListEntryInfo, "TITLE&#x2022;&nbsp;", "Test Title");
 newKeyValue(downloadListEntryInfo, "ID&#x2022;&nbsp;", "Test ID");
-newKeyValue(downloadListEntryInfo, "UPLOADED&#x2022;&nbsp;", "Test date");
-newKeyValue(downloadListEntryInfo, "CREATED&#x2022;&nbsp;", "Test date2");
+newKeyValue(downloadListEntryInfo, "Created&#x2022;&nbsp;", "Test date2");
 newKeyValue(downloadListEntryInfo, "Size&#x2022;&nbsp;", "Test size");
-newKeyValue(downloadListEntryInfo, "version&#x2022;&nbsp;", "Test version");
+newKeyValue(downloadListEntryInfo, "Version&#x2022;&nbsp;", "Test version");
+newKeyValue(downloadListEntryInfo, "Tags&#x2022;&nbsp;", "Test version");
 newEntry.append(downloadListEntryInfo);
 
 
@@ -30,7 +30,7 @@ downloadListButtons.classList.add("downloadListButtons");
 newButton(downloadListButtons, "VIEW", "");
 newButton(downloadListButtons, "DOWNLOAD", "");
 newButton(downloadListButtons, "SHARE", "");
-newButton(downloadListButtons, "WGET", "");
+newButton(downloadListButtons, "META", "");
 newEntry.append(downloadListButtons);
 
 
@@ -40,10 +40,15 @@ downloadList.append(newEntry);
 
 
 // Crates a p tag with the key and value for the downloads info. Appends this to the main.
-function newKeyValue(element, key, value) {
+function newKeyValue(element, key, value, keyColour) {
+
+    if (!keyColour) {
+        keyColour = "#969696";
+    }
 
     var downloadListEntryInfoKey = document.createElement("p");
     downloadListEntryInfoKey.classList.add("downloadListEntryInfoKEY");
+    downloadListEntryInfoKey.style.color = keyColour;
     downloadListEntryInfoKey.innerHTML = key;
     element.append(downloadListEntryInfoKey);
 

@@ -46,6 +46,7 @@
 .portalSubHeader {
 
     display: flex;
+    justify-content: space-between;
 
     background-color: rgba(255, 65, 74, 255);
     margin: 0;
@@ -58,6 +59,7 @@
 
 .loginLogoutButtons {
     
+    user-select: none;
 }
 
 .loginLogoutButtons:hover {
