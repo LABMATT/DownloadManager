@@ -20,6 +20,8 @@ newKeyValue(downloadListEntryInfo, "Created&#x2022;&nbsp;", "Test date2");
 newKeyValue(downloadListEntryInfo, "Size&#x2022;&nbsp;", "Test size");
 newKeyValue(downloadListEntryInfo, "Version&#x2022;&nbsp;", "Test version");
 newKeyValue(downloadListEntryInfo, "Tags&#x2022;&nbsp;", "Test version");
+
+newKeyValue(downloadListEntryInfo, "Tags&#x2022;&nbsp;", "Test version");
 newEntry.append(downloadListEntryInfo);
 
 
@@ -40,7 +42,7 @@ downloadList.append(newEntry);
 
 
 // Crates a p tag with the key and value for the downloads info. Appends this to the main.
-function newKeyValue(element, key, value, keyColour) {
+function newKeyValue(element, key, value, elementID, keyColour) {
 
     if (!keyColour) {
         keyColour = "#969696";
