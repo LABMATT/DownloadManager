@@ -1,6 +1,9 @@
 .portalManagerSubHeader {
+    /* For the server status and login tab only. Have this layout so it can expand to show more info. */
 
         display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
 
         background-color: rgba(255, 65, 74, 255);
 
@@ -14,11 +17,21 @@
     }
 
     .portalManagerSubHeaderText {
-        
+
         padding: 0;
         margin: 0;
     }
 
+    .loginLogoutButtons {
+
+        margin-left: auto;
+        user-select: none;
+    }
+
+    .loginLogoutButtons:hover {
+
+        color: darkred;
+    }
 
     .portalManagerStatusBar {
 
