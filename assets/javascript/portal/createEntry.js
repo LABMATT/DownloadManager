@@ -21,7 +21,8 @@ newKeyValue(downloadListEntryInfo, "Size&#x2022;&nbsp;", "Test size");
 newKeyValue(downloadListEntryInfo, "Version&#x2022;&nbsp;", "Test version");
 newKeyValue(downloadListEntryInfo, "Tags&#x2022;&nbsp;", "Test version");
 
-newKeyValue(downloadListEntryInfo, "Tags&#x2022;&nbsp;", "Test version");
+// Extra info
+newKeyValue(downloadListEntryInfo, "Tags&#x2022;&nbsp;", "Test version", "idtemp", "#008000");
 newEntry.append(downloadListEntryInfo);
 
 
