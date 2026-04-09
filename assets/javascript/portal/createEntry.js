@@ -1,8 +1,8 @@
 
 // Credates a entry for a download on the portal page.
-function createEntry() {
+function createEntry(appendElement) {
 
-// Main list div that all our entrys get added to.
+// If the method within createEntry is blank then assume were apending to the downlaodlist Else we can also create the mangment protal box
 const downloadList = document.getElementById("downloadList");
 
 // New entry to be added in.
@@ -42,7 +42,7 @@ downloadList.append(newEntry);
 }
 
 
-// Crates a p tag with the key and value for the downloads info. Appends this to the main.
+// Crates a new keypair and value. Appends this to the main.
 function newKeyValue(element, key, value, elementID, keyColour) {
 
     if (!keyColour) {
@@ -56,6 +56,7 @@ function newKeyValue(element, key, value, elementID, keyColour) {
     element.append(downloadListEntryInfoKey);
 
     var downloadListEntryInfoValue = document.createElement("p");
+    downloadListEntryInfoValue.id = elementID;
     downloadListEntryInfoValue.innerText = value;
     element.append(downloadListEntryInfoValue);
 }

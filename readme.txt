@@ -48,3 +48,4 @@ if(auto == 2) DIRECT REDIRECT TO DOWNLOAD FILE.
  ---> link                         // Link to profile or site related to download.           EG: www.labmatt.space
  ---> numberOfDownloads            // Number of times the download button has been clicked   EG: 4 times
  ---> fileSize                     // fileSize in bytes                                      EG: 4 bytes
+ ---> tags                         // Tags its linked to in a group.                         EG: Minecraft, CAD, Planes

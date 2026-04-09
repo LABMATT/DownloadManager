@@ -3,6 +3,11 @@
     display: none;
 }
 
+#templateDownloadListEntry {
+
+    display: none;
+}
+
 .downloadListEntry {
 
     display: grid;
