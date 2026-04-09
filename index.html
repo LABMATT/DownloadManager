@@ -23,8 +23,9 @@
         <link rel="stylesheet" type="text/css" href="assets/styles/portal/@portal.css">
 
         <link rel="stylesheet" type="text/css" href="assets/styles/Manager/ManagerSubHeading.css">
-        <link rel="stylesheet" type="text/css" href="assets/styles/Manager/ManagerFields.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/Manager/ManagerActionBar.css">
         <link rel="stylesheet" type="text/css" href="assets/styles/Manager/ManagerLogin.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/Manager/ManagerNewEditDownload.css">
 
         <link rel="stylesheet" type="text/css" href="assets/styles/portal/downloadListEntry.css">
         <link rel="stylesheet" type="text/css" href="assets/styles/portal/@downloadListEntry.css">
@@ -52,13 +53,31 @@
             </div>
 
             <div class="portalManagerLogin">
-                <p>Username: </p>
-                <p>Password: </p>
+                <div class="ManagerLoginTextDiv"><p>Username: </p></div>
+                <div class="ManagerLoginTextDiv"><p>Password: </p></div>
             </div>
 
-            <div class="portalManagerFields">
-                <h1>Hello There!</h1>
+            <div class="portalManagerActionBar">
+                <div class="portalManagerActionBarButton"><p>New/Edit</p></div>
+                <div class="portalManagerActionBarButton"><p>Remove Download</p></div>
+                <div class="portalManagerActionBarButton"><p>Settings</p></div>
             </div>
+
+            <div id="portalManagerNewEditDownload">
+                <div class="NewEditBox"><p>DLID: </p></div>
+                <div class="NewEditBox"><p>DATE: </p></div>
+                <div class="NewEditBox"><p>NAME: </p></div>
+                <div class="NewEditBox"><p>STATUS: </p></div>
+                <div class="NewEditBox"><p>REASON: </p></div>
+                <div class="NewEditBox"><p>PASSWORD PROTECTED: </p></div>
+                <div class="NewEditBox"><p>PASSWORD: </p></div>
+                <div class="NewEditBox"><p>FILENAME: </p></div>
+                <div class="NewEditBox"><p>VERSION: </p></div>
+                <div class="NewEditBox"><p>DATE CREATED: </p></div>
+                <div class="NewEditBox"><p>DATE MODIFED: </p></div>
+            </div>
+            <div id="portalManagerRemoveDownload"></div>
+            <div id="portalManagerEditDownload"></div>
 
         </div>
 
