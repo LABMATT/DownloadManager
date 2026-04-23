@@ -1,0 +1,45 @@
+.ManagerEditorHeader {
+
+    margin-top: 1em;
+    border: 2px solid rgba(255, 65, 74, 255);
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    background-color: rgba(255, 65, 74, 255);;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 3em;
+
+    user-select: none;
+}
+
+.ManagerEditorHeaderButton {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.ManagerEditorHeaderBUttonLeft {
+
+    border-top-left-radius: 3px;
+}
+
+.ManagerEditorHeaderBUttonRight {
+
+    border-top-right-radius: 3px;
+}
+
+.ManagerEditorHeaderButton:hover {
+
+    background-color: white;
+}
+
+.ManagerEditorHeaderButtonText {
+
+    text-align: center;
+    margin: 0;
+}

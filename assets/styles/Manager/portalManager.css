@@ -1,19 +1,16 @@
-.portalManagerSubHeader {
+.portalManager {
     /* For the server status and login tab only. Have this layout so it can expand to show more info. */
+
+
+        border-radius: 3px;
 
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
 
-        background-color: rgba(255, 65, 74, 255);
+        background-color: black;
 
         margin-top: 1em;
-
-        border-radius: 2px;
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
-        padding-left: 2em;
-        padding-right: 2em;
     }
 
     .portalManagerSubHeaderText {
@@ -34,6 +31,16 @@
     }
 
     .portalManagerStatusBar {
+
+        background-color: rgba(255, 65, 74, 255);
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+        padding-left: 2em;
+        padding-right: 2em;
+
+        border: 2px solid rgba(255, 65, 74, 255);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
 
         display: flex;
         margin: 0;

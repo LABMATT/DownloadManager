@@ -1,0 +1,8 @@
+.managerSubwindow {
+
+    border: 2px solid rgba(255, 65, 74, 255);
+    border-top: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 1em;
+}

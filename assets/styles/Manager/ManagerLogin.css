@@ -1,9 +1,26 @@
-.portalManagerLogin {
+.ManagerLoginHeader {
 
-    width: 100%;
-    margin-top: 1em;
-    border: 1px black solid;
-    border-radius: 3px;
+    border: 2px rgba(255, 65, 74, 255) solid;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    background-color: rgba(255, 65, 74, 255);
+
+    padding: 0.2em;
+    padding-left: 1em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ManagerLoginBody {
+
+    border: 2px rgba(255, 65, 74, 255) solid;
+    border-top: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     display: flex;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
@@ -14,4 +31,10 @@
     width: 100%;
     margin-left: 0.2em;
     margin-right: 0.2em;
+    color: white;
+}
+
+.ManagerLoginText {
+
+    margin: 0;
 }

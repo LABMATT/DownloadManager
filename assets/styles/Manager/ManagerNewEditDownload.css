@@ -8,9 +8,9 @@
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 
-    display: flex;
+    display: grid;
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 70fr 30fr;
 }
 
 .NewEditBox {

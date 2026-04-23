@@ -1,0 +1,11 @@
+.ManagerEditorTab {
+
+    border: 2px solid rgba(255, 65, 74, 255);
+    border-top: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    display: grid;
+    grid-template-columns: 70fr 30fr;
+    grid-template-rows: 1fr;
+}
